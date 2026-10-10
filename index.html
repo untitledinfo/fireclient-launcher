@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070a">
+  <title>FireClient — Minecraft Client and Launcher for Java Edition</title>
+  <meta name="description" content="FireClient is a free Minecraft Java launcher with a Fabric in-game client: draggable HUD, FPS, CPS and keystrokes, mod manager, worlds and packs. Windows download.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://fireclient.net/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FireClient">
+  <meta property="og:title" content="FireClient — Minecraft, Your Way.">
+  <meta property="og:description" content="A Minecraft Java launcher and Fabric in-game client with a draggable HUD, mod manager and worlds library.">
+  <meta property="og:image" content="https://fireclient.net/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FireClient — Minecraft, Your Way.">
+  <meta name="twitter:description" content="A Minecraft Java launcher and Fabric in-game client for Windows.">
+  <meta name="twitter:image" content="https://fireclient.net/assets/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icon.png">
+  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="preload" as="image" href="assets/ingame-menu-960.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "FireClient",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Windows 10, Windows 11",
+    "description": "Minecraft Java launcher with a Fabric in-game client: HUD, mod manager, worlds and resource packs.",
+    "softwareVersion": "1.0",
+    "downloadUrl": "https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe",
+    "url": "https://fireclient.net/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": [{ "@type": "Person", "name": "FirePDX" }, { "@type": "Person", "name": "Sajjad Ahmed" }]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#home" aria-label="FireClient home">
+      <img src="assets/logo.svg" alt="" width="28" height="28">
+      <span class="brand-word">FIRE<span>CLIENT</span></span>
+      <span class="brand-tag">BETA</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+      <a href="#in-game" data-nav>In game</a>
+      <a href="#features" data-nav>Features</a>
+      <a href="#download" data-nav>Download</a>
+      <a href="#community" data-nav>Discord</a>
+      <a href="#changelog" data-nav>Changelog</a>
+      <a href="#faq" data-nav>FAQ</a>
+      <a class="btn btn-primary btn-sm" href="#download" data-nav>Get FireClient</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <canvas class="embers" id="embers" aria-hidden="true"></canvas>
+      <div class="hero-floor" aria-hidden="true"></div>
+
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <h1 id="hero-title" class="hero-title">
+            <span class="line"><span class="line-in">MINECRAFT.</span></span>
+            <span class="line"><span class="line-in">REDEFINED.</span></span>
+          </h1>
+          <p class="hero-text">FireClient is a Minecraft Java launcher and Fabric in-game client in one install. Manage versions, mods, worlds and packs from one place, then shape your HUD in game. <strong>Minecraft, Your Way.</strong></p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#download" data-download-link>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+              <span data-download-label>Download FireClient</span>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#in-game">See it in game</a>
+          </div>
+          <ul class="hero-meta" aria-label="Release information">
+            <li data-win-chip hidden>Windows 10 / 11, 64-bit</li>
+            <li>Minecraft 1.21.1 · Fabric</li>
+            <li data-bind-wrap="size" hidden><span data-bind="size">—</span> installer</li>
+            <li class="discord-live" data-discord-live hidden>
+              <a href="#community"><i class="live-dot" aria-hidden="true"></i><b data-discord="online">0</b> online on Discord</a>
+            </li>
+          </ul>
+        </div>
+
+        <figure class="hero-shot" aria-label="FireClient main menu in Minecraft">
+          <div class="window">
+            <div class="window-bar"><img src="assets/icon.png" alt="" width="14" height="14"><span>FireClient 1.21.1</span><i></i><i></i><i></i></div>
+            <img src="assets/ingame-menu-960.jpg" alt="The FireClient main menu in Minecraft 1.21.1 with a red ember sky, the FireClient logo and a FireClient Menu button" width="960" height="564" fetchpriority="high">
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- IN GAME VIEWER -->
+    <section class="section" id="in-game" aria-labelledby="ingame-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="ingame-title">The client, as you see it in game.</h2>
+          <p class="lede">Open the FireClient menu with <kbd>Right Shift</kbd> in any 1.21.1 Fabric world. Pick a view to look closer.</p>
+        </header>
+
+        <div class="viewer" id="viewer">
+          <div class="viewer-tabs" role="tablist" aria-label="FireClient views">
+            <button role="tab" id="tab-menu" aria-controls="panel-menu" aria-selected="true" type="button">Main menu</button>
+            <button role="tab" id="tab-hud" aria-controls="panel-hud" aria-selected="false" tabindex="-1" type="button">HUD settings</button>
+            <button role="tab" id="tab-launcher" aria-controls="panel-launcher" aria-selected="false" tabindex="-1" type="button">Launcher</button>
+          </div>
+
+          <div class="viewer-body">
+            <div class="viewer-stage">
+              <div class="window">
+                <div class="window-bar"><img src="assets/icon.png" alt="" width="14" height="14"><span id="viewer-title">FireClient 1.21.1</span><i></i><i></i><i></i></div>
+                <div class="stage-images">
+                  <button class="shot is-active" type="button" data-full="assets/ingame-menu.jpg" data-title="FireClient 1.21.1" data-caption="FireClient main menu" aria-label="Enlarge the main menu screenshot">
+                    <img src="assets/ingame-menu-960.jpg" alt="FireClient main menu in Minecraft 1.21.1" width="960" height="564" loading="lazy">
+                  </button>
+                  <button class="shot" type="button" data-full="assets/ingame-hud.jpg" data-title="FireClient 1.21.1 — Singleplayer" data-caption="HUD settings screen" aria-label="Enlarge the HUD settings screenshot">
+                    <img src="assets/ingame-hud-960.jpg" alt="FireClient HUD settings with toggles for watermark, FPS, coordinates, ping, direction, memory, clock, keystrokes, armor, effects and CPS" width="960" height="564" loading="lazy">
+                  </button>
+                  <button class="shot" type="button" data-full="assets/launcher-mods.jpg" data-title="FireClient Launcher" data-caption="FireClient launcher, Mods page" aria-label="Enlarge the launcher screenshot">
+                    <img src="assets/launcher-mods-960.jpg" alt="FireClient launcher on the Mods page with mod tiles, curated packs and installed mods" width="960" height="575" loading="lazy">
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="viewer-notes">
+              <div role="tabpanel" id="panel-menu" aria-labelledby="tab-menu">
+                <h3>FireClient menu on the title screen</h3>
+                <p>A dark red title screen with an ember sky, your profile in the corner and a <b>FireClient Menu</b> button that opens the client settings.</p>
+              </div>
+              <div role="tabpanel" id="panel-hud" aria-labelledby="tab-hud" hidden>
+                <h3>HUD settings</h3>
+                <p>Four tabs: HUD, Features, Theme and About. Switch each HUD element on or off, then use <b>Edit HUD Positions</b> to drag them where you want.</p>
+              </div>
+              <div role="tabpanel" id="panel-launcher" aria-labelledby="tab-launcher" hidden>
+                <h3>Launcher</h3>
+                <p>Install versions, find mods on Modrinth, add your own jars and keep worlds, packs and screenshots in one place.</p>
+              </div>
+
+              <h4>HUD elements</h4>
+              <ul class="hud-list" aria-label="HUD elements">
+                <li>Watermark</li><li>FPS</li><li>Coordinates</li><li>Ping</li><li>Direction</li><li>Memory</li><li>Clock</li><li>Keystrokes</li><li>Armor</li><li>Effects</li><li>CPS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+        <button class="lb-btn lb-close" type="button" aria-label="Close viewer">✕</button>
+        <button class="lb-btn lb-prev" type="button" aria-label="Previous image">‹</button>
+        <figure class="lb-fig"><div class="lb-stage" id="lb-stage"></div><figcaption id="lb-caption"></figcaption></figure>
+        <button class="lb-btn lb-next" type="button" aria-label="Next image">›</button>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section section-alt" id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="features-title">Built around how you play.</h2>
+          <p class="lede">Everything here is in the current build. A few things are still planned and listed at the end.</p>
+        </header>
+
+        <div class="spec">
+          <article class="spec-row spec-lead">
+            <h3>HUD and in-game menu</h3>
+            <div>
+              <p>Press <kbd>Right Shift</kbd> to open the menu. Drag HUD elements into place with the HUD editor. Positions, visibility and the sprint toggle are saved to <code>config/fireclient/client.json</code>. Three accent themes are included.</p>
+              <p class="spec-note">Minecraft 1.21.1 on Fabric, Java 21.</p>
+            </div>
+          </article>
+          <article class="spec-row">
+            <h3>Mods and Modrinth</h3>
+            <p>Discover and install mods, drop in your own jar files, switch installed mods on or off, and install curated packs for Performance, Visuals, Utility and PvP.</p>
+          </article>
+          <article class="spec-row">
+            <h3>Worlds library</h3>
+            <p>Browse local worlds with their own icon, last-saved date and size. Refresh, search and sort.</p>
+          </article>
+          <article class="spec-row">
+            <h3>Memory you control</h3>
+            <p>Choose a memory budget in the launcher. It is passed to Java as the max heap, limited to a safe range.</p>
+          </article>
+          <article class="spec-row">
+            <h3>Your files stay put</h3>
+            <p>The pack library has no delete action, and the installer and uninstaller leave your worlds and resource packs on disk.</p>
+          </article>
+          <article class="spec-row">
+            <h3>Local skins</h3>
+            <p>The launcher keeps an offline skin and the in-game mod applies it as a client-side player texture.</p>
+          </article>
+          <article class="spec-row">
+            <h3>Host a server</h3>
+            <p>Run a Paper server from the launcher. It shows Running once Paper reports ready. Router port forwarding is still up to you.</p>
+          </article>
+          <article class="spec-row">
+            <h3>Other versions</h3>
+            <p>The launcher starts other Minecraft versions too, but the in-game client only exists for 1.21.1 on Fabric.</p>
+          </article>
+        </div>
+
+        <p class="planned"><b>Planned, not built yet:</b> a crosshair editor and cosmetics.</p>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="section" id="download" aria-labelledby="download-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="download-title">Get FireClient.</h2>
+          <p class="lede">The installer sets up the launcher. You need your own Minecraft Java Edition account to play online.</p>
+        </header>
+
+        <div class="download-grid">
+          <div class="panel dl-main" aria-live="polite" id="dl-card" data-state="loading">
+            <div class="dl-os"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 11 4v7H3zM12 3.8 21 2.5V11h-9zM3 12.5h8v7L3 18.2zM12 12.5h9v8.5l-9-1.3z"/></svg><div><b>Windows</b><small>Windows 10 / 11 · 64-bit · Installer</small></div></div>
+            <p class="dl-state" id="dl-state">Checking release…</p>
+            <dl class="dl-facts">
+              <div><dt>Version</dt><dd data-bind="version">—</dd></div>
+              <div><dt>File size</dt><dd data-bind="size">—</dd></div>
+              <div><dt>Released</dt><dd data-bind="date">—</dd></div>
+            </dl>
+            <div class="dl-actions">
+              <a class="btn btn-primary btn-lg" id="dl-button" href="#download" aria-disabled="true" data-download-link>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+                <span data-download-label>Download FireClient</span>
+              </a>
+              <a class="btn btn-ghost btn-lg" id="dl-releases" href="#download" hidden target="_blank" rel="noopener noreferrer">View releases</a>
+              <button class="btn btn-ghost btn-lg" type="button" id="dl-retry" hidden>Retry</button>
+            </div>
+            <p class="thanks" id="dl-thanks" hidden><b>Thanks for downloading FireClient.</b> Run the installer, then join the Discord if you need help.</p>
+            <div class="hash" id="hash-box" hidden>
+              <span class="hash-k">SHA-256</span>
+              <code id="sha-value">—</code>
+              <button type="button" class="btn btn-ghost btn-sm" id="copy-hash">Copy</button>
+            </div>
+            <p class="note"><strong>Unsigned beta.</strong> Windows may show a security prompt. Compare the SHA-256 above with your downloaded file before you run it.</p>
+          </div>
+
+          <div class="panel dl-side">
+            <h3>Platforms</h3>
+            <ul class="os-list" id="os-list">
+              <li><span>Windows</span><span class="badge badge-ok" id="os-win">Checking…</span></li>
+              <li><span>macOS</span><span class="badge badge-soon" id="os-mac">Not available</span></li>
+              <li><span>Linux</span><span class="badge badge-soon" id="os-linux">Not available</span></li>
+            </ul>
+            <h3>Install in five steps</h3>
+            <ol class="steps">
+              <li><b>Download</b> the installer and wait for it to finish.</li>
+              <li><b>Verify</b> the SHA-256 (optional): <code>Get-FileHash</code> in PowerShell.</li>
+              <li><b>Install</b> and accept the terms. Allow the Windows prompt if you trust the source.</li>
+              <li><b>Sign in</b> with Microsoft, or use an offline profile.</li>
+              <li><b>Play</b> 1.21.1 Fabric to get the in-game menu on <kbd>Right Shift</kbd>.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY / DISCORD -->
+    <section class="section section-alt" id="community" aria-labelledby="community-title">
+      <div class="wrap">
+        <div class="discord panel" id="discord-card" data-state="idle">
+          <div class="discord-copy">
+            <h2 id="community-title">Join the FireClient Discord.</h2>
+            <p class="lede">Get help, share feedback and report bugs. Never post access tokens, account files or unredacted logs in public.</p>
+            <div class="community-links" id="community-links">
+              <a class="btn btn-primary btn-lg" id="link-discord" href="#community" target="_blank" rel="noopener noreferrer">Join Discord</a>
+            </div>
+          </div>
+          <dl class="discord-stats" aria-live="polite" data-discord-stats hidden>
+            <div><dt><i class="live-dot" aria-hidden="true"></i>Online now</dt><dd data-discord="online">—</dd></div>
+            <div><dt>Members</dt><dd data-discord="members">—</dd></div>
+            <p class="discord-name" data-discord="name" hidden></p>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHANGELOG -->
+    <section class="section" id="changelog" aria-labelledby="changelog-title">
+      <div class="wrap narrow">
+        <header class="section-head">
+          <h2 id="changelog-title">Release notes.</h2>
+          <p class="lede" id="changelog-source">Loading release notes…</p>
+        </header>
+        <div id="changelog-list" class="changelog" aria-live="polite" aria-busy="true"></div>
+        <button class="btn btn-ghost btn-sm" type="button" id="changelog-retry" hidden>Retry</button>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-alt" id="faq" aria-labelledby="faq-title">
+      <div class="wrap narrow">
+        <header class="section-head">
+          <h2 id="faq-title">Questions, answered.</h2>
+        </header>
+        <div class="faq" id="faq-list">
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a1" id="faq-b1">What is FireClient?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-b1"><div><p>A Windows launcher for Minecraft Java Edition with a Fabric in-game mod. The launcher handles versions, mods, worlds and resource packs; the mod adds the in-game menu and HUD.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a2" id="faq-b2">Which Minecraft versions does it support?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-b2"><div><p>The launcher can start other versions, but the in-game mod is built for Minecraft 1.21.1 on Fabric with Java 21. Other versions and loaders get the in-game features once a matching mod build exists.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a3" id="faq-b3">Is it safe to install?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-b3"><div><p>The beta installer is unsigned, so Windows will likely warn you. Compare the SHA-256 in the Download section with your file and only install from the official source. Read the <a href="terms-and-privacy.html">Terms &amp; Privacy</a> notice first.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a4" id="faq-b4">Will updating or uninstalling delete my worlds?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-b4"><div><p>No. The installer and uninstaller leave your game-data folder in place, including worlds and resource packs. Back up important worlds before you change game files anyway.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a5" id="faq-b5">Does it have a crosshair editor or cosmetics?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-b5"><div><p>Not yet. The in-game mod covers the menu, HUD elements, sprint toggle and accent themes. Those two features are planned.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a6" id="faq-b6">Is FireClient affiliated with Mojang or Microsoft?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-b6"><div><p>No. FireClient is independent and is not endorsed by Mojang or Microsoft. Minecraft is a trademark of its owners.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-main">
+      <a class="brand" href="#home"><img src="assets/logo.svg" alt="" width="24" height="24"><span class="brand-word">FIRE<span>CLIENT</span></span></a>
+      <p class="footer-tag">Minecraft, Your Way.</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#in-game">In game</a><a href="#features">Features</a><a href="#download">Download</a><a href="#community">Discord</a><a href="#changelog">Changelog</a><a href="#faq">FAQ</a><a href="https://github.com/untitledinfo/fireclient-launcher" target="_blank" rel="noopener noreferrer">GitHub</a><a href="terms-and-privacy.html">Terms &amp; Privacy</a>
+      </nav>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© <span id="year">2026</span> FireClient. Created by FirePDX and Sajjad Ahmed.</span>
+      <span>Not affiliated with Mojang or Microsoft.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <noscript><p class="noscript">JavaScript is off, so release details and Discord numbers are unavailable. Installer: <a rel="nofollow" href="https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe">FireClient-Setup.exe</a>.</p></noscript>
+
+  <script src="changelog.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

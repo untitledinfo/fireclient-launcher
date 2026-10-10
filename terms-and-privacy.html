@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0c">
+  <title>Terms &amp; Privacy — FireClient</title>
+  <meta name="description" content="Terms and privacy notice for the FireClient Windows beta installer.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header is-scrolled">
+    <a class="brand" href="index.html" aria-label="FireClient home"><img src="assets/logo.svg" alt="" width="28" height="28"><span class="brand-word">FIRE<span>CLIENT</span></span><span class="brand-tag">BETA</span></a>
+    <nav class="site-nav" style="visibility:visible;opacity:1;position:static;transform:none;flex-direction:row;padding:0;background:none;border:0" aria-label="Main navigation"><a class="btn btn-ghost btn-sm" href="index.html">← Back to site</a></nav>
+  </header>
+  <main class="legal"><div class="narrow" style="margin-inline:auto">
+    <h1>Terms &amp; Privacy</h1>
+    <p class="legal-date">Effective date: October 9, 2026</p>
+    <p class="legal-warning">Please read this notice before installing. Selecting “I Agree” in the installer confirms that you have read and accepted these terms.</p>
+    <h2>Age</h2>
+    <p>FireClient sets no minimum age in this notice. Features and connected services may have their own age rules. Where the law or a service requires permission for a minor, a parent or guardian must provide it.</p>
+    <h2>Use and source</h2>
+    <p>This installer is provided for personal use. FireClient does not publish its FireClient-authored source or branding under an open-source license, and this notice grants no right to publish, sell, sublicense, or redistribute FireClient-authored source, artwork, or branding.</p>
+    <p>This project is based in part on Justice Launcher source. The project documentation says that the upstream source has no published license and that permission is required before redistribution. This notice does not claim ownership of upstream or third-party work, grant permission from its authors, or replace any license that applies to included components. Do not redistribute a combined build unless you have the rights and permissions required for every component.</p>
+    <p>Minecraft, Microsoft, Mojang, Fabric, Forge, NeoForge, Modrinth, PaperMC, Discord, and other services and marks belong to their respective owners. FireClient is independent and is not endorsed by Mojang or Microsoft.</p>
+    <p>The software is supplied as-is to the extent permitted by law. Minecraft, loader, mod, server, and third-party service behavior is controlled by those respective projects and providers. Back up important worlds before restoring or changing game files.</p>
+    <h2>Privacy</h2>
+    <p><b>Local storage.</b> FireClient keeps launcher preferences, installed profiles, worlds, resource packs, mods, screenshots, logs, offline skins, and account data in the user's .fireclient folder (or an existing .justice-launcher folder retained from an earlier install). Microsoft account credentials in accounts.json are protected using Windows Data Protection API for the current Windows user. The installer and uninstaller intentionally leave this game-data folder in place.</p>
+    <p><b>Microsoft sign-in.</b> If online sign-in is used, authentication requests go to Microsoft, Xbox, and Minecraft services. Those providers receive the network and account information needed to authenticate and operate their services. FireClient stores the account token data locally in protected form; do not share your Windows account or launcher data folder.</p>
+    <p><b>Downloads and version checks.</b> Installing or checking Minecraft, Java, loaders, mods, resource packs, shaders, servers, or launcher updates contacts the relevant provider, which may include Mojang/Microsoft, Adoptium, Fabric, Forge, NeoForge, Modrinth, PaperMC, GitHub, and download hosts/CDNs. These requests expose normal connection data such as IP address and request metadata to those providers. Mod-library lookup may send local file hashes to Modrinth to identify public mod projects.</p>
+    <p><b>Community features.</b> When the optional FireClient/Justice community account features are used, the app connects to justiceclient.org. Information entered or used for those features (such as account name, profile, friends, messages, server listings, screenshots, and marketplace actions) is sent to that service to provide the requested feature and is subject to that service's policies.</p>
+    <p><b>Discord presence.</b> When Discord Rich Presence is enabled and Discord is running, FireClient sends game presence to the local Discord application. Presence can include the Minecraft version and, when available, the server name/address shown by the feature. Discord handles that information under its own policies.</p>
+    <p><b>Logs and diagnostics.</b> Game output and crash logs are kept locally for the user. FireClient does not upload a crash log through the launcher. A diagnostics summary is copied only after the user chooses the copy-diagnostics action; the user chooses where to paste or share it.</p>
+    <p>The installer does not delete saved worlds or resource packs. Uninstall removes the installed launcher program but leaves the .fireclient game-data folder, which can be removed by the user separately through Windows File Explorer.</p>
+    <h2>Contact</h2>
+    <p>For FireClient support and privacy questions, use the <a href="https://discord.gg/pmGNwQBPC" target="_blank" rel="noopener noreferrer">FireClient community</a>. Do not post access tokens, account files, private messages, or unredacted logs publicly.</p>
+    <p><b>Created by FirePDX and Sajjad Ahmed.</b></p>
+    <a class="btn btn-ghost btn-sm" href="index.html">← Back to FireClient</a>
+  </div></main>
+  <footer class="site-footer"><div class="wrap footer-bottom"><span>© <span id="year">2026</span> FireClient. Created by FirePDX and Sajjad Ahmed.</span><a href="index.html#download">Return to download page ↑</a></div></footer>
+  <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body>
+</html>

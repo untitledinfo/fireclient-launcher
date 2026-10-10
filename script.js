@@ -36,13 +36,21 @@ const CONFIG = {
   // (the part after discord.gg/). The invite must be permanent (never expires).
   // If the request fails, the numbers are simply hidden. Nothing is faked.
   discord: {
-    invite: "pmGNwQBPC",
+    invite: "r23YNWWfrx",
     refreshSeconds: 60
+  },
+
+  // Google AdSense. Paste your publisher id (looks like "ca-pub-1234567890123456") and the
+  // ad unit ids for the two slots. While `client` is empty NO ad code loads and no ad space shows.
+  ads: {
+    client: "",
+    slots: { top: "", bottom: "" },
+    requireConsent: true     // shows a small consent notice; ads load only after "Accept"
   },
 
   // Community and social links. Empty strings are hidden.
   social: {
-    discord: "https://discord.gg/pmGNwQBPC",
+    discord: "https://discord.gg/r23YNWWfrx",
     github: "https://github.com/untitledinfo/fireclient-launcher",
     youtube: "",
     x: ""
@@ -653,6 +661,56 @@ function initCommunity() {
 }
 
 /* ==========================================================================
+   Ads (Google AdSense): off until CONFIG.ads.client is set; consent-gated
+   ========================================================================== */
+function initAds() {
+  const cfg = CONFIG.ads || {};
+  if (!/^ca-pub-\d{10,20}$/.test(cfg.client || "")) return;
+  const banner = $("#consent");
+  const load = () => {
+    if (window.__adsLoaded) return;
+    window.__adsLoaded = true;
+    const sc = document.createElement("script");
+    sc.async = true; sc.crossOrigin = "anonymous";
+    sc.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(cfg.client);
+    document.head.appendChild(sc);
+    $$("[data-ad-slot]").forEach(box => {
+      const id = (cfg.slots || {})[box.dataset.adSlot];
+      if (!/^\d{6,20}$/.test(id || "")) return;
+      const ins = document.createElement("ins");
+      ins.className = "adsbygoogle"; ins.style.display = "block";
+      ins.dataset.adClient = cfg.client; ins.dataset.adSlot = id;
+      ins.dataset.adFormat = "auto"; ins.dataset.fullWidthResponsive = "true";
+      box.appendChild(ins); box.hidden = false;
+      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch { /* ignore */ }
+    });
+  };
+  let choice = "";
+  try { choice = localStorage.getItem("fc:consent") || ""; } catch { /* ignore */ }
+  if (!cfg.requireConsent || choice === "yes") { load(); return; }
+  if (choice === "no" || !banner) return;
+  banner.hidden = false;
+  const set = v => { try { localStorage.setItem("fc:consent", v); } catch { /* ignore */ } banner.hidden = true; if (v === "yes") load(); };
+  $("[data-consent=yes]", banner).addEventListener("click", () => set("yes"));
+  $("[data-consent=no]", banner).addEventListener("click", () => set("no"));
+}
+
+/* Scroll reveal + back to top */
+function initPolish() {
+  const items = $$("[data-reveal]");
+  if (reduceMotion || !("IntersectionObserver" in window)) { items.forEach(i => i.classList.add("in")); }
+  else {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+    items.forEach(i => io.observe(i));
+  }
+  const top = $("#to-top");
+  if (top) {
+    addEventListener("scroll", () => top.classList.toggle("show", scrollY > 900), { passive: true });
+    top.addEventListener("click", () => scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+  }
+}
+
+/* ==========================================================================
    Boot
    ========================================================================== */
 function boot() {
@@ -665,6 +723,8 @@ function boot() {
   initCommunity();
   initDiscord();
   initDownload();
+  initAds();
+  initPolish();
 }
 
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

@@ -291,6 +291,46 @@ kbd { font-size: .8em; padding: 1px 7px; background: var(--panel-2); border: 1px
 .not-found h1 { font: 800 clamp(5rem, 18vw, 10rem)/1 var(--font-display); color: var(--red); }
 .not-found p { color: var(--muted); }
 
+
+/* ---------- Highlights strip ---------- */
+.strip { background: linear-gradient(180deg, #120b0f, var(--bg-2)); border-block: 1px solid var(--line); }
+.strip-list { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); }
+.strip-list li { padding: 22px 18px; border-left: 1px solid var(--line); display: grid; gap: 2px; }
+.strip-list li:first-child { border-left: 0; }
+.strip-list b { font: 800 clamp(1.3rem, 2.2vw, 1.9rem)/1.1 var(--font-display); color: #fff; }
+.strip-list b::after { content: ""; display: block; width: 22px; height: 3px; margin-top: 8px; background: var(--red); }
+.strip-list span { color: var(--quiet); font-size: .86rem; }
+
+/* ---------- Cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
+.card { padding: 26px 22px; background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-top: 3px solid var(--red); border-radius: var(--r); transition: transform .2s var(--ease), border-color .2s, box-shadow .2s; }
+.card:hover { transform: translateY(-4px); border-color: var(--line-red); box-shadow: 0 24px 50px -28px rgba(224,49,63,.7); }
+.card h3 { font: 800 1.1rem/1.25 var(--font-display); }
+.card p { margin-top: 10px; color: var(--muted); font-size: .94rem; }
+
+/* ---------- Ads, consent, back to top ---------- */
+.ad-slot { margin-block: 28px; min-height: 100px; text-align: center; overflow: hidden; }
+.ad-slot::before { content: "Advertisement"; display: block; margin-bottom: 6px; color: var(--quiet); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+.consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 96; max-width: 640px; margin-inline: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 18px; padding: 14px 18px; background: #1a1116; border: 1px solid var(--line-red); border-left: 3px solid var(--red); border-radius: var(--r); font-size: .88rem; color: var(--muted); box-shadow: 0 20px 60px -20px #000; }
+.consent a { color: var(--ember); text-decoration: underline; }
+.consent div { display: flex; gap: 8px; }
+.to-top { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 44px; height: 44px; background: var(--red); border: 0; border-radius: var(--r); color: #fff; font-size: 1.2rem; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .2s, transform .2s; }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: var(--red-hot); }
+
+/* ---------- Scroll reveal ---------- */
+.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.js [data-reveal].in { opacity: 1; transform: none; }
+.cards .card:nth-child(2), .strip-list li:nth-child(2) { transition-delay: .07s; }
+.cards .card:nth-child(3), .strip-list li:nth-child(3) { transition-delay: .14s; }
+.cards .card:nth-child(4), .strip-list li:nth-child(4) { transition-delay: .21s; }
+.strip-list li:nth-child(5) { transition-delay: .28s; }
+.hero-title { text-shadow: 0 0 60px rgba(224,49,63,.35); }
+.btn-primary { background-size: 100% 100%; }
+.btn-primary:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 12px 34px -8px rgba(255,74,85,.9); }
+@media (max-width: 980px) { .cards { grid-template-columns: repeat(2, minmax(0,1fr)); } .strip-list { grid-template-columns: repeat(3, minmax(0,1fr)); } .strip-list li:nth-child(4) { border-left: 0; } }
+@media (max-width: 560px) { .cards { grid-template-columns: minmax(0,1fr); } .strip-list { grid-template-columns: repeat(2, minmax(0,1fr)); } .strip-list li:nth-child(odd) { border-left: 0; } }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .hero-inner, .viewer-body, .download-grid, .discord { grid-template-columns: minmax(0, 1fr); }

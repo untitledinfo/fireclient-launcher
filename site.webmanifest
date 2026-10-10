@@ -1,0 +1,17 @@
+{
+  "name": "FireClient",
+  "short_name": "FireClient",
+  "description": "Free Minecraft Java launcher and Fabric client.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09070a",
+  "theme_color": "#e0313f",
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

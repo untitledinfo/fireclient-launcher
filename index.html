@@ -4,40 +4,223 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09070a">
-  <title>FireClient — Minecraft Client and Launcher for Java Edition</title>
-  <meta name="description" content="FireClient is a free Minecraft Java launcher with a Fabric in-game client: draggable HUD, FPS, CPS and keystrokes, mod manager, worlds and packs. Windows download.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <title>FireClient — Free Minecraft Client and Launcher for Java Edition (1.21.1 Fabric)</title>
+  <meta name="description" content="FireClient is a free Minecraft Java launcher with a Fabric 1.21.1 in-game client: draggable HUD, FPS, CPS and keystrokes, Modrinth mod manager, worlds and packs. Windows download.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="keywords" content="FireClient, Minecraft client, Minecraft launcher, Minecraft Fabric client, Minecraft 1.21.1 client, Minecraft HUD mod, free Minecraft launcher Windows, PvP client, Modrinth launcher">
+  <meta name="author" content="FirePDX, Sajjad Ahmed">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="dark">
+  <link rel="alternate" hreflang="en" href="https://fireclient.net/">
+  <link rel="alternate" hreflang="x-default" href="https://fireclient.net/">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://discord.com" crossorigin>
+  <link rel="preconnect" href="https://api.github.com" crossorigin>
+  <link rel="dns-prefetch" href="https://github.com">
   <link rel="canonical" href="https://fireclient.net/">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fireclient.net/">
+  <meta property="og:locale" content="en_US">
   <meta property="og:site_name" content="FireClient">
   <meta property="og:title" content="FireClient — Minecraft, Your Way.">
   <meta property="og:description" content="A Minecraft Java launcher and Fabric in-game client with a draggable HUD, mod manager and worlds library.">
   <meta property="og:image" content="https://fireclient.net/assets/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FireClient — Minecraft, Your Way. Red ember title screen with the FireClient logo.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="FireClient — Minecraft, Your Way.">
   <meta name="twitter:description" content="A Minecraft Java launcher and Fabric in-game client for Windows.">
   <meta name="twitter:image" content="https://fireclient.net/assets/og-image.png">
+  <meta name="twitter:image:alt" content="FireClient — Minecraft, Your Way.">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/icon.png">
   <link rel="apple-touch-icon" href="assets/icon.png">
   <link rel="preload" as="image" href="assets/ingame-menu-960.jpg" fetchpriority="high">
   <link rel="stylesheet" href="style.css">
   <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
   {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "FireClient",
-    "applicationCategory": "GameApplication",
-    "operatingSystem": "Windows 10, Windows 11",
-    "description": "Minecraft Java launcher with a Fabric in-game client: HUD, mod manager, worlds and resource packs.",
-    "softwareVersion": "1.0",
-    "downloadUrl": "https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe",
-    "url": "https://fireclient.net/",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "author": [{ "@type": "Person", "name": "FirePDX" }, { "@type": "Person", "name": "Sajjad Ahmed" }]
+   "@type": "Organization",
+   "@id": "https://fireclient.net/#org",
+   "name": "FireClient",
+   "url": "https://fireclient.net/",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://fireclient.net/assets/icon.png",
+    "width": 512,
+    "height": 512
+   },
+   "sameAs": [
+    "https://github.com/untitledinfo/fireclient-launcher",
+    "https://discord.gg/r23YNWWfrx"
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://fireclient.net/#site",
+   "url": "https://fireclient.net/",
+   "name": "FireClient",
+   "description": "Free Minecraft Java launcher and Fabric in-game client for Windows.",
+   "publisher": {
+    "@id": "https://fireclient.net/#org"
+   },
+   "inLanguage": "en"
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://fireclient.net/#page",
+   "url": "https://fireclient.net/",
+   "name": "FireClient — Free Minecraft Client and Launcher for Java Edition",
+   "isPartOf": {
+    "@id": "https://fireclient.net/#site"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://fireclient.net/assets/og-image.png"
+   },
+   "breadcrumb": {
+    "@id": "https://fireclient.net/#crumbs"
+   },
+   "inLanguage": "en"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://fireclient.net/#crumbs",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "FireClient",
+     "item": "https://fireclient.net/"
+    }
+   ]
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://fireclient.net/#app",
+   "name": "FireClient",
+   "applicationCategory": "GameApplication",
+   "operatingSystem": "Windows 10, Windows 11",
+   "description": "Minecraft Java launcher with a Fabric in-game client: draggable HUD, mod manager, worlds library and resource packs.",
+   "softwareVersion": "1.0",
+   "downloadUrl": "https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe",
+   "url": "https://fireclient.net/",
+   "image": "https://fireclient.net/assets/og-image.png",
+   "screenshot": [
+    "https://fireclient.net/assets/ingame-menu.jpg",
+    "https://fireclient.net/assets/ingame-hud.jpg",
+    "https://fireclient.net/assets/launcher-home.jpg"
+   ],
+   "featureList": [
+    "Draggable HUD with FPS, CPS, keystrokes and coordinates",
+    "Mod manager with Modrinth",
+    "Worlds library",
+    "Memory control",
+    "Local skins",
+    "Host a Paper server"
+   ],
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "publisher": {
+    "@id": "https://fireclient.net/#org"
+   },
+   "author": [
+    {
+     "@type": "Person",
+     "name": "FirePDX"
+    },
+    {
+     "@type": "Person",
+     "name": "Sajjad Ahmed"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://fireclient.net/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is FireClient?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A Windows launcher for Minecraft Java Edition with a Fabric in-game mod. The launcher handles versions, mods, worlds and resource packs; the mod adds the in-game menu and HUD."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which Minecraft versions does it support?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The launcher can start other versions, but the in-game mod is built for Minecraft 1.21.1 on Fabric with Java 21. Other versions and loaders get the in-game features once a matching mod build exists."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is it safe to install?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The beta installer is unsigned, so Windows will likely warn you. Compare the SHA-256 in the Download section with your file and only install from the official source. Read the Terms & Privacy notice first."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Will updating or uninstalling delete my worlds?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The installer and uninstaller leave your game-data folder in place, including worlds and resource packs. Back up important worlds before you change game files anyway."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does it have a crosshair editor or cosmetics?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not yet. The in-game mod covers the menu, HUD elements, sprint toggle and accent themes. Those two features are planned."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is FireClient affiliated with Mojang or Microsoft?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. FireClient is independent and is not endorsed by Mojang or Microsoft. Minecraft is a trademark of its owners."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is FireClient free?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. The launcher and the in-game client are free to download and use. You need your own Minecraft Java Edition account to play online."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do I open the FireClient menu in game?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Press Right Shift in a Minecraft 1.21.1 Fabric world, or use the FireClient Menu button on the title screen. From there you can switch HUD elements on or off and change the accent theme."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where do I get help or report a bug?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Join the FireClient Discord at discord.gg/r23YNWWfrx. Please do not post access tokens, account files or unredacted logs in public."
+     }
+    }
+   ]
   }
+ ]
+}
   </script>
 </head>
 <body>
@@ -101,6 +284,20 @@
         </figure>
       </div>
     </section>
+
+
+    <!-- HIGHLIGHTS -->
+    <section class="strip" aria-label="Highlights">
+      <ul class="wrap strip-list">
+        <li data-reveal><b>Free</b><span>Launcher and client</span></li>
+        <li data-reveal><b>1.21.1</b><span>Fabric in-game client</span></li>
+        <li data-reveal><b>11</b><span>HUD elements</span></li>
+        <li data-reveal><b>3</b><span>Accent themes</span></li>
+        <li data-reveal><b>Modrinth</b><span>Built-in mod manager</span></li>
+      </ul>
+    </section>
+
+    <aside class="ad-slot wrap" data-ad-slot="top" aria-label="Advertisement" hidden></aside>
 
     <!-- IN GAME VIEWER -->
     <section class="section" id="in-game" aria-labelledby="ingame-title">
@@ -302,6 +499,24 @@
       </div>
     </section>
 
+    <!-- WHY -->
+    <section class="section" id="why" aria-labelledby="why-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="why-title">A free Minecraft client and launcher in one install.</h2>
+          <p class="lede">FireClient pairs a Windows launcher for Minecraft Java Edition with a Fabric client mod, so version management and in-game tools live in the same place.</p>
+        </header>
+        <div class="cards">
+          <article class="card" data-reveal><h3>Made for PvP and everyday play</h3><p>Keep FPS, CPS, keystrokes, armor and effects on screen, drag each one where you want it, and save the layout to a simple config file.</p></article>
+          <article class="card" data-reveal><h3>Mods without the hunt</h3><p>Search Modrinth from the launcher, install curated packs for Performance, Visuals, Utility and PvP, or add your own jars.</p></article>
+          <article class="card" data-reveal><h3>Your worlds stay safe</h3><p>Updates and uninstalls leave your worlds and resource packs on disk, and the pack library has no delete action.</p></article>
+          <article class="card" data-reveal><h3>Open the menu anywhere</h3><p>Press <kbd>Right Shift</kbd> in game to open the FireClient menu and change HUD options and the accent theme instantly.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <aside class="ad-slot wrap" data-ad-slot="bottom" aria-label="Advertisement" hidden></aside>
+
     <!-- FAQ -->
     <section class="section section-alt" id="faq" aria-labelledby="faq-title">
       <div class="wrap narrow">
@@ -333,6 +548,18 @@
             <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a6" id="faq-b6">Is FireClient affiliated with Mojang or Microsoft?<span class="faq-ico" aria-hidden="true"></span></button></h3>
             <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-b6"><div><p>No. FireClient is independent and is not endorsed by Mojang or Microsoft. Minecraft is a trademark of its owners.</p></div></div>
           </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a7" id="faq-b7">Is FireClient free?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a7" role="region" aria-labelledby="faq-b7"><div><p>Yes. The launcher and the in-game client are free to download and use. You need your own Minecraft Java Edition account to play online.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a8" id="faq-b8">How do I open the FireClient menu in game?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a8" role="region" aria-labelledby="faq-b8"><div><p>Press Right Shift in a Minecraft 1.21.1 Fabric world, or use the FireClient Menu button on the title screen. From there you can switch HUD elements on or off and change the accent theme.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a9" id="faq-b9">Where do I get help or report a bug?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a9" role="region" aria-labelledby="faq-b9"><div><p>Join the FireClient Discord at <a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">discord.gg/r23YNWWfrx</a>. Please do not post access tokens, account files or unredacted logs in public.</p></div></div>
+          </div>
         </div>
       </div>
     </section>
@@ -343,7 +570,7 @@
       <a class="brand" href="#home"><img src="assets/logo.svg" alt="" width="24" height="24"><span class="brand-word">FIRE<span>CLIENT</span></span></a>
       <p class="footer-tag">Minecraft, Your Way.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#in-game">In game</a><a href="#features">Features</a><a href="#download">Download</a><a href="#community">Discord</a><a href="#changelog">Changelog</a><a href="#faq">FAQ</a><a href="https://github.com/untitledinfo/fireclient-launcher" target="_blank" rel="noopener noreferrer">GitHub</a><a href="terms-and-privacy.html">Terms &amp; Privacy</a>
+        <a href="#in-game">In game</a><a href="#features">Features</a><a href="#download">Download</a><a href="#community">Discord</a><a href="#changelog">Changelog</a><a href="#faq">FAQ</a><a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">Join Discord</a><a href="https://github.com/untitledinfo/fireclient-launcher" target="_blank" rel="noopener noreferrer">GitHub</a><a href="terms-and-privacy.html">Terms &amp; Privacy</a>
       </nav>
     </div>
     <div class="wrap footer-bottom">
@@ -351,6 +578,12 @@
       <span>Not affiliated with Mojang or Microsoft.</span>
     </div>
   </footer>
+
+  <div class="consent" id="consent" role="dialog" aria-label="Ads and cookies" hidden>
+    <p>This site can show Google ads. Accept to allow ad cookies, or decline and no ad code loads. <a href="terms-and-privacy.html">Details</a></p>
+    <div><button class="btn btn-ghost btn-sm" type="button" data-consent="no">Decline</button><button class="btn btn-primary btn-sm" type="button" data-consent="yes">Accept</button></div>
+  </div>
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">↑</button>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

@@ -18,6 +18,13 @@ This repository is the source of the website: plain HTML, CSS and JavaScript wit
 - `assets/` — logo, icon and screenshots
 - `robots.txt`, `sitemap.xml`, `CNAME` — search engines and domain
 
+## Blog, news and admin panel
+
+- `/blog/` and `/news/` are prerendered static pages (one HTML file per post, with canonical, Open Graph, JSON-LD, sitemap and RSS), so search engines read them without running JavaScript.
+- Posts live in `content/posts.json`. `lib/render.mjs` turns them into pages. `node tools/build.mjs` rebuilds everything locally.
+- `/admin/` is a no-server editor. Sign in with the repository name and a fine-grained GitHub token (Contents: Read and write). **Publish** commits the posts, generated pages, `sitemap.xml`, `feed.xml` and any uploaded images in one commit; GitHub Pages then deploys.
+- The token is the only lock on the admin. Keep it private, set an expiry, and limit it to this repository.
+
 ## Run locally
 
 ```

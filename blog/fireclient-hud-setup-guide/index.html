@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070a">
+  <title>FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric</title>
+  <meta name="description" content="Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, toggle FPS, CPS and keystrokes, and drag each element into place.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="FirePDX">
+  <link rel="canonical" href="https://fireclient.net/blog/fireclient-hud-setup-guide/">
+  <meta property="og:type" content="article"><meta property="og:url" content="https://fireclient.net/blog/fireclient-hud-setup-guide/"><meta property="og:site_name" content="FireClient"><meta property="og:locale" content="en_US">
+  <meta property="og:title" content="FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric"><meta property="og:description" content="Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, toggle FPS, CPS and keystrokes, and drag each element into place."><meta property="og:image" content="https://fireclient.net/assets/ingame-hud-960.jpg">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric"><meta name="twitter:description" content="Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, toggle FPS, CPS and keystrokes, and drag each element into place."><meta name="twitter:image" content="https://fireclient.net/assets/ingame-hud-960.jpg"><meta property="article:published_time" content="2026-10-12"><meta property="article:modified_time" content="2026-10-12"><meta property="article:author" content="FirePDX"><meta property="article:tag" content="hud"><meta property="article:tag" content="guide"><meta property="article:tag" content="fabric">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg"><link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png"><link rel="apple-touch-icon" href="/assets/icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="FireClient blog and news" href="/feed.xml">
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/blog.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://fireclient.net/blog/fireclient-hud-setup-guide/#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://fireclient.net/blog/fireclient-hud-setup-guide/"},"headline":"How to set up the FireClient HUD in Minecraft 1.21.1","description":"Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, toggle FPS, CPS and keystrokes, and drag each element into place.","image":["https://fireclient.net/assets/ingame-hud-960.jpg"],"datePublished":"2026-10-12","dateModified":"2026-10-12","author":{"@type":"Person","name":"FirePDX"},"publisher":{"@type":"Organization","name":"FireClient","url":"https://fireclient.net/","logo":{"@type":"ImageObject","url":"https://fireclient.net/assets/icon.png","width":512,"height":512}},"keywords":"hud, guide, fabric","wordCount":233,"inLanguage":"en"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FireClient","item":"https://fireclient.net/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://fireclient.net/blog/"},{"@type":"ListItem","position":3,"name":"How to set up the FireClient HUD in Minecraft 1.21.1","item":"https://fireclient.net/blog/fireclient-hud-setup-guide/"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header is-scrolled" id="site-header">
+    <a class="brand" href="/" aria-label="FireClient home"><img src="/assets/logo.svg" alt="" width="28" height="28"><span class="brand-word">FIRE<span>CLIENT</span></span><span class="brand-tag">BETA</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+      <a href="/#in-game">In game</a><a href="/#features">Features</a>
+      <a href="/blog/" aria-current="true">Blog</a><a href="/news/">News</a>
+      <a href="/#changelog">Changelog</a><a href="/#faq">FAQ</a>
+      <a class="btn btn-primary btn-sm" href="/#download">Get FireClient</a>
+    </nav>
+  </header>
+  <main id="main" class="pg-main">
+    <div class="read-bar" id="read-bar" aria-hidden="true"></div>
+    <article class="wrap post">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">FireClient</a><span aria-hidden="true">/</span><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span aria-current="page">How to set up the FireClient HUD in Minecraft 1.21.1</span></nav>
+      <header class="post-head">
+        <p class="pmeta"><a href="/blog/"><b>Blog</b></a><time datetime="2026-10-12">October 12, 2026</time><span>1 min read</span></p>
+        <h1>How to set up the FireClient HUD in Minecraft 1.21.1</h1>
+        <p class="post-dek">Open the FireClient menu with Right Shift, switch on the HUD elements you want and drag them into place with the HUD editor.</p>
+      </header>
+      <figure class="post-cover"><img src="/assets/ingame-hud-960.jpg" alt="How to set up the FireClient HUD in Minecraft 1.21.1" fetchpriority="high" decoding="async"></figure>
+      <div class="post-grid">
+        <aside class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#open-the-menu">Open the menu</a></li><li><a href="#choose-your-hud-elements">Choose your HUD elements</a></li><li><a href="#move-things-with-the-hud-editor">Move things with the HUD editor</a></li><li><a href="#pick-an-accent-theme">Pick an accent theme</a></li><li><a href="#what-you-need">What you need</a></li></ol></aside>
+        <div class="prose">
+<p>FireClient adds a HUD and an in-game menu to Minecraft 1.21.1 on Fabric. This guide covers how to open the menu, turn elements on, move them, and where your layout is saved.</p>
+<h2 id="open-the-menu">Open the menu</h2>
+<p>Start a Minecraft 1.21.1 Fabric world and press <strong>Right Shift</strong>. You can also use the <strong>FireClient Menu</strong> button on the title screen. The menu has four tabs: HUD, Features, Theme and About.</p>
+<h2 id="choose-your-hud-elements">Choose your HUD elements</h2>
+<p>The HUD tab has a switch for each element. FireClient includes eleven:</p>
+<ul><li>Watermark</li><li>FPS</li><li>Coordinates</li><li>Ping</li><li>Direction</li><li>Memory</li><li>Clock</li><li>Keystrokes</li><li>Armor</li><li>Effects</li><li>CPS</li></ul>
+<p>Turn on only what you read during play. A short list keeps the screen clear, whether you are in a PvP match or building.</p>
+<figure><img src="/assets/ingame-hud-960.jpg" alt="FireClient HUD settings with a toggle for each element" loading="lazy" decoding="async"><figcaption>FireClient HUD settings with a toggle for each element</figcaption></figure>
+<h2 id="move-things-with-the-hud-editor">Move things with the HUD editor</h2>
+<p>Press <strong>Edit HUD Positions</strong> and drag each element where you want it. Positions, visibility and the sprint toggle are saved to <code>config/fireclient/client.json</code>, so your layout is the same the next time you launch.</p>
+<h2 id="pick-an-accent-theme">Pick an accent theme</h2>
+<p>The Theme tab has three accent themes. You can switch at any time, and the change shows up in the menu and HUD right away.</p>
+<h2 id="what-you-need">What you need</h2>
+<p>The in-game client is built for Minecraft 1.21.1 on Fabric with Java 21. The launcher can start other versions, but they launch without the FireClient mod.</p>
+<p>Questions? Ask in the <a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">FireClient Discord</a>, or <a href="/#download">download FireClient</a> to try the HUD yourself.</p>
+          <footer class="post-foot">
+            <p class="tags"><span class="tag">hud</span><span class="tag">guide</span><span class="tag">fabric</span></p>
+            <p class="share"><button class="btn btn-ghost btn-sm" type="button" data-copy="https://fireclient.net/blog/fireclient-hud-setup-guide/">Copy link</button><a class="btn btn-ghost btn-sm" href="https://twitter.com/intent/tweet?text=How%20to%20set%20up%20the%20FireClient%20HUD%20in%20Minecraft%201.21.1&url=https%3A%2F%2Ffireclient.net%2Fblog%2Ffireclient-hud-setup-guide%2F" target="_blank" rel="noopener noreferrer">Share on X</a><span>By FirePDX</span></p>
+          </footer>
+        </div>
+      </div>
+      <aside class="panel cta"><div><h2>Try FireClient.</h2><p>A free Minecraft Java launcher and Fabric client for Windows. Needs your own Minecraft Java Edition account to play online.</p></div><a class="btn btn-primary btn-lg" href="/#download">Download FireClient</a></aside>
+      <section class="related" aria-labelledby="rel-t"><h2 id="rel-t">Keep reading</h2><div class="pgrid">
+      <a class="pcard" href="/blog/install-fireclient-windows/">
+      <img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" loading="lazy" decoding="async">
+      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-12">October 12, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">Install FireClient on Windows in five steps</h3><span class="pcard-ex">Download the installer, check its SHA-256, run it, sign in and launch Minecraft 1.21.1 Fabric to get the in-game menu.</span></span></a>
+      <a class="pcard" href="/news/fireclient-1-0-beta-available/">
+      <img class="pcard-cover" src="/assets/ingame-menu-960.jpg" alt="" loading="lazy" decoding="async">
+      <span class="pcard-body"><span class="pmeta"><b>News</b><time datetime="2026-10-12">October 12, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">FireClient 1.0 is available as a free Windows beta</h3><span class="pcard-ex">The launcher and the Fabric in-game client for Minecraft 1.21.1 are free to download for Windows 10 and 11.</span></span></a>
+      </div></section>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-main">
+      <a class="brand" href="/"><img src="/assets/logo.svg" alt="" width="24" height="24"><span class="brand-word">FIRE<span>CLIENT</span></span></a>
+      <p class="footer-tag">Minecraft, Your Way.</p>
+      <nav class="footer-nav" aria-label="Footer navigation"><a href="/#features">Features</a><a href="/#download">Download</a><a href="/blog/">Blog</a><a href="/news/">News</a><a href="/feed.xml">RSS</a><a href="/#faq">FAQ</a><a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">Discord</a><a href="https://github.com/untitledinfo/fireclient-launcher" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/terms-and-privacy.html">Terms &amp; Privacy</a></nav>
+    </div>
+    <div class="wrap footer-bottom"><span>© 2026 FireClient. Created by FirePDX and Sajjad Ahmed.</span><span>Not affiliated with Mojang or Microsoft.</span></div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/blog.js" defer></script>
+</body>
+</html>

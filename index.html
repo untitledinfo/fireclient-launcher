@@ -38,6 +38,8 @@
   <link rel="apple-touch-icon" href="assets/icon.png">
   <link rel="preload" as="image" href="assets/ingame-menu-960.jpg" fetchpriority="high">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="alternate" type="application/rss+xml" title="FireClient blog and news" href="/feed.xml">
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -240,6 +242,8 @@
       <a href="#features" data-nav>Features</a>
       <a href="#download" data-nav>Download</a>
       <a href="#community" data-nav>Discord</a>
+      <a href="/blog/">Blog</a>
+      <a href="/news/">News</a>
       <a href="#changelog" data-nav>Changelog</a>
       <a href="#faq" data-nav>FAQ</a>
       <a class="btn btn-primary btn-sm" href="#download" data-nav>Get FireClient</a>
@@ -487,6 +491,18 @@
       </div>
     </section>
 
+    <!-- LATEST (filled from content/latest.json by latest.js) -->
+    <section class="section" id="latest" aria-labelledby="latest-title" hidden>
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="latest-title">Latest from FireClient.</h2>
+          <p class="lede">Guides, release news and tips for the launcher and the in-game client.</p>
+        </header>
+        <div class="pgrid" id="latest-grid"></div>
+        <p class="more"><a class="btn btn-ghost btn-sm" href="/blog/">All blog posts</a><a class="btn btn-ghost btn-sm" href="/news/">All news</a></p>
+      </div>
+    </section>
+
     <!-- CHANGELOG -->
     <section class="section" id="changelog" aria-labelledby="changelog-title">
       <div class="wrap narrow">
@@ -570,7 +586,7 @@
       <a class="brand" href="#home"><img src="assets/logo.svg" alt="" width="24" height="24"><span class="brand-word">FIRE<span>CLIENT</span></span></a>
       <p class="footer-tag">Minecraft, Your Way.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#in-game">In game</a><a href="#features">Features</a><a href="#download">Download</a><a href="#community">Discord</a><a href="#changelog">Changelog</a><a href="#faq">FAQ</a><a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">Join Discord</a><a href="https://github.com/untitledinfo/fireclient-launcher" target="_blank" rel="noopener noreferrer">GitHub</a><a href="terms-and-privacy.html">Terms &amp; Privacy</a>
+        <a href="#in-game">In game</a><a href="#features">Features</a><a href="#download">Download</a><a href="#community">Discord</a><a href="#changelog">Changelog</a><a href="#faq">FAQ</a><a href="/blog/">Blog</a><a href="/news/">News</a><a href="/feed.xml">RSS</a><a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">Join Discord</a><a href="https://github.com/untitledinfo/fireclient-launcher" target="_blank" rel="noopener noreferrer">GitHub</a><a href="terms-and-privacy.html">Terms &amp; Privacy</a>
       </nav>
     </div>
     <div class="wrap footer-bottom">
@@ -591,5 +607,6 @@
 
   <script src="changelog.js"></script>
   <script src="script.js"></script>
+  <script src="latest.js" defer></script>
 </body>
 </html>

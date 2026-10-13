@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#09070a">
+  <title>Admin — FireClient</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/blog.css"><link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="adm">
+  <section id="login" class="login">
+    <form id="login-form" class="panel" autocomplete="off">
+      <a class="brand" href="/"><img src="/assets/logo.svg" alt="" width="28" height="28"><span class="brand-word">FIRE<span>CLIENT</span></span><span class="brand-tag">ADMIN</span></a>
+      <h1>Sign in</h1>
+      <p class="hint">Posts are saved to your GitHub repository. Create a <b>fine-grained personal access token</b> for this repository with <b>Contents: Read and write</b>. The token stays in this browser and is sent only to GitHub.</p>
+      <label>Repository<input id="l-repo" placeholder="owner/name" required></label>
+      <label>Branch <small>(blank = default branch)</small><input id="l-branch" placeholder="main"></label>
+      <label>Access token<input id="l-token" type="password" required></label>
+      <label class="check"><input id="l-remember" type="checkbox"> Remember on this device</label>
+      <p class="err" id="l-err" role="alert" hidden></p>
+      <button class="btn btn-primary btn-lg" type="submit">Sign in</button>
+    </form>
+  </section>
+
+  <div id="app" hidden>
+    <header class="adm-bar">
+      <a class="brand" href="/"><img src="/assets/logo.svg" alt="" width="24" height="24"><span class="brand-word">FIRE<span>CLIENT</span></span><span class="brand-tag">ADMIN</span></a>
+      <span class="chip" id="repo-chip"></span>
+      <span class="spacer"></span>
+      <button class="btn btn-ghost btn-sm" id="b-out" type="button">Sign out</button>
+      <button class="btn btn-primary btn-sm" id="b-publish" type="button" disabled>Publish</button>
+    </header>
+    <div class="adm-body">
+      <aside class="adm-list" aria-label="Posts">
+        <div class="adm-new"><button class="btn btn-primary btn-sm" data-new="blog" type="button">New blog post</button><button class="btn btn-ghost btn-sm" data-new="news" type="button">New news post</button></div>
+        <div class="adm-filter"><input id="q" type="search" placeholder="Search posts" aria-label="Search posts"><select id="flt" aria-label="Filter"><option value="all">All</option><option value="blog">Blog</option><option value="news">News</option><option value="draft">Drafts</option></select></div>
+        <ul id="plist"></ul>
+      </aside>
+      <main class="adm-edit">
+        <div id="empty" class="panel"><h2>Pick a post or write a new one.</h2><p>Drafts stay private. Nothing goes live until you press <b>Publish</b>, which commits the pages, sitemap and feed to GitHub in one step. GitHub Pages then updates the site in about a minute.</p></div>
+        <form id="form" hidden autocomplete="off">
+          <div class="row three">
+            <label>Type<select id="f-type"><option value="blog">Blog</option><option value="news">News</option></select></label>
+            <label>Status<select id="f-status"><option value="draft">Draft</option><option value="published">Published</option></select></label>
+            <label>Date<input id="f-date" type="date"></label>
+          </div>
+          <label>Title<input id="f-title" maxlength="120"></label>
+          <label>URL slug<input id="f-slug" maxlength="70"><small id="f-url"></small></label>
+          <label>Summary<textarea id="f-excerpt" rows="2" maxlength="220"></textarea><small>Shown on cards and used as the description when none is set below.</small></label>
+          <div class="row cover">
+            <label>Cover image<input id="f-cover" placeholder="/assets/blog/example.webp"></label>
+            <button class="btn btn-ghost btn-sm" id="b-cover" type="button">Upload image</button>
+            <img id="cover-prev" alt="" hidden>
+          </div>
+          <label>Tags <small>(comma separated)</small><input id="f-tags" placeholder="hud, guide"></label>
+          <div class="ed-tabs">
+            <button type="button" data-tab="write" class="on">Write</button><button type="button" data-tab="preview">Preview</button>
+            <span class="tools" id="tools"><button type="button" data-t="h2" title="Heading">H2</button><button type="button" data-t="b" title="Bold"><b>B</b></button><button type="button" data-t="i" title="Italic"><i>I</i></button><button type="button" data-t="a" title="Link">Link</button><button type="button" data-t="img" title="Image">Image</button><button type="button" data-t="ul" title="List">List</button><button type="button" data-t="q" title="Quote">Quote</button><button type="button" data-t="code" title="Code">Code</button></span>
+          </div>
+          <textarea id="f-body" rows="22" spellcheck="true"></textarea>
+          <div id="preview" class="prose" hidden></div>
+          <fieldset class="seo">
+            <legend>Search appearance</legend>
+            <div class="seo-grid">
+              <div>
+                <label>Meta title<input id="f-mt" maxlength="90" placeholder="Defaults to the post title"><small id="c-mt"></small></label>
+                <label>Meta description<textarea id="f-md" rows="3" maxlength="200" placeholder="Defaults to the summary"></textarea><small id="c-md"></small></label>
+                <div class="serp" aria-label="Search result preview"><p class="serp-url" id="s-url"></p><p class="serp-title" id="s-title"></p><p class="serp-desc" id="s-desc"></p></div>
+              </div>
+              <div><div class="score"><b id="score">0</b><span>SEO score</span></div><ul class="checks" id="checks"></ul></div>
+            </div>
+          </fieldset>
+          <div class="row end"><a class="btn btn-ghost btn-sm" id="b-view" target="_blank" rel="noopener noreferrer" hidden>View live page</a><button class="btn btn-ghost btn-sm danger" id="b-del" type="button">Delete post</button></div>
+        </form>
+      </main>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/admin/admin.js"></script>
+</body>
+</html>

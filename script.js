@@ -420,6 +420,9 @@ async function resolveRelease(force = false) {
           return { state: "ready", source: "github", version: latest.version, date: latest.date,
                    size: asset.size, sha256: asset.sha256, url: safeUrl(asset.url, { httpsOnly: true }), releasesUrl };
         }
+        // No matching asset on the latest release: use the installer URL from CONFIG instead of disabling the button.
+        const fixed = safeUrl(cfg.url, { httpsOnly: true });
+        if (fixed) return { state: "ready", source: "config", version: latest.version || cfg.version, date: latest.date || cfg.date, size: cfg.sizeBytes, sha256: cfg.sha256, url: fixed, releasesUrl };
         return { state: "unavailable", source: "github", version: latest.version, date: latest.date,
                  reason: "The latest release has no Windows installer attached yet.", releasesUrl };
       }

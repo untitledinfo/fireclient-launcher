@@ -544,8 +544,8 @@ function initDownload() {
     renderDownload(info);
     renderChangelog();
   };
-  $("#dl-retry").addEventListener("click", () => load(true));
-  $("#changelog-retry").addEventListener("click", () => load(true));
+  $("#dl-retry")?.addEventListener("click", () => load(true));
+  $("#changelog-retry")?.addEventListener("click", () => load(true));
 
   $$("[data-download-link]").forEach(a => a.addEventListener("click", e => {
     if (a.getAttribute("aria-disabled") === "true") { e.preventDefault(); return; }
@@ -555,7 +555,7 @@ function initDownload() {
     }
   }));
 
-  $("#copy-hash").addEventListener("click", async e => {
+  $("#copy-hash")?.addEventListener("click", async e => {
     const btn = e.currentTarget;
     const text = $("#sha-value").textContent.trim();
     try {
@@ -725,15 +725,11 @@ function initPolish() {
 function boot() {
   const year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());
-  initNav();
-  initEmbers();
-  initFaq();
-  initViewer();
-  initCommunity();
-  initDiscord();
-  initDownload();
-  initAds();
-  initPolish();
+  // Run each part on its own so one failure can never stop the rest (reveal, FAQ, download card).
+  [initNav, initEmbers, initFaq, initViewer, initCommunity, initDiscord, initDownload, initAds, initPolish].forEach(fn => {
+    try { fn(); } catch (err) { console.error(`FireClient: ${fn.name} failed`, err); }
+  });
+  document.documentElement.classList.add("fc-ready");
 }
 
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

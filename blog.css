@@ -90,3 +90,6 @@
 .ea-faq details[open] summary::after { content: "–"; } .ea-faq p { margin-top: 10px; color: var(--muted); }
 @media (max-width: 900px) { .roadmap { grid-template-columns: 1fr; gap: 30px; } .ea-cols { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+
+.pc-check { margin-top: 14px; padding: 10px 14px; background: rgba(111,207,151,.08); border: 1px solid rgba(111,207,151,.3); border-left: 3px solid var(--ok); border-radius: var(--r); color: var(--muted); font-size: .9rem; }
+.pc-check a { color: var(--ember); text-decoration: underline; text-underline-offset: 3px; }

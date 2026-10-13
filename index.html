@@ -34,9 +34,11 @@
   <meta name="twitter:description" content="A Minecraft Java launcher and Fabric in-game client for Windows.">
   <meta name="twitter:image" content="https://www.fireclient.net/assets/og-image.png">
   <meta name="twitter:image:alt" content="FireClient — Minecraft, Your Way.">
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/icon.png">
-  <link rel="apple-touch-icon" href="assets/icon.png">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" as="image" href="assets/ingame-menu-960.jpg" fetchpriority="high">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="blog.css">
@@ -451,6 +453,7 @@
               <code id="sha-value">—</code>
               <button type="button" class="btn btn-ghost btn-sm" id="copy-hash">Copy</button>
             </div>
+            <p class="pc-check" data-pc hidden></p>
             <p class="note">Direct download: <a href="https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe" rel="nofollow noopener">FireClient-Setup.exe</a> from GitHub Releases.</p>
             <p class="note"><strong>Unsigned beta.</strong> Windows may show a security prompt. Compare the SHA-256 above with your downloaded file before you run it.</p>
           </div>
@@ -534,6 +537,18 @@
       </div>
     </section>
     <!--LATEST:END-->
+
+    <!-- CHANGELOG -->
+    <section class="section" id="changelog" aria-labelledby="changelog-title">
+      <div class="wrap narrow">
+        <header class="section-head">
+          <h2 id="changelog-title">Release notes.</h2>
+          <p class="lede" id="changelog-source">Loading release notes…</p>
+        </header>
+        <div id="changelog-list" class="changelog" aria-live="polite" aria-busy="true"></div>
+        <button class="btn btn-ghost btn-sm" type="button" id="changelog-retry" hidden>Retry</button>
+      </div>
+    </section>
 
     <!-- WHY -->
     <section class="section" id="why" aria-labelledby="why-title">

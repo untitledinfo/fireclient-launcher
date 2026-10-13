@@ -361,3 +361,7 @@ kbd { font-size: .8em; padding: 1px 7px; background: var(--panel-2); border: 1px
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Failsafe: if the script stops early, reveal-on-scroll content still appears after a few seconds. */
+.js:not(.fc-ready) [data-reveal]:not(.in) { animation: fc-show .01s linear 3s forwards; }
+@keyframes fc-show { to { opacity: 1; transform: none; } }

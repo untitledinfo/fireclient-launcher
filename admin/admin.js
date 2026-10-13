@@ -180,7 +180,7 @@ async function publish() {
     const nc = await gh(`/repos/${S.repo}/git/commits`, { method: "POST", body: JSON.stringify({ message: msg, tree: tree.sha, parents: [head] }) });
     await gh(`/repos/${S.repo}/git/refs/heads/${encodeURIComponent(S.branch)}`, { method: "PATCH", body: JSON.stringify({ sha: nc.sha }) });
     S.posts = next; S.base = clone(next); S.sha = postsSha; S.assets.clear(); localStorage.removeItem(wipKey());
-    say("Published. GitHub Pages updates the site in about a minute."); if (S.sel && cur()) select(S.sel); else renderList();
+    say("Published. Vercel redeploys the site in about a minute."); if (S.sel && cur()) select(S.sel); else renderList();
   } catch (e) { say(e.message); alert(e.message); }
   b.textContent = label; refresh();
 }

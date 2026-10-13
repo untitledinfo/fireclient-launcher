@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09070a">
-  <script>if(location.hostname==="fireclient.net")location.replace("https://www.fireclient.net"+location.pathname+location.search+location.hash)</script>
   <title>FireClient Early Access and November 2026 Full Version</title>
   <meta name="description" content="FireClient early access is live for Windows. See what works today, known issues and the plan for the full version, planned for November 2026.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -37,12 +36,22 @@
       <p class="pill"><span class="dot" aria-hidden="true"></span>Early access · Full version planned for November 2026</p>
       <h1>FireClient early access</h1>
       <p class="lede">A free Minecraft Java launcher with a Fabric 1.21.1 in-game client. Use it today, tell us what to fix, and watch the full version take shape.</p>
-      <p class="more"><a class="btn btn-primary btn-lg" href="/#download">Download early access</a><button class="btn btn-ghost btn-lg" type="button" data-ics>Add a November reminder</button></p>
+      <p class="more"><a class="btn btn-primary btn-lg" href="#ea-download">Download early access</a><button class="btn btn-ghost btn-lg" type="button" data-ics>Add a November reminder</button></p>
     </div></section>
     <section class="wrap ea-cols">
       <div class="panel"><h2>Included today</h2><ul class="ea-list"><li>Launcher for Minecraft Java Edition on Windows 10 and 11 (64-bit)</li><li>Fabric in-game client for Minecraft 1.21.1 (Java 21), menu on <code>Right Shift</code></li><li>Draggable HUD with 11 elements, saved to <code>config/fireclient/client.json</code></li><li>3 accent themes</li><li>Modrinth mod manager, your own jar files, and curated packs for Performance, Visuals, Utility and PvP</li><li>Worlds library with each world's icon, last-saved date and size</li><li>Memory setting passed to Java as the max heap, local skins, and Paper server hosting</li></ul></div>
       <div class="panel"><h2>Known limits</h2><ul class="ea-list"><li>The installer is unsigned, so Windows may show a security prompt. Compare the SHA-256 on the download section with your file.</li><li>The in-game mod exists for Minecraft 1.21.1 on Fabric only.</li><li>Windows only. macOS and Linux are not available.</li><li>Crosshair editor and cosmetics are planned and not built yet.</li></ul></div>
     </section>
+    <section class="section" id="ea-download" aria-labelledby="eadl-title"><div class="wrap">
+      <header class="section-head"><h2 id="eadl-title">Download early access.</h2><p class="lede">Free Windows installer, v1.0. You need your own Minecraft Java Edition account to play online.</p></header>
+      <div class="panel dl-main">
+        <div class="dl-actions"><a class="btn btn-primary btn-lg" id="ea-dl-button" href="https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe" download rel="nofollow noopener" data-ea-download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg><span>Download early access for Windows</span></a><a class="btn btn-ghost btn-lg" href="https://github.com/untitledinfo/fireclient-launcher/releases" target="_blank" rel="noopener noreferrer">All releases</a></div>
+        <p class="thanks" id="ea-thanks" hidden><b>Thanks for downloading FireClient.</b> Run the installer, then join the Discord if you need help.</p>
+        <p class="pc-check" data-pc hidden></p>
+        <p class="note">Direct download: <a href="https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe" rel="nofollow noopener">FireClient-Setup.exe</a> from GitHub Releases. Windows 10 or 11, 64-bit.</p>
+        <p class="note"><strong>Unsigned early access build.</strong> Windows may show a security prompt. Only install from this site or the official GitHub repository.</p>
+      </div>
+    </div></section>
     <section class="section" id="roadmap" aria-labelledby="roadmap-title">
       <div class="wrap">
         <header class="section-head">

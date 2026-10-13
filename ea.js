@@ -8,6 +8,11 @@
     say("Reminder downloaded. It is set to 1 November; the exact date will be announced.");
   }));
 
+  document.querySelectorAll("[data-ea-download]").forEach(a => a.addEventListener("click", () => {
+    const t = document.getElementById("ea-thanks"); if (t) t.hidden = false;
+    say("Thanks for downloading FireClient! Run the installer when it finishes.");
+  }));
+
   const pc = document.querySelector("[data-pc]");
   if (pc) {
     const ua = navigator.userAgent || "", mem = Number(navigator.deviceMemory) || 0;

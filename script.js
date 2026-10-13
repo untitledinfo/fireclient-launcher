@@ -10,7 +10,7 @@ const CONFIG = {
   windows: {
     url: "https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe",
     version: "1.0",
-    date: "",                 // "YYYY-MM-DD" or "" if not published
+    date: "2026-10-10",       // fallback only; the live value comes from GitHub when it loads
     sizeBytes: 0,             // exact file size in bytes, or 0 if unknown
     sha256: ""                // add the SHA-256 of FireClient-Setup.exe if you want it shown
   },
@@ -369,12 +369,18 @@ async function fetchGithubReleases(force) {
     const hit = cache.get(key, gh.cacheMinutes * 60000);
     if (hit) return hit;
   }
-  const res = await fetch(`https://api.github.com/repos/${gh.repo}/releases?per_page=10`, {
-    headers: { Accept: "application/vnd.github+json" }
-  });
-  if (!res.ok) throw new Error(res.status === 403 ? "GitHub rate limit reached. Try again later." : `GitHub returned ${res.status}.`);
-  const data = await res.json();
-  if (!Array.isArray(data)) throw new Error("Unexpected response from GitHub.");
+  // Try our cached proxy first (/api/release on Vercel), then GitHub directly. If both fail, use the last good copy.
+  let data = null, failure = "";
+  for (const u of ["/api/release", `https://api.github.com/repos/${gh.repo}/releases?per_page=10`]) {
+    try {
+      const res = await fetch(u, { headers: { Accept: "application/vnd.github+json" } });
+      if (!res.ok) { failure = res.status === 403 || res.status === 429 ? "GitHub rate limit reached. Try again later." : `GitHub returned ${res.status}.`; continue; }
+      const json = await res.json();
+      if (Array.isArray(json)) { data = json; break; }
+      failure = "Unexpected response from GitHub.";
+    } catch { failure = "Could not reach GitHub."; }
+  }
+  if (!data) { const old = cache.get(key, 1e13); if (old) return old; throw new Error(failure || "Could not reach GitHub."); }
   const releases = data
     .filter(r => !r.draft && (gh.includePrereleases || !r.prerelease))
     .map(r => ({

@@ -42,3 +42,7 @@ Open http://localhost:8000. Download, Discord and release settings are in the `C
 All rights reserved. Cloning, copying or reusing this website is not allowed without written permission. See [LICENSE](LICENSE).
 
 Created by FirePDX and Sajjad Ahmed. Not affiliated with Mojang or Microsoft.
+
+## Release card on the home page
+
+The download card reads GitHub Releases through `/api/release` (a Vercel function in `api/release.js`, cached for 10 minutes), then GitHub directly, then the last copy saved in the browser, then the fallback in `CONFIG` at the top of `script.js`. Optional: add a `GITHUB_TOKEN` environment variable in Vercel (a token with no scopes) so the refresh is never rate-limited.

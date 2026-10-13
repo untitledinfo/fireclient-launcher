@@ -2,7 +2,7 @@
 
 Website for **FireClient**, a Minecraft Java launcher with a Fabric in-game client.
 
-**Website:** https://fireclient.net
+**Website:** https://www.fireclient.net
 **Launcher and downloads:** https://github.com/untitledinfo/fireclient-launcher
 
 ## About

@@ -26,6 +26,9 @@ This repository is the source of the website: plain HTML, CSS and JavaScript wit
 - Only the repository owner can sign in (`admin/config.js` can list other GitHub usernames). This check runs in the browser, so the real lock is still GitHub: only people whose token can write to the repo can publish. Do not add collaborators you do not trust. The token lives in the tab only, and the admin signs out after 30 idle minutes.
 - The token is the only lock on the admin. Keep it private, set an expiry, and limit it to this repository.
 
+- `/early-access/` and the home roadmap come from `lib/render.mjs` (`roadmap()`), so editing it once updates both. `ea.js` makes the November reminder file; `llms.txt` summarises the site for AI tools.
+- Vercel Web Analytics: turn it on in the Vercel project (Analytics tab); the `/_vercel/insights/script.js` tag is already on every page.
+
 ## Run locally
 
 ```

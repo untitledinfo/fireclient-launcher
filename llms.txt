@@ -1,0 +1,15 @@
+# FireClient
+> FireClient is a free Minecraft Java launcher for Windows 10/11 with a Fabric in-game client for Minecraft 1.21.1 (Java 21). Early access is live; the full version is planned for November 2026 (exact date not announced).
+
+## Pages
+- [Home](https://www.fireclient.net/): features, download and FAQ
+- [Early access](https://www.fireclient.net/early-access/): what works today, known issues, roadmap
+- [Blog](https://www.fireclient.net/blog/): guides for the launcher and client
+- [News](https://www.fireclient.net/news/): releases and announcements
+- [RSS feed](https://www.fireclient.net/feed.xml)
+
+## Facts
+- Draggable HUD with 11 elements and 3 accent themes; menu opens with Right Shift
+- Modrinth mod manager, worlds library, memory setting, local skins, Paper server hosting
+- Planned, not built: crosshair editor and cosmetics
+- Not affiliated with Mojang or Microsoft

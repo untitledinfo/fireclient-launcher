@@ -60,3 +60,9 @@
   .pcard-big { flex-direction: column; } .pcard-big .pcard-cover { width: 100%; min-height: 0; aspect-ratio: 16/9; }
 }
 @media (prefers-reduced-motion: reduce) { .read-bar { display: none; } }
+
+.pg-tools { margin-top: 22px; display: grid; gap: 12px; max-width: 720px; }
+.pg-tools input { padding: 11px 14px; background: #0b080b; border: 1px solid var(--line-2); border-radius: var(--r); color: var(--text); width: 100%; }
+.tagbar { display: flex; flex-wrap: wrap; gap: 8px; } .tagbar .tag { background: none; cursor: pointer; }
+.tagbar .tag:hover { border-color: var(--red); color: #fff; } .tagbar .tag[aria-pressed="true"] { border-color: var(--red); background: rgba(224,49,63,.15); color: #fff; }
+.nomatch { color: var(--muted); margin-bottom: 16px; }

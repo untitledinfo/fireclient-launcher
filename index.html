@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>if(location.hostname.indexOf("www.")===0)location.replace("https://fireclient.net"+location.pathname+location.search+location.hash)</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09070a">
   <title>FireClient — Free Minecraft Client and Launcher for Java Edition (1.21.1 Fabric)</title>
@@ -63,6 +64,7 @@
   {
    "@type": "WebSite",
    "@id": "https://fireclient.net/#site",
+   "alternateName": ["FireClient Launcher", "FireClient Minecraft Launcher"],
    "url": "https://fireclient.net/",
    "name": "FireClient",
    "description": "Free Minecraft Java launcher and Fabric in-game client for Windows.",
@@ -491,29 +493,28 @@
       </div>
     </section>
 
-    <!-- LATEST (filled from content/latest.json by latest.js) -->
-    <section class="section" id="latest" aria-labelledby="latest-title" hidden>
+    <!--LATEST:START-->
+    <section class="section" id="latest" aria-labelledby="latest-title">
       <div class="wrap">
-        <header class="section-head">
-          <h2 id="latest-title">Latest from FireClient.</h2>
-          <p class="lede">Guides, release news and tips for the launcher and the in-game client.</p>
-        </header>
-        <div class="pgrid" id="latest-grid"></div>
+        <header class="section-head"><h2 id="latest-title">Latest from FireClient.</h2><p class="lede">Guides, release news and tips for the launcher and the in-game client.</p></header>
+        <div class="pgrid">
+          <a class="pcard" href="/blog/fireclient-hud-setup-guide/" data-q="how to set up the fireclient hud in minecraft 1.21.1 open the fireclient menu with right shift, switch on the hud elements you want and drag them into place with the hud editor. hud guide fabric" data-tags="hud,guide,fabric">
+      <img class="pcard-cover" src="/assets/ingame-hud-960.jpg" alt="" loading="lazy" decoding="async">
+      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-12">October 12, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">How to set up the FireClient HUD in Minecraft 1.21.1</h3><span class="pcard-ex">Open the FireClient menu with Right Shift, switch on the HUD elements you want and drag them into place with the HUD editor.</span></span></a>
+          <a class="pcard" href="/blog/install-fireclient-windows/" data-q="install fireclient on windows in five steps download the installer, check its sha-256, run it, sign in and launch minecraft 1.21.1 fabric to get the in-game menu. install windows guide" data-tags="install,windows,guide">
+      <img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" loading="lazy" decoding="async">
+      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-12">October 12, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">Install FireClient on Windows in five steps</h3><span class="pcard-ex">Download the installer, check its SHA-256, run it, sign in and launch Minecraft 1.21.1 Fabric to get the in-game menu.</span></span></a>
+          <a class="pcard" href="/news/fireclient-1-0-beta-available/" data-q="fireclient 1.0 is available as a free windows beta the launcher and the fabric in-game client for minecraft 1.21.1 are free to download for windows 10 and 11. release beta" data-tags="release,beta">
+      <img class="pcard-cover" src="/assets/ingame-menu-960.jpg" alt="" loading="lazy" decoding="async">
+      <span class="pcard-body"><span class="pmeta"><b>News</b><time datetime="2026-10-12">October 12, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">FireClient 1.0 is available as a free Windows beta</h3><span class="pcard-ex">The launcher and the Fabric in-game client for Minecraft 1.21.1 are free to download for Windows 10 and 11.</span></span></a>
+        </div>
         <p class="more"><a class="btn btn-ghost btn-sm" href="/blog/">All blog posts</a><a class="btn btn-ghost btn-sm" href="/news/">All news</a></p>
       </div>
     </section>
-
-    <!-- CHANGELOG -->
-    <section class="section" id="changelog" aria-labelledby="changelog-title">
-      <div class="wrap narrow">
-        <header class="section-head">
-          <h2 id="changelog-title">Release notes.</h2>
-          <p class="lede" id="changelog-source">Loading release notes…</p>
-        </header>
-        <div id="changelog-list" class="changelog" aria-live="polite" aria-busy="true"></div>
-        <button class="btn btn-ghost btn-sm" type="button" id="changelog-retry" hidden>Retry</button>
-      </div>
-    </section>
+    <!--LATEST:END-->
 
     <!-- WHY -->
     <section class="section" id="why" aria-labelledby="why-title">
@@ -607,6 +608,5 @@
 
   <script src="changelog.js"></script>
   <script src="script.js"></script>
-  <script src="latest.js" defer></script>
 </body>
 </html>

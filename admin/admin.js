@@ -1,6 +1,7 @@
 /* FireClient admin: edits content/posts.json in your GitHub repo and publishes generated pages in one commit.
    No server. The access token stays in this browser and is only sent to api.github.com. */
-import { buildSite, md, slugify, words, plain, esc, TYPES, SITE, titleOf, postUrl } from "/lib/render.mjs";
+import { ADMIN_USERS } from "/admin/config.js";
+import { buildSite, injectHome, md, slugify, words, plain, esc, TYPES, SITE, titleOf, postUrl } from "/lib/render.mjs";
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const S = { repo: "", branch: "", token: "", posts: [], base: [], sha: null, sel: null, assets: new Map(), q: "", flt: "all" };
@@ -27,8 +28,9 @@ async function loadPosts() {
 /* ---------- Login ---------- */
 const cfg = JSON.parse(localStorage.getItem("fc-admin-cfg") || "{}");
 $("#l-repo").value = cfg.repo || "untitledinfo/fireclient-launcher"; $("#l-branch").value = cfg.branch || "";
-const saved = sessionStorage.getItem("fc-admin-token") || localStorage.getItem("fc-admin-token") || "";
-if (saved) $("#l-token").value = saved; $("#l-remember").checked = !!localStorage.getItem("fc-admin-token");
+localStorage.removeItem("fc-admin-token");
+const saved = sessionStorage.getItem("fc-admin-token") || "";
+if (saved) $("#l-token").value = saved;
 $("#login-form").addEventListener("submit", async e => {
   e.preventDefault(); const err = $("#l-err"); err.hidden = true;
   S.repo = $("#l-repo").value.trim(); S.token = $("#l-token").value.trim();
@@ -36,19 +38,25 @@ $("#login-form").addEventListener("submit", async e => {
   try {
     const r = await gh(`/repos/${S.repo}`);
     if (r.permissions && !r.permissions.push) throw new Error("This token can read the repository but not write to it. Give it Contents: Read and write.");
+    const me = await gh("/user"), allow = (ADMIN_USERS.length ? ADMIN_USERS : [r.owner.login]).map(x => x.toLowerCase());
+    if (!allow.includes(me.login.toLowerCase())) { S.token = ""; sessionStorage.removeItem("fc-admin-token"); throw new Error(`Only the site owner can use this admin. You are signed in as @${me.login}.`); }
+    S.user = me.login;
     S.branch = $("#l-branch").value.trim() || r.default_branch;
     S.posts = await loadPosts(); S.base = clone(S.posts);
     localStorage.setItem("fc-admin-cfg", JSON.stringify({ repo: S.repo, branch: $("#l-branch").value.trim() }));
     sessionStorage.setItem("fc-admin-token", S.token);
-    $("#l-remember").checked ? localStorage.setItem("fc-admin-token", S.token) : localStorage.removeItem("fc-admin-token");
     const wip = localStorage.getItem(wipKey());
     if (wip) { try { const w = JSON.parse(wip); if (JSON.stringify(w) !== JSON.stringify(S.posts)) { S.posts = w; say("Restored your unpublished edits."); } } catch {} }
-    $("#login").hidden = true; $("#app").hidden = false; $("#repo-chip").textContent = `${S.repo} · ${S.branch}`;
+    $("#login").hidden = true; $("#app").hidden = false; $("#repo-chip").textContent = `${S.repo} · ${S.branch} · @${S.user}`; idle();
     renderList(); refresh();
   } catch (x) { err.textContent = x.status === 401 ? "GitHub rejected the token. Check that it has not expired." : x.status === 404 ? "Repository not found, or the token has no access to it." : x.message; err.hidden = false; }
   btn.disabled = false;
 });
 $("#b-out").addEventListener("click", () => { if (pending() && !confirm("You have unpublished edits. They stay saved in this browser. Sign out?")) return; sessionStorage.removeItem("fc-admin-token"); localStorage.removeItem("fc-admin-token"); location.reload(); });
+
+/* Sign out after 30 minutes without activity. Unpublished edits stay saved in this browser. */
+function idle() { clearTimeout(idle.t); idle.t = setTimeout(() => { sessionStorage.removeItem("fc-admin-token"); alert("Signed out after 30 minutes of inactivity. Your unpublished edits are kept in this browser."); location.reload(); }, 30 * 60 * 1000); }
+["input", "click", "keydown"].forEach(ev => addEventListener(ev, () => { if (!$("#app").hidden) idle(); }));
 
 /* ---------- State ---------- */
 const cur = () => S.posts.find(p => p.id === S.sel);
@@ -159,6 +167,8 @@ async function publish() {
     if (remote !== S.sha) throw new Error("Posts changed on GitHub since you signed in (another session or a manual edit). Sign out, sign in again and re-apply your edits.");
     step("Building pages…");
     const was = buildSite(S.base).files, now = buildSite(next).files, out = { ...now, "content/posts.json": JSON.stringify({ posts: next }, null, 2) + "\n" };
+    try { const hr = await fetch(`https://api.github.com/repos/${S.repo}/contents/index.html?ref=${encodeURIComponent(S.branch)}`, { headers: { Authorization: `Bearer ${S.token}`, Accept: "application/vnd.github.raw+json" } });
+      if (hr.ok) { const home = await hr.text(), upd = injectHome(home, buildSite(next).published); if (upd !== home) out["index.html"] = upd; } } catch {}
     const entries = [], jobs = [...Object.entries(out).map(([path, c]) => [path, { content: c, encoding: "utf-8" }]), ...[...S.assets].map(([path, a]) => [path, { content: a.data, encoding: "base64" }])];
     let done = 0, postsSha = null;
     for (let i = 0; i < jobs.length; i += 6) await Promise.all(jobs.slice(i, i + 6).map(async ([path, blob]) => {
@@ -175,3 +185,5 @@ async function publish() {
   b.textContent = label; refresh();
 }
 $("#b-publish").addEventListener("click", publish);
+$("#b-dup").addEventListener("click", () => { const p = cur(); if (!p) return; const c = { ...clone(p), id: crypto.randomUUID(), title: p.title + " (copy)", slug: "", status: "draft", date: today(), updated: "" }; S.posts.push(c); select(c.id); refresh(); say("Duplicated as a draft."); });
+$("#b-discord").addEventListener("click", async () => { const p = cur(); if (!p) return; if (!p.slug) return say("Add a slug first."); try { await navigator.clipboard.writeText(`**${p.title}**\n${p.excerpt}\n\n${SITE.url}${postUrl(p)}`); say("Discord announcement copied."); } catch { say("Copy failed."); } });

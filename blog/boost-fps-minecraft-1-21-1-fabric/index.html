@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070a">
+  <title>Boost FPS in Minecraft 1.21.1 on Fabric: Practical Steps — FireClient</title>
+  <meta name="description" content="Raise Minecraft 1.21.1 FPS on Fabric: lower render distance, set sensible RAM, use well-known Fabric performance mods from Modrinth, and measure with an FPS HUD.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="FirePDX">
+  <link rel="canonical" href="https://www.fireclient.net/blog/boost-fps-minecraft-1-21-1-fabric/">
+  <meta property="og:type" content="article"><meta property="og:url" content="https://www.fireclient.net/blog/boost-fps-minecraft-1-21-1-fabric/"><meta property="og:site_name" content="FireClient"><meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Boost FPS in Minecraft 1.21.1 on Fabric: Practical Steps — FireClient"><meta property="og:description" content="Raise Minecraft 1.21.1 FPS on Fabric: lower render distance, set sensible RAM, use well-known Fabric performance mods from Modrinth, and measure with an FPS HUD."><meta property="og:image" content="https://www.fireclient.net/assets/ingame-hud.jpg">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Boost FPS in Minecraft 1.21.1 on Fabric: Practical Steps — FireClient"><meta name="twitter:description" content="Raise Minecraft 1.21.1 FPS on Fabric: lower render distance, set sensible RAM, use well-known Fabric performance mods from Modrinth, and measure with an FPS HUD."><meta name="twitter:image" content="https://www.fireclient.net/assets/ingame-hud.jpg"><meta property="article:published_time" content="2026-10-16"><meta property="article:modified_time" content="2026-10-16"><meta property="article:author" content="FirePDX"><meta property="article:tag" content="performance"><meta property="article:tag" content="fps"><meta property="article:tag" content="fabric"><meta property="article:tag" content="guide">
+  <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png"><link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="FireClient blog and news" href="/feed.xml">
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/blog.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","@id":"https://www.fireclient.net/blog/boost-fps-minecraft-1-21-1-fabric/#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.fireclient.net/blog/boost-fps-minecraft-1-21-1-fabric/"},"headline":"How to boost FPS in Minecraft 1.21.1 on Fabric","description":"Raise Minecraft 1.21.1 FPS on Fabric: lower render distance, set sensible RAM, use well-known Fabric performance mods from Modrinth, and measure with an FPS HUD.","image":["https://www.fireclient.net/assets/ingame-hud.jpg","https://www.fireclient.net/assets/og-image.png"],"datePublished":"2026-10-16","dateModified":"2026-10-16","author":{"@type":"Person","name":"FirePDX"},"publisher":{"@type":"Organization","name":"FireClient","url":"https://www.fireclient.net/","logo":{"@type":"ImageObject","url":"https://www.fireclient.net/assets/icon.png","width":512,"height":512}},"keywords":"performance, fps, fabric, guide","wordCount":347,"inLanguage":"en"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"FireClient","item":"https://www.fireclient.net/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.fireclient.net/blog/"},{"@type":"ListItem","position":3,"name":"How to boost FPS in Minecraft 1.21.1 on Fabric","item":"https://www.fireclient.net/blog/boost-fps-minecraft-1-21-1-fabric/"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header is-scrolled" id="site-header">
+    <a class="brand" href="/" aria-label="FireClient home"><img src="/assets/logo.svg" alt="" width="28" height="28"><span class="brand-word">FIRE<span>CLIENT</span></span><span class="brand-tag">BETA</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+      <a href="/#in-game">In game</a><a href="/#features">Features</a>
+      <a href="/blog/" aria-current="true">Blog</a><a href="/news/">News</a>
+      <a href="/early-access/">Early access</a><a href="/#faq">FAQ</a>
+      <a class="btn btn-primary btn-sm" href="/download/">Get FireClient</a>
+    </nav>
+  </header>
+  <main id="main" class="pg-main">
+    <div class="read-bar" id="read-bar" aria-hidden="true"></div>
+    <article class="wrap post">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">FireClient</a><span aria-hidden="true">/</span><a href="/blog/">Blog</a><span aria-hidden="true">/</span><span aria-current="page">How to boost FPS in Minecraft 1.21.1 on Fabric</span></nav>
+      <header class="post-head">
+        <p class="pmeta"><a href="/blog/"><b>Blog</b></a><time datetime="2026-10-16">October 16, 2026</time><span>2 min read</span></p>
+        <h1>How to boost FPS in Minecraft 1.21.1 on Fabric</h1>
+        <p class="post-dek">Settings, memory and performance mods that raise FPS in Minecraft 1.21.1, plus how to measure the change with the FireClient HUD.</p>
+      </header>
+      <figure class="post-cover"><img src="/assets/ingame-hud.jpg" alt="How to boost FPS in Minecraft 1.21.1 on Fabric" fetchpriority="high" decoding="async"></figure>
+      <div class="post-grid">
+        <aside class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#1-measure-first">1. Measure first</a></li><li><a href="#2-lower-the-distance-settings">2. Lower the distance settings</a></li><li><a href="#3-set-sensible-memory">3. Set sensible memory</a></li><li><a href="#4-use-java-21">4. Use Java 21</a></li><li><a href="#5-add-performance-mods-from-modrinth">5. Add performance mods from Modrinth</a></li><li><a href="#6-close-what-you-do-not-need">6. Close what you do not need</a></li><li><a href="#7-compare-and-keep-what-works">7. Compare and keep what works</a></li></ol></aside>
+        <div class="prose">
+<p>Low FPS in Minecraft 1.21.1 usually comes from a few causes you can fix: view distance, memory, background apps and missing optimisation mods. Work through the list below, changing one thing at a time so you can see what helped.</p>
+<h2 id="1-measure-first">1. Measure first</h2>
+<p>Turn on the FPS element on your <a href="/blog/fireclient-hud-setup-guide/">FireClient HUD</a> and play the same world for a few minutes before you change anything. Write the number down. Without a baseline you cannot tell what worked.</p>
+<h2 id="2-lower-the-distance-settings">2. Lower the distance settings</h2>
+<p>Render distance and simulation distance have the biggest effect on most PCs. Try 10 to 12 chunks for render distance, and 6 to 8 for simulation distance, then raise them if you have headroom. Fancy graphics, smooth lighting and high particle settings cost frames too.</p>
+<h2 id="3-set-sensible-memory">3. Set sensible memory</h2>
+<p>More RAM is not always faster. For Fabric with performance mods, around 4 GB is a comfortable start. Our <a href="/blog/minecraft-ram-allocation-guide/">RAM guide</a> explains how to pick a number and where to set it in the launcher.</p>
+<h2 id="4-use-java-21">4. Use Java 21</h2>
+<p>Minecraft 1.21.1 runs on Java 21. An old Java runtime can cause slower performance or refuse to start the game at all.</p>
+<h2 id="5-add-performance-mods-from-modrinth">5. Add performance mods from Modrinth</h2>
+<p>Fabric has well-known optimisation mods on <a href="https://modrinth.com" target="_blank" rel="noopener noreferrer">Modrinth</a>, including Sodium for rendering, Lithium for game logic and FerriteCore for memory use. Always open the mod page and check that it lists Minecraft 1.21.1 and Fabric before you install it. The FireClient launcher has a mod manager with Modrinth support and a curated Performance pack. The <a href="/blog/install-fabric-mods-modrinth-minecraft-1-21-1/">mods guide</a> shows the steps.</p>
+<h2 id="6-close-what-you-do-not-need">6. Close what you do not need</h2>
+<p>Browsers with many tabs, screen recorders and overlays compete for memory and GPU time. Close them while you test, and make sure your laptop is plugged in and not on a battery saver plan.</p>
+<h2 id="7-compare-and-keep-what-works">7. Compare and keep what works</h2>
+<p>Check your FPS number again after each change. If something made no difference or caused crashes, undo it. Results depend heavily on your CPU, GPU and the mods you run, so treat the numbers here as a starting point, not a promise.</p>
+          <footer class="post-foot">
+            <p class="tags"><span class="tag">performance</span><span class="tag">fps</span><span class="tag">fabric</span><span class="tag">guide</span></p>
+            <p class="share"><button class="btn btn-ghost btn-sm" type="button" data-copy="https://www.fireclient.net/blog/boost-fps-minecraft-1-21-1-fabric/">Copy link</button><a class="btn btn-ghost btn-sm" href="https://twitter.com/intent/tweet?text=How%20to%20boost%20FPS%20in%20Minecraft%201.21.1%20on%20Fabric&url=https%3A%2F%2Fwww.fireclient.net%2Fblog%2Fboost-fps-minecraft-1-21-1-fabric%2F" target="_blank" rel="noopener noreferrer">Share on X</a><span>By FirePDX</span></p>
+          </footer>
+        </div>
+      </div>
+      <aside class="panel cta"><div><h2>Try FireClient.</h2><p>A free Minecraft Java launcher and Fabric client for Windows. Needs your own Minecraft Java Edition account to play online.</p></div><a class="btn btn-primary btn-lg" href="/#download">Download FireClient</a></aside>
+      <section class="related" aria-labelledby="rel-t"><h2 id="rel-t">Keep reading</h2><div class="pgrid">
+      <a class="pcard" href="/blog/install-fabric-mods-modrinth-minecraft-1-21-1/" data-q="how to install fabric mods for minecraft 1.21.1 from modrinth pick the right version, add fabric api, install one mod at a time, and fix crashes without losing your world. mods modrinth fabric guide" data-tags="mods,modrinth,fabric,guide">
+      <img class="pcard-cover" src="/assets/launcher-mods.jpg" alt="" loading="lazy" decoding="async">
+      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-16">October 16, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">How to install Fabric mods for Minecraft 1.21.1 from Modrinth</h3><span class="pcard-ex">Pick the right version, add Fabric API, install one mod at a time, and fix crashes without losing your world.</span></span></a>
+      <a class="pcard" href="/blog/minecraft-ram-allocation-guide/" data-q="how much ram should you give minecraft? a practical guide starting points for minecraft memory, why more is not always better, and where to set it in the fireclient launcher. performance memory guide" data-tags="performance,memory,guide">
+      <img class="pcard-cover" src="/assets/launcher-home.jpg" alt="" loading="lazy" decoding="async">
+      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-13">October 13, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">How much RAM should you give Minecraft? A practical guide</h3><span class="pcard-ex">Starting points for Minecraft memory, why more is not always better, and where to set it in the FireClient launcher.</span></span></a>
+      <a class="pcard" href="/blog/fireclient-hud-setup-guide/" data-q="how to set up the fireclient hud in minecraft 1.21.1 open the fireclient menu with right shift, switch on the hud elements you want and drag them into place with the hud editor. hud guide fabric" data-tags="hud,guide,fabric">
+      <img class="pcard-cover" src="/assets/ingame-hud.jpg" alt="" loading="lazy" decoding="async">
+      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-12">October 12, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">How to set up the FireClient HUD in Minecraft 1.21.1</h3><span class="pcard-ex">Open the FireClient menu with Right Shift, switch on the HUD elements you want and drag them into place with the HUD editor.</span></span></a>
+      </div></section>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-main">
+      <a class="brand" href="/"><img src="/assets/logo.svg" alt="" width="24" height="24"><span class="brand-word">FIRE<span>CLIENT</span></span></a>
+      <p class="footer-tag">Minecraft, Your Way.</p>
+      <nav class="footer-nav" aria-label="Footer navigation"><a href="/#features">Features</a><a href="/download/">Download</a><a href="/early-access/">Early access</a><a href="/#changelog">Changelog</a><a href="/blog/">Blog</a><a href="/news/">News</a><a href="/feed.xml">RSS</a><a href="/#faq">FAQ</a><a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">Discord</a><a href="https://github.com/untitledinfo/fireclient-launcher" target="_blank" rel="noopener noreferrer">GitHub</a><a href="/terms-and-privacy.html">Terms &amp; Privacy</a></nav>
+    </div>
+    <div class="wrap footer-bottom"><span>© 2026 FireClient. Created by FirePDX and Sajjad Ahmed.</span><span>Not affiliated with Mojang or Microsoft.</span></div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/blog.js" defer></script>
+  <script src="/ea.js" defer></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

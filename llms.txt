@@ -3,9 +3,12 @@
 
 ## Pages
 - [Home](https://www.fireclient.net/): features, download and FAQ
+- [Download](https://www.fireclient.net/download/): installer for Windows 10/11, requirements and FAQ
 - [Early access](https://www.fireclient.net/early-access/): what works today, known issues, roadmap
 - [Blog](https://www.fireclient.net/blog/): guides for the launcher and client
 - [News](https://www.fireclient.net/news/): releases and announcements
+- [Is FireClient safe?](https://www.fireclient.net/blog/is-fireclient-safe/): official sources, unsigned installer, SHA-256 check
+- [Bedrock / MCPE?](https://www.fireclient.net/blog/fireclient-minecraft-bedrock-mcpe/): Java Edition on Windows only
 - [RSS feed](https://www.fireclient.net/feed.xml)
 
 ## Facts

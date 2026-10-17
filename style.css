@@ -142,7 +142,8 @@ kbd { font-size: .8em; padding: 1px 7px; background: var(--panel-2); border: 1px
 .window-bar { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 10px; background: #1a1217; border-bottom: 1px solid var(--line); font-size: .74rem; color: var(--muted); }
 .window-bar span { flex: 1; }
 .window-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.14); }
-.window > img, .stage-images img { width: 100%; height: auto; }
+.window > img, .window > picture img, .stage-images img { width: 100%; height: auto; display: block; }
+.window > picture { display: block; }
 .hero-shot .window { transform: perspective(1600px) rotateY(-5deg) rotateX(1.5deg); transform-origin: left center; }
 
 /* ---------- Sections ---------- */

@@ -93,3 +93,17 @@
 
 .pc-check { margin-top: 14px; padding: 10px 14px; background: rgba(111,207,151,.08); border: 1px solid rgba(111,207,151,.3); border-left: 3px solid var(--ok); border-radius: var(--r); color: var(--muted); font-size: .9rem; }
 .pc-check a { color: var(--ember); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Language picker and suggestion banner */
+.lang-wrap { padding: 8px 0 0; }
+.lang-picker { display: inline-block; position: relative; }
+.lang-picker summary { cursor: pointer; list-style: none; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: .9rem; }
+.lang-picker summary::-webkit-details-marker { display: none; }
+.lang-picker ul { list-style: none; margin: 8px 0 0; padding: 8px; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 2px; border: 1px solid var(--line); border-radius: var(--r); background: #0b080b; max-width: 640px; }
+.lang-picker a { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; text-decoration: none; }
+.lang-picker a:hover, .lang-picker a[aria-current] { background: rgba(255, 70, 40, .14); }
+.lang-picker .flag { font-size: 1.15rem; }
+.lang-banner { position: fixed; z-index: 60; left: 12px; right: 12px; bottom: 12px; max-width: 520px; margin: 0 auto; display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 12px 14px; border: 1px solid var(--line); border-left: 3px solid var(--red); border-radius: var(--r); background: #120d12; box-shadow: 0 8px 30px rgba(0, 0, 0, .5); }
+.lang-banner a { color: var(--ember); font-weight: 700; }
+.lang-banner button { background: none; border: 0; color: inherit; font-size: 1.2rem; cursor: pointer; padding: 4px 8px; }
+[dir="rtl"] .lang-banner { border-left-width: 1px; border-right: 3px solid var(--red); }

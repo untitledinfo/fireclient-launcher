@@ -2,7 +2,7 @@
 // Returns GitHub's releases JSON, cached at Vercel's edge for 10 minutes, so visitors never hit GitHub's
 // 60-requests-per-hour anonymous limit. Optional: add a GITHUB_TOKEN env var in Vercel (no scopes needed
 // for a public repo) to raise GitHub's limit to 5,000 per hour for the refresh itself.
-const REPO = "untitledinfo/fireclient-launcher";
+const REPO = "untitledinfo/verifed-fireclient";
 module.exports = async (req, res) => {
   try {
     const headers = { Accept: "application/vnd.github+json", "User-Agent": "fireclient-site", "X-GitHub-Api-Version": "2022-11-28" };

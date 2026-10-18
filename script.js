@@ -8,7 +8,7 @@ const CONFIG = {
   // Windows installer. A relative path (served from this site) or a full https URL.
   // Leave `url` empty ("") to show "Download Coming Soon".
   windows: {
-    url: "https://github.com/untitledinfo/fireclient-launcher/releases/download/v1.0/FireClient-Setup.exe",
+    url: "https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe",
     version: "1.0",
     date: "2026-10-10",       // fallback only; the live value comes from GitHub when it loads
     sizeBytes: 0,             // exact file size in bytes, or 0 if unknown
@@ -23,7 +23,7 @@ const CONFIG = {
   // latest release (installer .exe asset + changelog) from the public GitHub API.
   // If the request fails, the page falls back to the values above and changelog.js.
   github: {
-    repo: "untitledinfo/fireclient-launcher",
+    repo: "untitledinfo/verifed-fireclient",
     includePrereleases: true,
     assetPattern: "\\.exe$",          // regex source used to pick the Windows asset
     cacheMinutes: 10

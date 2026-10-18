@@ -9,6 +9,16 @@
 - [News](https://www.fireclient.net/news/): releases and announcements
 - [Is FireClient safe?](https://www.fireclient.net/blog/is-fireclient-safe/): official sources, unsigned installer, SHA-256 check
 - [Bedrock / MCPE?](https://www.fireclient.net/blog/fireclient-minecraft-bedrock-mcpe/): Java Edition on Windows only
+- [FAQ](https://www.fireclient.net/faq/): short answers with links to guides
+- [Press kit](https://www.fireclient.net/press/): facts, logos, screenshots and copy-paste descriptions
+- [Java vs Bedrock](https://www.fireclient.net/blog/minecraft-java-vs-bedrock-which-edition/): which Minecraft edition to play
+- [Fix crashes on Fabric 1.21.1](https://www.fireclient.net/blog/fix-minecraft-crash-fabric-1-21-1/): checklist
+- [Install Java 21](https://www.fireclient.net/blog/install-java-21-for-minecraft-1-21-1/): Windows guide
+- [Back up worlds](https://www.fireclient.net/blog/backup-minecraft-worlds-windows/): Java Edition on Windows
+- [What is a Minecraft client?](https://www.fireclient.net/blog/what-is-a-minecraft-client-fabric-explained/): launcher, Fabric and mods explained
+- [Launcher not opening](https://www.fireclient.net/blog/minecraft-launcher-not-opening-windows/): safe fixes
+- [PvP settings 1.21.1](https://www.fireclient.net/blog/best-minecraft-pvp-settings-1-21-1/): FPS, mouse, HUD
+- [Safe mods](https://www.fireclient.net/blog/how-to-find-safe-minecraft-mods/): checklist
 - [RSS feed](https://www.fireclient.net/feed.xml)
 
 ## Facts

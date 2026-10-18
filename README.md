@@ -29,6 +29,8 @@ This repository is the source of the website: plain HTML, CSS and JavaScript wit
 - `/early-access/` and the home roadmap come from `lib/render.mjs` (`roadmap()`), so editing it once updates both. `ea.js` makes the November reminder file; `llms.txt` summarises the site for AI tools.
 - Vercel Web Analytics: turn it on in the Vercel project (Analytics tab); the `/_vercel/insights/script.js` tag is already on every page.
 
+- After each deploy you can run `node tools/indexnow.mjs` to notify Bing and other IndexNow search engines. For Google, use Search Console.
+
 ## Run locally
 
 ```

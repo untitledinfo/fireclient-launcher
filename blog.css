@@ -107,3 +107,11 @@
 .lang-banner a { color: var(--ember); font-weight: 700; }
 .lang-banner button { background: none; border: 0; color: inherit; font-size: 1.2rem; cursor: pointer; padding: 4px 8px; }
 [dir="rtl"] .lang-banner { border-left-width: 1px; border-right: 3px solid var(--red); }
+
+.share-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+.press-box { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: #0b080b; color: inherit; font: inherit; font-size: .9rem; resize: vertical; }
+.press-facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0; }
+.press-facts dt { font-weight: 700; }
+.press-facts dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 640px) { .press-facts { grid-template-columns: 1fr; } }

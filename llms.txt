@@ -19,6 +19,16 @@
 - [Launcher not opening](https://www.fireclient.net/blog/minecraft-launcher-not-opening-windows/): safe fixes
 - [PvP settings 1.21.1](https://www.fireclient.net/blog/best-minecraft-pvp-settings-1-21-1/): FPS, mouse, HUD
 - [Safe mods](https://www.fireclient.net/blog/how-to-find-safe-minecraft-mods/): checklist
+- [Terms and Privacy](https://www.fireclient.net/terms-and-privacy.html): what the launcher and website store and share
+- [Removal requests](https://www.fireclient.net/removal-requests/): DMCA notices, page removal, fake downloads, data questions
+- [Fix Microsoft sign-in errors](https://www.fireclient.net/blog/fix-minecraft-microsoft-sign-in-error/): checks and safety
+- [Host a Paper server](https://www.fireclient.net/blog/host-minecraft-paper-server-windows/): Windows guide
+- [Connection timed out](https://www.fireclient.net/blog/fix-minecraft-connection-timed-out/): checklist
+- [Free tools](https://www.fireclient.net/tools/): RAM calculator, video settings generator, Java version checker, crash report analyzer, download verifier
+- [Fabric vs Forge vs NeoForge vs Quilt](https://www.fireclient.net/blog/fabric-vs-forge-vs-neoforge-vs-quilt/): which mod loader for 1.21.1
+- [Run Minecraft on a laptop](https://www.fireclient.net/blog/run-minecraft-smoothly-on-a-laptop/): power, graphics chip, settings
+- [Change your skin](https://www.fireclient.net/blog/how-to-change-minecraft-skin-java-edition/): account and local skins
+- [Switch or downgrade versions](https://www.fireclient.net/blog/switch-or-downgrade-minecraft-versions-safely/): safe steps
 - [RSS feed](https://www.fireclient.net/feed.xml)
 
 ## Facts

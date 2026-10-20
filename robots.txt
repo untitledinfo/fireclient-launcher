@@ -1,5 +1,34 @@
+# Robots.txt for FireClient Official Website & Application
+# https://www.fireclient.net
+
 User-agent: *
 Allow: /
+Allow: /index.html
+Allow: /download/
+Allow: /terms-and-privacy.html
+Allow: /license.html
+Allow: /assets/
+Allow: /feed.xml
+Allow: /sitemap.xml
 Disallow: /admin/
 
+# Explicitly Allow Google Search Console & Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Explicitly Allow Bing Webmaster Tools & Bingbot
+User-agent: Bingbot
+User-agent: BingPreview
+User-agent: msnbot
+Allow: /
+
+# Explicitly Allow Yahoo, DuckDuckGo, Baidu, Yandex
+User-agent: Slurp
+User-agent: DuckDuckBot
+User-agent: Baiduspider
+User-agent: YandexBot
+Allow: /
+
+# Sitemaps
 Sitemap: https://www.fireclient.net/sitemap.xml
+Sitemap: https://fireclient.net/sitemap.xml

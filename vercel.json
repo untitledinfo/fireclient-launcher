@@ -55,6 +55,15 @@
           "value": "no-store"
         }
       ]
+    },
+    {
+      "source": "/(BingSiteAuth\\.xml|sitemap\\.xml|feed\\.xml)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        }
+      ]
     }
   ]
 }

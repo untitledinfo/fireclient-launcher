@@ -20,6 +20,7 @@
 - [PvP settings 1.21.1](https://www.fireclient.net/blog/best-minecraft-pvp-settings-1-21-1/): FPS, mouse, HUD
 - [Safe mods](https://www.fireclient.net/blog/how-to-find-safe-minecraft-mods/): checklist
 - [Terms and Privacy](https://www.fireclient.net/terms-and-privacy.html): what the launcher and website store and share
+- [License and Safety](https://www.fireclient.net/license.html): official personal use license, DPAPI encryption vault, VirusTotal clean guarantee, safety policies
 - [Removal requests](https://www.fireclient.net/removal-requests/): DMCA notices, page removal, fake downloads, data questions
 - [Fix Microsoft sign-in errors](https://www.fireclient.net/blog/fix-minecraft-microsoft-sign-in-error/): checks and safety
 - [Host a Paper server](https://www.fireclient.net/blog/host-minecraft-paper-server-windows/): Windows guide

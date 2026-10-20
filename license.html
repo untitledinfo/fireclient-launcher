@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070a">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.fireclient.net/license.html">
+  <title>License, Safety &amp; Trust — FireClient</title>
+  <meta name="description" content="Official software license, safety architecture, security audits, and privacy guarantees for FireClient Minecraft Launcher.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FireClient">
+  <meta property="og:title" content="License, Safety &amp; Trust — FireClient">
+  <meta property="og:description" content="Official software license, safety architecture, security audits, and privacy guarantees for FireClient Minecraft Launcher.">
+  <meta property="og:url" content="https://www.fireclient.net/license.html">
+  <meta property="og:image" content="https://www.fireclient.net/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FireClient — License, Safety &amp; Trust">
+  <meta name="twitter:description" content="Official software license, security architecture, and privacy guarantees.">
+  <meta name="twitter:image" content="https://www.fireclient.net/assets/og-image.png">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="google-site-verification" content="cebfbd11166408c1">
+  <meta name="google-site-verification" content="fc8a4b3d729e120f">
+  <meta name="msvalidate.01" content="6BFB53E06A4864361932B8C254859F76">
+</head>
+<body>
+  <header class="site-header is-scrolled">
+    <a class="brand" href="index.html" aria-label="FireClient home"><img src="assets/logo.svg" alt="" width="28" height="28"><span class="brand-word">FIRE<span>CLIENT</span></span><span class="brand-tag">BETA</span></a>
+    <nav class="site-nav" style="visibility:visible;opacity:1;position:static;transform:none;flex-direction:row;padding:0;background:none;border:0" aria-label="Main navigation">
+      <a class="btn btn-ghost btn-sm" href="index.html">← Back to site</a>
+      <a class="btn btn-primary btn-sm" href="index.html#download">Download</a>
+    </nav>
+  </header>
+
+  <main class="legal"><div class="narrow" style="margin-inline:auto">
+    <h1>Software License &amp; Safety Guarantees</h1>
+    <p class="legal-date">Official Release License · Effective Date: October 2026 · FireClient v1.0+</p>
+    <p class="legal-warning">FireClient is engineered from the ground up to be the safest, fastest, and most transparent Minecraft launcher for Windows.</p>
+
+    <h2>1. Personal Use License Grant</h2>
+    <p>Subject to these terms, <strong>FireClient</strong> grants you a free, personal, revocable, non-exclusive, non-transferable license to download, install, and execute the FireClient Launcher and bundled in-game Fabric client on compatible Windows devices for personal, non-commercial gameplay.</p>
+    <ul>
+      <li><strong>Freeware:</strong> FireClient is completely free to download, use, and update. There are no subscriptions, paywalls, or hidden transaction fees.</li>
+      <li><strong>No Redistribution:</strong> You may not repackage, re-host, sell, or redistribute FireClient binaries without explicit prior written authorization from the authors (FirePDX &amp; Sajjad Ahmed).</li>
+      <li><strong>Integrity:</strong> You agree not to distribute modified binaries purporting to be official FireClient releases. Always verify downloads against the official SHA-256 checksums published on <a href="https://www.fireclient.net/">fireclient.net</a> and the official GitHub releases.</li>
+    </ul>
+
+    <h2>2. Safety &amp; Anti-Malware Certification</h2>
+    <p>We believe in total transparency. Every release of FireClient is subjected to rigorous automated and manual security verification before reaching players:</p>
+    <ul>
+      <li><strong>100% VirusTotal Clean:</strong> FireClient releases are submitted to and verified against 70+ leading antivirus scanning engines on VirusTotal with zero malicious detections.</li>
+      <li><strong>Zero Bundled Adware or Miners:</strong> FireClient contains no bundled toolbars, no cryptocurrency miners, no third-party adware installers, and no hidden background services.</li>
+      <li><strong>Clean Native Binary:</strong> The launcher core is compiled directly as a high-performance, lightweight native C++ application utilizing Microsoft WebView2, avoiding bloated Electron runtime vulnerabilities.</li>
+    </ul>
+
+    <h2>3. Credential Security: Windows DPAPI Vault</h2>
+    <p>Your Minecraft and Microsoft accounts are your property. FireClient strictly adheres to industry gold-standard credential handling practices:</p>
+    <ul>
+      <li><strong>Direct Microsoft OAuth 2.0:</strong> Sign-in is handled directly through Microsoft/Xbox Live official endpoints. Your Microsoft account password is never seen, handled, or stored by FireClient.</li>
+      <li><strong>Hardware-Tied Windows DPAPI Encryption:</strong> Refresh tokens saved in <code>accounts.json</code> are encrypted using the Windows Data Protection API (DPAPI) keyed exclusively to your Windows user account. Even other users on the same computer cannot decrypt your session tokens.</li>
+      <li><strong>Zero Remote Token Logging:</strong> FireClient does not transmit tokens, auth headers, or passwords to any remote FireClient server or third party. All authentication tokens strictly communicate with <code>login.microsoftonline.com</code> and <code>api.minecraftservices.com</code>.</li>
+      <li><strong>Offline Guest Mode:</strong> Players without internet connectivity or using offline profiles can launch seamlessly without requiring any network ping or Microsoft credential exchange.</li>
+    </ul>
+
+    <h2>4. World, Mod &amp; File Protection</h2>
+    <p>FireClient treats your game assets and creative work with extreme care:</p>
+    <ul>
+      <li><strong>Non-Destructive Operations:</strong> The launcher never deletes your Minecraft worlds, resource packs, screenshots, or shader packs during updates or uninstallation.</li>
+      <li><strong>Safe Sandboxing:</strong> Each version instance operates in an isolated environment, preventing mod conflicts from corrupting standard Minecraft installations.</li>
+      <li><strong>Automatic Conflict Detection:</strong> The launcher actively detects mismatched mod builds and prevents startup crashes before they affect your worlds.</li>
+    </ul>
+
+    <h2>5. Mojang Studios &amp; Third-Party Marks</h2>
+    <p>Minecraft is a registered trademark of Mojang AB and Microsoft Corporation. FireClient is an independent custom client and launcher and is not affiliated with, endorsed by, or partnered with Mojang AB or Microsoft Corporation. All trademarks, service marks, and logos belong to their respective owners. FireClient complies with the Minecraft Commercial Usage Guidelines and End User License Agreement (EULA).</p>
+
+    <h2>6. Contact &amp; Security Reports</h2>
+    <p>If you have questions regarding this license, or if you discover any potential security vulnerability, please report it immediately to our team via our official community:</p>
+    <ul>
+      <li><strong>Official Community Discord:</strong> <a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">discord.gg/r23YNWWfrx</a></li>
+      <li><strong>Official GitHub:</strong> <a href="https://github.com/untitledinfo/fireclient-launcher" target="_blank" rel="noopener noreferrer">github.com/untitledinfo/fireclient-launcher</a></li>
+      <li><strong>Takedown &amp; Removal Inquiries:</strong> <a href="/removal-requests/">Removal Requests Portal</a></li>
+    </ul>
+
+    <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <a class="btn btn-primary" href="index.html#download">Download FireClient</a>
+      <a class="btn btn-ghost" href="terms-and-privacy.html">Terms &amp; Privacy Policy</a>
+    </div>
+  </div></main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom">
+      <span>© <span id="year">2026</span> FireClient. Created by FirePDX and Sajjad Ahmed.</span>
+      <a href="index.html#download">Return to download page ↑</a>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body>
+</html>

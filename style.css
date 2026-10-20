@@ -363,6 +363,29 @@ kbd { font-size: .8em; padding: 1px 7px; background: var(--panel-2); border: 1px
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
+@media (max-width: 420px) {
+  .wrap { width: calc(100% - 24px); }
+  .hero-title { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .btn-lg { padding: 13px 18px; font-size: .95rem; }
+  .dl-actions { flex-direction: column; align-items: stretch; }
+  .dl-actions .btn { width: 100%; justify-content: center; }
+  .share-row { gap: 6px; }
+  .share-row .btn { padding: 6px 10px; font-size: .8rem; }
+}
+
+/* 2K, 4K & Ultra-wide screen scaling */
+@media (min-width: 1600px) {
+  :root { --max: 1380px; }
+  .cards { gap: 20px; }
+  .hero-title { font-size: 3.8rem; }
+}
+@media (min-width: 2200px) {
+  :root { --max: 1600px; }
+  .cards { gap: 24px; }
+  .hero-title { font-size: 4.4rem; }
+  body { font-size: 17px; }
+}
+
 /* Failsafe: if the script stops early, reveal-on-scroll content still appears after a few seconds. */
 .js:not(.fc-ready) [data-reveal]:not(.in) { animation: fc-show .01s linear 3s forwards; }
 @keyframes fc-show { to { opacity: 1; transform: none; } }

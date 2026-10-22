@@ -11,6 +11,7 @@ Allow: /assets/
 Allow: /feed.xml
 Allow: /sitemap.xml
 Disallow: /admin/
+Disallow: /api/
 
 # Explicitly Allow Google Search Console & Googlebot
 User-agent: Googlebot

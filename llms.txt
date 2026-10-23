@@ -37,3 +37,11 @@
 - Modrinth mod manager, worlds library, memory setting, local skins, Paper server hosting
 - Planned, not built: crosshair editor and cosmetics
 - Not affiliated with Mojang or Microsoft
+
+## Contact
+- Community and support: https://discord.gg/r23YNWWfrx (message a server owner; never post tokens, account files or unredacted logs)
+- Source and issues: https://github.com/untitledinfo/fireclient-launcher
+- Security reports, takedowns and removal requests: https://www.fireclient.net/removal-requests/
+- Security policy file: https://www.fireclient.net/.well-known/security.txt
+- Sitemap: https://www.fireclient.net/sitemap.xml
+- Pages are also available in 18 languages under /pl/, /es/, /pt/, /de/, /fr/, /tr/, /id/, /ur/, /hi/, /ar/, /ru/, /bn/, /it/, /vi/, /ja/, /ko/, /zh/ and /zh-tw/. The English pages are the reference for facts.

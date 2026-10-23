@@ -168,3 +168,4 @@ body.s-open { overflow: hidden; }
   pre, code { border: 1px solid #999; white-space: pre-wrap; background: #f5f5f5 !important; color: #000 !important; }
   .code-copy, .h-anchor { display: none !important; }
 }
+.pcard picture, .post-cover picture { display: contents; }

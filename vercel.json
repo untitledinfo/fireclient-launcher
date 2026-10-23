@@ -75,6 +75,24 @@
           "value": "application/xml; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/(style\\.css|blog\\.css|script\\.js|features\\.js|blog\\.js|tools\\.js|lang\\.js|ea\\.js|latest\\.js|share\\.js|changelog\\.js|consent\\.js|os-check\\.js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
     }
   ]
 }

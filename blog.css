@@ -169,3 +169,4 @@ body.s-open { overflow: hidden; }
   .code-copy, .h-anchor { display: none !important; }
 }
 .pcard picture, .post-cover picture { display: contents; }
+.ea-steps { list-style: decimal; }

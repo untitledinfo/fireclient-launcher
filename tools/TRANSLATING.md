@@ -18,6 +18,7 @@ All languages live in one file: `lib/locales.mjs`. Each language is one entry. T
 - `h1`, `lede`: page heading and intro.
 - `dlh`, `dllede`, `btn`, `thanks`, `direct`, `warn`: the download block.
 - `feats` (6 items), `reqs` (4 items), `faq` (4 questions and answers): keep the number of items.
+- `ih` + `steps` (5 items): the install steps. `sth` + `stat` (3): what works today, what is planned, release timing. `sfh` + `safe` (3): official sources and the file check. `faq2` (4 questions and answers): worlds, affiliation, opening the menu, getting help.
 - `guides`: keep each link; translate only the title. The guides themselves are English.
 - `suggest`: the sentence in the "view this page in your language?" banner.
 - `share`: the label of the Share button.

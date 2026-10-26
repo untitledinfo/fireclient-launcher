@@ -120,7 +120,7 @@
 :focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 .accent-picker { display: inline-flex; align-items: center; gap: 8px; margin-inline-start: 14px; font-size: .9rem; color: var(--muted); }
-.accent-picker button { width: 22px; height: 22px; padding: 0; border-radius: 50%; border: 2px solid transparent; background: var(--c); cursor: pointer; }
+.accent-picker button { width: 28px; height: 28px; padding: 0; border-radius: 50%; border: 2px solid transparent; background: var(--c); cursor: pointer; }
 .accent-picker button[aria-pressed="true"] { border-color: #fff; }
 .h-anchor { margin-inline-start: .4em; color: var(--quiet); text-decoration: none; font-weight: 400; opacity: 0; }
 h2:hover .h-anchor, h3:hover .h-anchor, h4:hover .h-anchor, .h-anchor:focus { opacity: 1; }
@@ -170,3 +170,14 @@ body.s-open { overflow: hidden; }
 }
 .pcard picture, .post-cover picture { display: contents; }
 .ea-steps { list-style: decimal; }
+
+/* Verifier progress */
+.v-progress-row { display: flex; gap: 12px; align-items: center; margin: 10px 0; }
+.v-progress-row progress { flex: 1; height: 10px; accent-color: var(--ember); }
+.result .big { color: var(--ok); font-weight: 700; font-size: 1.05rem; }
+.result .warn { color: #f2c879; font-weight: 600; }
+.result .mono { font-family: ui-monospace, Consolas, monospace; overflow-wrap: anywhere; font-size: .88rem; }
+
+
+/* Reserve the search/filter bar so revealing it with JS does not push the list down (layout shift) */
+.pg-tools[hidden] { display: block !important; visibility: hidden; }

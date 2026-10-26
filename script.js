@@ -9,10 +9,10 @@ const CONFIG = {
   // Leave `url` empty ("") to show "Download Coming Soon".
   windows: {
     url: "https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe",
-    version: "1.0",
-    date: "2026-10-10",       // fallback only; the live value comes from GitHub when it loads
-    sizeBytes: 0,             // exact file size in bytes, or 0 if unknown
-    sha256: ""                // add the SHA-256 of FireClient-Setup.exe if you want it shown
+    version: "",              // fallback only, intentionally empty so a stale number is never shown. The live value comes from GitHub.
+    date: "",                 // fallback only (same reason)
+    sizeBytes: 0,             // fallback only. Leave 0: the real size and SHA-256 come from the GitHub release itself.
+    sha256: ""                // fallback only. Leave empty. Never type a hash here by hand; a wrong one is worse than none.
   },
 
   // Optional. Leave url empty to show "Not available".
@@ -397,7 +397,19 @@ async function fetchGithubReleases(force) {
   return releases;
 }
 
+// Fetches the normalised summary from /api/latest (GitHub data, cross-checked against the release's verification report).
+async function fetchLatestSummary() {
+  try {
+    const res = await fetch("/api/latest", { headers: { Accept: "application/json" } });
+    if (!res.ok) return null;
+    const j = await res.json();
+    return j && j.ok ? j : null;
+  } catch { return null; }
+}
+
 function pickWindowsAsset(release) {
+  // Shared rule (release-core.js): prefer FireClient-Setup.exe, never guess between several .exe files.
+  if (window.FCRelease) return window.FCRelease.pickInstaller(release.assets).asset;
   let re;
   try { re = new RegExp(CONFIG.github.assetPattern, "i"); } catch { re = /\.exe$/i; }
   return release.assets.find(a => re.test(a.name)) || null;
@@ -411,6 +423,13 @@ async function resolveRelease(force = false) {
   // 1) GitHub
   if (CONFIG.github.repo) {
     try {
+      const s = await fetchLatestSummary();
+      if (s && s.installer && safeUrl(s.installer.url, { httpsOnly: true })) {
+        return { state: "ready", source: "github", version: s.version, date: s.date, size: s.installer.size,
+                 sha256: s.installer.sha256, hashSource: s.installer.sha256Source, hashConflict: !!s.hashConflict,
+                 name: s.installer.name, reportUrl: s.report ? safeUrl(s.report.url, { httpsOnly: true }) : "",
+                 url: safeUrl(s.installer.url, { httpsOnly: true }), releasesUrl };
+      }
       const releases = await fetchGithubReleases(force);
       releaseState.releases = releases || [];
       const latest = releaseState.releases[0];
@@ -418,7 +437,8 @@ async function resolveRelease(force = false) {
         const asset = pickWindowsAsset(latest);
         if (asset && safeUrl(asset.url, { httpsOnly: true })) {
           return { state: "ready", source: "github", version: latest.version, date: latest.date,
-                   size: asset.size, sha256: asset.sha256, url: safeUrl(asset.url, { httpsOnly: true }), releasesUrl };
+                   size: asset.size, sha256: asset.sha256, hashSource: asset.sha256 ? "github-digest" : "", name: asset.name,
+                   url: safeUrl(asset.url, { httpsOnly: true }), releasesUrl };
         }
         // No matching asset on the latest release: use the installer URL from CONFIG instead of disabling the button.
         const fixed = safeUrl(cfg.url, { httpsOnly: true });
@@ -473,13 +493,11 @@ function renderDownload(info) {
   // Facts
   const sizeText = formatBytes(info.size);
   const dateText = formatDate(info.date);
-  $$('[data-bind="version"]').forEach(el => { el.textContent = info.version ? "v" + info.version : "—"; });
-  $$('[data-bind="size"]').forEach(el => { el.textContent = sizeText || "—"; });
-  $$('[data-bind="date"]').forEach(el => { el.textContent = dateText || "Not published"; });
-  const sizeWrap = $('[data-bind-wrap="size"]');
-  if (sizeWrap) sizeWrap.hidden = !(ready && sizeText);
-  const winChip = $("[data-win-chip]");
-  if (winChip) winChip.hidden = !ready;
+  const loading = state === "loading";
+  $$('[data-bind="version"]').forEach(el => { el.textContent = info.version ? "v" + info.version : (loading ? "Checking…" : "Not available"); });
+  $$('[data-bind="size"]').forEach(el => { el.textContent = sizeText || (loading ? "Checking…" : (ready ? "Not listed" : "Not available")); });
+  $$('[data-bind="date"]').forEach(el => { el.textContent = dateText || (loading ? "Checking…" : "Not available"); });
+  // The size and Windows chips are always visible so nothing pops in and shifts the page when the data arrives.
 
   // Status message
   if (state === "ready") {
@@ -516,9 +534,26 @@ function renderDownload(info) {
   retry.hidden = state !== "error";
 
   // Hash
-  const hashBox = $("#hash-box");
-  hashBox.hidden = !(ready && info.sha256);
-  if (info.sha256) $("#sha-value").textContent = info.sha256;
+  const hashBox = $("#hash-box"), hashNote = $("#hash-note"), copyBtn = $("#copy-hash");
+  hashBox.hidden = false; // always shown so the card keeps its height in every state
+  hashBox.classList.toggle("hash-missing", ready && !info.sha256);
+  if (ready) {
+    $("#sha-value").textContent = info.sha256 ||
+      (info.hashConflict ? "Not shown: the sources listed for this release disagree about the checksum."
+                         : "Not published for this release yet.");
+    if (copyBtn) copyBtn.hidden = !info.sha256;
+    if (hashNote) hashNote.textContent = info.sha256
+      ? (info.hashSource === "verification-report" ? "Source: this release's verification report." : "Source: GitHub's listing for this file.")
+      : "No checksum is published for this release yet.";
+  }
+  if (!ready && !loading) {
+    $("#sha-value").textContent = "Not available until the release details load.";
+    if (copyBtn) copyBtn.hidden = true;
+    if (hashNote) hashNote.textContent = "";
+  }
+  const direct = $("#dl-direct"), report = $("#dl-report");
+  if (direct && ready) { direct.href = info.url; direct.textContent = info.name || "FireClient-Setup.exe"; }
+  if (report) { report.hidden = !(ready && info.reportUrl); if (info.reportUrl) report.href = info.reportUrl; }
 
   // OS list
   const win = $("#os-win");

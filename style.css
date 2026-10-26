@@ -17,7 +17,7 @@
 
   --text: #f5f1f2;
   --muted: #b3a9ad;
-  --quiet: #82777c;
+  --quiet: #958a8f;
 
   --red: #e0313f;
   --red-hot: #ff4a55;
@@ -389,3 +389,21 @@ kbd { font-size: .8em; padding: 1px 7px; background: var(--panel-2); border: 1px
 /* Failsafe: if the script stops early, reveal-on-scroll content still appears after a few seconds. */
 .js:not(.fc-ready) [data-reveal]:not(.in) { animation: fc-show .01s linear 3s forwards; }
 @keyframes fc-show { to { opacity: 1; transform: none; } }
+
+/* Release panel: trust signals and states (added with the live release data) */
+.callout { margin: 16px 0 0; padding: 10px 14px; border: 1px solid rgba(255, 122, 114, .35); border-left: 3px solid var(--ember); background: rgba(255, 74, 85, .07); border-radius: 6px; color: var(--text); font-size: .92rem; line-height: 1.5; }
+.callout strong { color: var(--ember); }
+.hash-note { color: var(--muted); }
+.hash-missing code { color: #f2c879; }
+.link-strong { color: var(--ember); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.hash code { overflow-wrap: anywhere; }
+.dl-first { padding-top: 24px; }
+@media (max-width: 720px), (pointer: coarse) {
+  .btn-sm, .s-btn, .share a, .share button { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .brand { min-height: 44px; display: inline-flex; align-items: center; }
+}
+.hash-note { min-height: 2.9em; }
+.report-row { min-height: 1.6em; }
+.dl-state { min-height: 2.9em; }
+.hash code { display: block; min-height: 2.9em; flex: 1; }
+@media (max-width: 720px) { .hash code { min-height: 5.8em; } }

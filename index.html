@@ -125,7 +125,6 @@
    "applicationCategory": "GameApplication",
    "operatingSystem": "Windows 10, Windows 11",
    "description": "Minecraft Java launcher with a Fabric in-game client: draggable HUD, mod manager, worlds library and resource packs.",
-   "softwareVersion": "1.0",
    "downloadUrl": "https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe",
    "url": "https://www.fireclient.net/",
    "image": "https://www.fireclient.net/assets/og-image.png",
@@ -186,7 +185,7 @@
      "name": "Is it safe to install?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "The beta installer is unsigned, so Windows will likely warn you. Only install from the official source, and compare the SHA-256 in the Download section with your file when one is shown. Read the Terms & Privacy notice first."
+      "text": "We cannot promise any installer is 100% safe, so we do not. The beta installer is unsigned, so Windows will likely warn you. Only install from this site or the official GitHub releases page, and compare the SHA-256 in the Download section with your file when one is shown. A matching hash shows the file is the one we published; it does not prove it is free of malware, so scan it with Windows Security if you want another opinion. Read Is FireClient safe?, the License & Safety Facts and the Terms & Privacy notice first."
      }
     },
     {
@@ -290,9 +289,9 @@
             <a class="btn btn-ghost btn-lg" href="#in-game">See it in game</a>
           </div>
           <ul class="hero-meta" aria-label="Release information">
-            <li data-win-chip hidden>Windows 10 / 11, 64-bit</li>
+            <li data-win-chip>Windows 10 / 11, 64-bit</li>
             <li>Minecraft 1.21.1 · Fabric</li>
-            <li data-bind-wrap="size" hidden><span data-bind="size">—</span> installer</li>
+            <li>Installer size: <span data-bind="size">Checking…</span></li>
             <li class="discord-live" data-discord-live hidden>
               <a href="#community"><i class="live-dot" aria-hidden="true"></i><b data-discord="online">0</b> online on Discord</a>
             </li>
@@ -447,12 +446,13 @@
         <div class="download-grid">
           <div class="panel dl-main" aria-live="polite" id="dl-card" data-state="loading">
             <div class="dl-os"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 11 4v7H3zM12 3.8 21 2.5V11h-9zM3 12.5h8v7L3 18.2zM12 12.5h9v8.5l-9-1.3z"/></svg><div><b>Windows</b><small>Windows 10 / 11 · 64-bit · Installer</small></div></div>
-            <p class="dl-state" id="dl-state">Early access installer · v1.0 · Windows 10 / 11</p>
+            <p class="dl-state" id="dl-state">Checking release…</p>
             <dl class="dl-facts">
-              <div><dt>Version</dt><dd data-bind="version">v1.0</dd></div>
-              <div><dt>File size</dt><dd data-bind="size">—</dd></div>
-              <div><dt>Released</dt><dd data-bind="date">10 October 2026</dd></div>
+              <div><dt>Version</dt><dd data-bind="version">Checking…</dd></div>
+              <div><dt>File size</dt><dd data-bind="size">Checking…</dd></div>
+              <div><dt>Released</dt><dd data-bind="date">Checking…</dd></div>
             </dl>
+            <noscript><p class="note">JavaScript is off, so the version, size and checksum cannot load here. Open the <a href="https://github.com/untitledinfo/verifed-fireclient/releases" rel="noopener">official releases page</a> to see them.</p></noscript>
             <div class="dl-actions">
               <a class="btn btn-primary btn-lg" id="dl-button" href="https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe" download rel="nofollow noopener" data-download-link>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
@@ -462,14 +462,17 @@
               <button class="btn btn-ghost btn-lg" type="button" id="dl-retry" hidden>Retry</button>
             </div>
             <p class="thanks" id="dl-thanks" hidden><b>Thanks for downloading FireClient.</b> Run the installer, then join the Discord if you need help.</p>
-            <div class="hash" id="hash-box" hidden>
+            <div class="hash" id="hash-box">
               <span class="hash-k">SHA-256</span>
-              <code id="sha-value">—</code>
-              <button type="button" class="btn btn-ghost btn-sm" id="copy-hash">Copy</button>
+              <code id="sha-value">Checking…</code>
+              <button type="button" class="btn btn-ghost btn-sm" id="copy-hash" hidden>Copy</button>
             </div>
+            <p class="note hash-note" id="hash-note">Checking…</p>
+            <p class="note">If a checksum is shown, a match means the file is the one that was published. It does not prove the file is free of malware.</p>
+            <p class="note report-row"><a id="dl-report" href="https://github.com/untitledinfo/verifed-fireclient/releases" hidden rel="nofollow noopener" target="_blank">Open this release's verification report</a></p>
             <p class="pc-check" data-pc hidden></p>
-            <p class="note">Direct download: <a href="https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe" rel="nofollow noopener">FireClient-Setup.exe</a> from GitHub Releases.</p>
-            <p class="note"><strong>Unsigned beta.</strong> Windows may show a security prompt. Only install from this site or the official GitHub repository. If a SHA-256 is shown above, compare it with your downloaded file first.</p>
+            <p class="note">Direct download: <a id="dl-direct" href="https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe" rel="nofollow noopener">FireClient-Setup.exe</a> from GitHub Releases.</p>
+            <p class="callout" role="note"><strong>Unsigned beta.</strong> Windows may show a security prompt. Only install from this site or the official GitHub repository. If a SHA-256 is shown above, compare it with your downloaded file first.</p>
           </div>
 
           <div class="panel dl-side">
@@ -534,16 +537,16 @@
       <div class="wrap">
         <header class="section-head"><h2 id="latest-title">Latest from FireClient.</h2><p class="lede">Guides, release news and tips for the launcher and the in-game client.</p></header>
         <div class="pgrid">
-          <a class="pcard" href="/news/fireclient-1-1-device-scaling-crash-fix-update/" data-q="fireclient 1.1: device scaling, pro crash reporter and official license adaptive screen scaling from compact laptops to 4k monitors, a built-in pro crash reporter with 1-click auto-fix, potato pc booster, and official license verification. update release crash-fix performance windows" data-tags="update,release,crash-fix,performance,windows">
-      <picture><source srcset="/assets/launcher-home-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" loading="lazy" decoding="async"></picture>
+          <a class="pcard" href="/news/fireclient-1-1-device-scaling-crash-fix-update/" data-q="fireclient 1.1: device scaling, pro crash reporter and license page adaptive screen scaling from compact laptops to 4k monitors, a built-in pro crash reporter with 1-click auto-fix, potato pc booster, and a published license and safety facts page. update release crash-fix performance windows" data-tags="update,release,crash-fix,performance,windows">
+      <picture><source srcset="/assets/launcher-home-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" width="960" height="576" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>News</b><time datetime="2026-10-20">October 20, 2026</time><span>2 min read</span></span>
-      <h3 class="pcard-title">FireClient 1.1: Device Scaling, Pro Crash Reporter and Official License</h3><span class="pcard-ex">Adaptive screen scaling from compact laptops to 4K monitors, a built-in Pro Crash Reporter with 1-click auto-fix, Potato PC booster, and official license verification.</span></span></a>
+      <h3 class="pcard-title">FireClient 1.1: Device Scaling, Pro Crash Reporter and License Page</h3><span class="pcard-ex">Adaptive screen scaling from compact laptops to 4K monitors, a built-in Pro Crash Reporter with 1-click auto-fix, Potato PC booster, and a published license and safety facts page.</span></span></a>
           <a class="pcard" href="/blog/switch-or-downgrade-minecraft-versions-safely/" data-q="how to switch or downgrade minecraft versions safely use separate profiles, back up first and avoid the one mistake that can ruin a world when going back to an older version. versions worlds guide" data-tags="versions,worlds,guide">
-      <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="575" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-19">October 19, 2026</time><span>1 min read</span></span>
       <h3 class="pcard-title">How to switch or downgrade Minecraft versions safely</h3><span class="pcard-ex">Use separate profiles, back up first and avoid the one mistake that can ruin a world when going back to an older version.</span></span></a>
           <a class="pcard" href="/blog/how-to-change-minecraft-skin-java-edition/" data-q="how to change your minecraft skin (java edition) upload a skin to your account, choose the model and fix the common problems, plus how local skins differ. skins guide java" data-tags="skins,guide,java">
-      <picture><source srcset="/assets/launcher-home-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="/assets/launcher-home-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" width="960" height="576" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-19">October 19, 2026</time><span>1 min read</span></span>
       <h3 class="pcard-title">How to change your Minecraft skin (Java Edition)</h3><span class="pcard-ex">Upload a skin to your account, choose the model and fix the common problems, plus how local skins differ.</span></span></a>
         </div>
@@ -600,7 +603,7 @@
           </div>
           <div class="faq-item">
             <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a3" id="faq-b3">Is it safe to install?<span class="faq-ico" aria-hidden="true"></span></button></h3>
-            <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-b3"><div><p>Yes, 100% safe. FireClient is free of malware or adware, uses hardware-backed Windows DPAPI encryption for local Microsoft tokens, and never transmits your credentials to remote servers. Read our official <a href="license.html">License &amp; Safety Guarantees</a> and <a href="terms-and-privacy.html">Terms &amp; Privacy</a> notice. Always verify the official SHA-256 checksum from this site.</p></div></div>
+            <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-b3"><div><p>We cannot promise any installer is 100% safe, so we do not. The beta installer is unsigned, so Windows will likely warn you. Only install from this site or the official GitHub releases page, and compare the SHA-256 in the Download section with your file when one is shown. A matching hash shows the file is the one we published; it does not prove it is free of malware, so scan it with Windows Security if you want another opinion. Read <a href="/blog/is-fireclient-safe/">Is FireClient safe?</a>, the <a href="license.html">License &amp; Safety Facts</a> and the <a href="terms-and-privacy.html">Terms &amp; Privacy</a> notice first.</p></div></div>
           </div>
           <div class="faq-item">
             <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a4" id="faq-b4">Will updating or uninstalling delete my worlds?<span class="faq-ico" aria-hidden="true"></span></button></h3>
@@ -658,6 +661,7 @@
   <noscript><p class="noscript">JavaScript is off, so release details and Discord numbers are unavailable. Installer: <a rel="nofollow" href="https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe">FireClient-Setup.exe</a>.</p></noscript>
 
   <script src="changelog.js" defer></script>
+  <script src="release-core.js" defer></script>
   <script src="script.js" defer></script>
   <script src="ea.js" defer></script>
   <script src="lang.js" defer></script>

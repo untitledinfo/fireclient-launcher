@@ -104,25 +104,56 @@
   }
   const vf = $('[data-tool="verify"]');
   if (vf) {
-    const out = $("#v-out"), norm = s => String(s || "").trim().toLowerCase().replace(/^sha-?256[:=\s]*/, "").replace(/\s+/g, "");
-    const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
-    let have = "";
-    const show = () => { out.replaceChildren(); const file = $("#v-file").files[0]; if (!file) return;
-      out.append(el("p", "", `${file.name} (${(file.size / 1048576).toFixed(1)} MB)`));
-      if (have) { out.append(el("p", "mono", "SHA-256: " + have)); const want = norm($("#v-hash").value);
-        if (!want) out.append(el("p", "note", "Paste the published SHA-256 above to compare."));
-        else if (want === have) out.append(el("p", "big", "Match. This file is identical to the one the hash was published for."));
-        else out.append(el("p", "warn", "No match. Do not run this file. Download it again from the official page."));
-        out.append(el("p", "note", "A match shows the file was not changed on the way to you. It does not prove the file is safe to run.")); } };
-    $("#v-file").addEventListener("change", async () => { const file = $("#v-file").files[0]; have = ""; if (!file) { out.replaceChildren(); return; }
-      if (file.size > 1.5 * 1024 * 1024 * 1024) { out.replaceChildren(el("p", "warn", "This file is too large for the browser to check. Use Get-FileHash in PowerShell instead.")); return; }
-      out.replaceChildren(el("p", "", "Calculating\u2026")); try { have = hex(await crypto.subtle.digest("SHA-256", await file.arrayBuffer())); } catch { out.replaceChildren(el("p", "warn", "Your browser could not calculate the hash. Use Get-FileHash in PowerShell instead.")); return; } show(); });
-    $("#v-hash").addEventListener("input", show);
-    $("#v-fill").addEventListener("click", async () => { const note = $("#v-note"); note.textContent = "Looking up the latest release\u2026";
-      try { const r = await fetch("https://api.github.com/repos/untitledinfo/verifed-fireclient/releases/latest", { headers: { Accept: "application/vnd.github+json" } }); if (!r.ok) throw 0; const j = await r.json();
-        const a = (j.assets || []).find(x => /\.exe$/i.test(x.name) && x.digest); if (!a) throw 1;
-        $("#v-hash").value = norm(a.digest); note.textContent = `Filled with the SHA-256 GitHub lists for ${a.name} (${j.tag_name || "latest release"}).`; show();
-      } catch { note.textContent = "Could not get a hash from the latest release. It may not be published yet, or the lookup was blocked. Paste the hash from the release page instead."; } });
+    const out = $("#v-out"), note = $("#v-note"), bar = $("#v-progress"), cancelBtn = $("#v-cancel");
+    const H = () => window.FCHash, R = () => window.FCRelease;
+    let have = "", ctl = null, published = { hash: "", name: "" };
+    const say = (cls, text) => out.append(el("p", cls, text));
+    if (!H() && !window.crypto) { /* checked again on use */ }
+    const compare = (file) => {
+      out.replaceChildren();
+      say("", `${file.name} (${(file.size / 1048576).toFixed(1)} MB)`);
+      say("mono", "SHA-256: " + have);
+      const want = H().normalizeHash($("#v-hash").value);
+      if (!want) say("note", "Paste the published SHA-256 above, or use the button to fetch the one GitHub lists, to compare.");
+      else if (!H().isSha256(want)) say("warn", "That does not look like a SHA-256. It should be 64 characters using 0-9 and a-f.");
+      else if (want === have) say("big", "Match. This file is identical to the one the hash was published for.");
+      else say("warn", "No match. Do not run this file. Delete it and download it again from the official download page.");
+      if (published.name && published.name.toLowerCase() !== file.name.toLowerCase() && want === published.hash)
+        say("note", `Note: the published hash is for ${published.name}, but this file is named ${file.name}.`);
+      say("note", "Everything here ran in your browser; the file was not uploaded. A match only shows the file was not changed after it was published. It does not prove the file is free of malware, and it is only as trustworthy as the place you got the hash from.");
+    };
+    const busy = on => { cancelBtn.hidden = !on; bar.hidden = !on; $("#v-file").disabled = on; if (!on) bar.value = 0; };
+    $("#v-file").addEventListener("change", async () => {
+      const file = $("#v-file").files[0]; have = ""; out.replaceChildren();
+      if (!file) return;
+      if (!H() || !file.slice || !file.arrayBuffer) { say("warn", "This browser cannot check files here. Use Get-FileHash in PowerShell instead."); return; }
+      ctl = new AbortController(); busy(true); say("", `Calculating the SHA-256 of ${file.name}…`);
+      try {
+        have = await H().hashFile(file, { signal: ctl.signal, onProgress: f => { bar.value = f; bar.setAttribute("aria-valuenow", Math.round(f * 100)); } });
+        busy(false); compare(file);
+      } catch (e) {
+        busy(false); out.replaceChildren();
+        if (e && e.name === "AbortError") say("note", "Cancelled. Nothing was calculated.");
+        else say("warn", "Your browser could not read or hash this file (it may be too large for this device). Use Get-FileHash in PowerShell instead.");
+      } finally { ctl = null; $("#v-file").value = ""; }
+    });
+    cancelBtn.addEventListener("click", () => { if (ctl) ctl.abort(); });
+    $("#v-hash").addEventListener("input", () => { const f = $("#v-file").files[0]; if (have && f) compare(f); else if (have) compare({ name: "(selected file)", size: 0 }); });
+    $("#v-fill").addEventListener("click", async () => {
+      note.textContent = "Looking up the latest release…";
+      try {
+        let s = null;
+        try { const r = await fetch("/api/latest", { headers: { Accept: "application/json" } }); if (r.ok) { const j = await r.json(); if (j && j.ok) s = j; } } catch (e) { /* fall back */ }
+        if (!s) { const r = await fetch("https://api.github.com/repos/untitledinfo/verifed-fireclient/releases?per_page=10", { headers: { Accept: "application/vnd.github+json" } }); if (!r.ok) throw new Error("lookup"); s = R().summarize(await r.json(), { includePrereleases: true }); }
+        if (!s || !s.installer) { note.textContent = "The latest release has no single, clearly identified installer, so no hash was filled in. Paste the hash from the release page instead."; return; }
+        if (s.hashConflict) { note.textContent = "Two sources listed for this release disagree about the checksum, so none was filled in. Do not rely on a checksum for this release until that is resolved."; return; }
+        if (!s.installer.sha256) { note.textContent = `GitHub has not published a SHA-256 for ${s.installer.name} (${s.tag || "latest release"}), so there is nothing to compare against yet.`; return; }
+        published = { hash: s.installer.sha256, name: s.installer.name };
+        $("#v-hash").value = s.installer.sha256;
+        note.textContent = `Filled with the SHA-256 listed for ${s.installer.name} (${s.tag || "latest release"}). This comes from GitHub, the same place you download from, so it checks the transfer, not the maker.`;
+        $("#v-hash").dispatchEvent(new Event("input"));
+      } catch (e) { note.textContent = "Could not look up the latest release (network error, rate limit, or the request was blocked). Paste the hash from the release page instead."; }
+    });
   }
   const hf = $("#help-pick");
   if (hf) { const groups = [...document.querySelectorAll("[data-help]")]; hf.hidden = false;

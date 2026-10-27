@@ -8,18 +8,21 @@
 .pg-list { padding: 28px 0 90px; }
 .pmeta { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; color: var(--quiet); font-size: .84rem; }
 .pmeta b { color: var(--ember); font: 700 .8rem/1 var(--font-display); letter-spacing: .06em; padding: 4px 7px; border: 1px solid var(--line-red); border-radius: 2px; }
-.pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+/* auto-fit (not auto-fill) so a short row of cards stretches to fill the width instead of leaving empty columns; never more than 4 columns */
+.pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(290px, calc((100% - 48px) / 4)), 1fr)); gap: 16px; }
+.pgrid > .pcard:only-child { max-width: 440px; }
 .pfeature { margin-bottom: 16px; }
 .pcard { display: flex; flex-direction: column; background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-top: 3px solid var(--red); border-radius: var(--r); overflow: hidden; transition: border-color .2s, box-shadow .2s; }
 .pcard:hover { border-color: var(--line-red); box-shadow: 0 24px 50px -28px rgba(224,49,63,.7); }
-.pcard-cover { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: #0b080b; }
+/* height:auto is required: the width/height attributes exist only to reserve space and must not set the rendered height */
+.pcard-cover { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; background: #0b080b; }
 .pcard-ph { display: grid; place-items: center; background: radial-gradient(circle at 50% 120%, var(--red-deep), #0b080b 70%); }
 .pcard-body { display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 24px; }
 .pcard-title { font: 800 1.2rem/1.25 var(--font-display); }
 .pcard:hover .pcard-title { color: var(--ember); }
 .pcard-ex { color: var(--muted); font-size: .94rem; }
 .pcard-big { flex-direction: row; }
-.pcard-big .pcard-cover { width: 58%; aspect-ratio: auto; min-height: 320px; }
+.pcard-big .pcard-cover { width: 58%; height: auto; aspect-ratio: auto; min-height: 320px; }
 .pcard-big .pcard-body { justify-content: center; padding: clamp(22px, 4vw, 44px); }
 .pcard-big .pcard-title { font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.1; }
 .empty h2 { font: 800 1.4rem var(--font-display); margin-bottom: 8px; } .empty p { color: var(--muted); }
@@ -181,3 +184,13 @@ body.s-open { overflow: hidden; }
 
 /* Reserve the search/filter bar so revealing it with JS does not push the list down (layout shift) */
 .pg-tools[hidden] { display: block !important; visibility: hidden; }
+
+/* Guides index */
+.guide-jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.guide-jump a { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--text); font-size: .9rem; }
+.guide-jump a:hover { border-color: var(--ember); }
+.guide-index { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); align-items: start; }
+.guide-cluster { scroll-margin-top: 90px; }
+.guide-list { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 14px; }
+.guide-list a { font-weight: 700; color: var(--text); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 3px; }
+.guide-list span { display: block; margin-top: 2px; color: var(--muted); font-size: .9rem; line-height: 1.45; }

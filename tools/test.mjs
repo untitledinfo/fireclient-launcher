@@ -140,3 +140,31 @@ test("cards and screenshots carry intrinsic dimensions (prevents image layout sh
 test("list pages reserve space for the JS search bar", () => {
   assert.match(rd("blog.css"), /\.pg-tools\[hidden\]\s*\{[^}]*display:\s*block\s*!important/);
 });
+
+test("card covers must not take their height from the HTML height attribute (regression: stretched images)", () => {
+  assert.match(rd("blog.css"), /\.pcard-cover\s*\{[^}]*height:\s*auto/);
+  assert.match(rd("blog.css"), /\.pgrid\s*\{[^}]*auto-fit/, "grid must use auto-fit so a short row fills the width");
+});
+test("comparison page: sourced, dated, discloses affiliation, makes no unverified speed or competitor claims", () => {
+  const h = rd("blog/fireclient-vs-lunar-client/index.html").replace(/<[^>]+>/g, " ");
+  assert.match(h, /lunarclient\.com\/faq/); assert.match(h, /We make FireClient/); assert.match(h, /not affiliated/);
+  assert.doesNotMatch(h, /faster than|better than lunar|more fps|benchmark(ed)? results/i);
+  assert.doesNotMatch(h, /Feather/, "no claims about products we could not verify");
+});
+test("FAQ explains the name collision and JSON-LD carries a disambiguating description", () => {
+  assert.match(rd("faq/index.html"), /FireClient SMP mod on Modrinth/);
+  assert.match(rd("index.html"), /disambiguatingDescription/);
+});
+
+test("guides index: lists every published article exactly once, is in the sitemap, footer and home link to it", () => {
+  const pub = posts.filter(p => p.status === "published" && p.slug), h = rd("guides/index.html");
+  const hrefs = [...h.matchAll(/<ul class="guide-list">([\s\S]*?)<\/ul>/g)].flatMap(m => [...m[1].matchAll(/<a href="([^"]+)"/g)].map(x => x[1]));
+  for (const p of pub) { const u = `/${p.type === "news" ? "news" : "blog"}/${p.slug}/`; assert.equal(hrefs.filter(x => x === u).length, 1, `${u} must appear exactly once`); }
+  assert.ok(sm.includes("<loc>https://www.fireclient.net/guides/</loc>"));
+  assert.match(rd("index.html"), /href="\/guides\/"/); assert.match(h, /"@type":"ItemList"/);
+  assert.match(rd("blog/index.html"), /<a href="\/guides\/">Guides<\/a>/, "footer links to the index");
+});
+test("indexnow workflow: waits for the live deploy, uses no secrets, runs the hardened tool", () => {
+  const w = rd(".github/workflows/indexnow.yml");
+  assert.doesNotMatch(w, /secrets\./); assert.match(w, /cmp -s/); assert.match(w, /tools\/indexnow\.mjs/);
+});

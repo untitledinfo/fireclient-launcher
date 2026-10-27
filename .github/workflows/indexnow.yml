@@ -1,0 +1,30 @@
+# After each push to main: wait until the live site serves this commit's sitemap, then tell IndexNow
+# search engines (Bing, Yandex, Seznam, Naver) which URLs changed. Needs no secrets: the IndexNow key
+# is public by design (it is the file 6bfb53e06a4864361932b8c254859f76.txt at the site root).
+# Google does NOT use IndexNow. For Google, submit sitemap.xml once in Search Console and use URL Inspection.
+name: Notify IndexNow after deploy
+on:
+  push:
+    branches: [main]
+    paths: ["sitemap.xml", "content/**", "**/index.html"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Wait until the live sitemap matches this commit
+        run: |
+          for i in $(seq 1 30); do
+            if curl -fsS https://www.fireclient.net/sitemap.xml | cmp -s - sitemap.xml; then echo "Deploy is live."; exit 0; fi
+            echo "Waiting for deploy ($i/30)..."; sleep 20
+          done
+          echo "::error::The live sitemap never matched this commit within 10 minutes. Nothing was submitted."; exit 1
+      - name: Submit changed URLs to IndexNow
+        run: node tools/indexnow.mjs --changed-since="$(date -u -d '2 days ago' +%F)"

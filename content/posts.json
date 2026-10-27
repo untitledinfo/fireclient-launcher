@@ -2,6 +2,27 @@
   "posts": [
     {
       "author": "FirePDX",
+      "updated": "",
+      "status": "published",
+      "date": "2026-10-27",
+      "id": "6f1c2a10-0031-4a00-9000-000000000031",
+      "type": "blog",
+      "slug": "fireclient-vs-lunar-client",
+      "title": "FireClient vs Lunar Client: which Minecraft launcher fits you?",
+      "metaTitle": "FireClient vs Lunar Client: Which Launcher to Choose",
+      "metaDescription": "An honest, dated comparison of FireClient and Lunar Client: platforms, price, accounts and limits, plus who should pick which Minecraft launcher.",
+      "excerpt": "A sourced, no-hype comparison of FireClient and Lunar Client, including when Lunar Client is the better choice.",
+      "tags": [
+        "comparison",
+        "launcher",
+        "lunar-client",
+        "windows"
+      ],
+      "cover": "/assets/launcher-mods.jpg",
+      "body": "People searching for a Lunar Client alternative usually want to know one thing: which launcher fits my setup? This page compares FireClient and Lunar Client using only facts we can source, and says plainly when Lunar Client is the better choice. We make FireClient, so read it with that in mind.\n\n## The short answer\n\n- Pick **Lunar Client** if you use macOS or Linux, or you want a long-established client.\n- Pick **FireClient** if you are on Windows 10 or 11, play Minecraft Java 1.21.1 on Fabric, and want a launcher with a built-in Modrinth mod manager and a draggable HUD in one free install.\n\n## At a glance\n\n**FireClient** (early access, checked October 2026)\n- Free Windows 10 and 11 (64-bit) launcher with a Fabric in-game client for Minecraft Java Edition 1.21.1.\n- Built-in Modrinth mod browser, your own jar files, a worlds library and a resource pack library.\n- Draggable HUD with 11 elements (FPS, CPS, keystrokes, armor, effects and more) and 3 accent themes.\n- Early access beta. The installer is unsigned, so Windows SmartScreen may warn about it.\n- Needs your own Minecraft Java Edition account to play online; an offline profile is available.\n\n**Lunar Client** (from its official FAQ, read 27 October 2026)\n- Described there as completely free to use.\n- Supports Windows, macOS and Linux.\n- You sign in with a Microsoft account that owns Minecraft.\n- Check [Lunar Client's own site](https://lunarclient.com/faq) for the Minecraft versions it supports today, because that list changes.\n\n## Choose Lunar Client if\n\n- You are not on Windows.\n- You want the client that most players and servers already know.\n- You need a version that FireClient's in-game client does not cover.\n\n## Choose FireClient if\n\n- You are on Windows 10 or 11 and play Minecraft 1.21.1 with Fabric.\n- You want to browse and install Modrinth mods from the same app you launch the game from. See [how to install Fabric mods from Modrinth](/blog/install-fabric-mods-modrinth-minecraft-1-21-1/).\n- You like arranging your own HUD. See the [HUD setup guide](/blog/fireclient-hud-setup-guide/).\n\n## What FireClient does not do yet\n\n- No macOS or Linux build.\n- The in-game client targets Minecraft 1.21.1 on Fabric. Other versions can be launched without the FireClient mod.\n- It is a beta, and we have not published performance benchmarks, so we make no speed claims against any other client.\n- The installer is unsigned. [Check your download](/blog/is-fireclient-safe/) before you run it.\n\n## How to decide\n\nWrite down your operating system, your Minecraft version and whether you want mods. Then use our [launcher checklist](/blog/free-minecraft-launcher-windows-what-to-look-for/). If FireClient fits, the [install guide](/blog/install-fireclient-windows/) takes five steps and the [download page](/download/) shows the current version and checksum.\n\n> Sources and method: Lunar Client details come from its official FAQ (lunarclient.com/faq). FireClient details come from this site and the release page. FireClient and Lunar Client are independent products; we are not affiliated with Lunar Client. This page will be updated when either product changes."
+    },
+    {
+      "author": "FirePDX",
       "updated": "2026-10-25",
       "status": "published",
       "metaTitle": "FireClient 1.1: Pro Crash Reporter, Device Scaling & License",
@@ -332,7 +353,7 @@
     },
     {
       "author": "FirePDX",
-      "updated": "",
+      "updated": "2026-10-27",
       "status": "published",
       "date": "2026-10-16",
       "id": "6f1c2a10-0011-4a00-9000-000000000011",
@@ -348,7 +369,7 @@
         "windows"
       ],
       "cover": "/assets/launcher-home.jpg",
-      "body": "There is no single best Minecraft launcher for everyone. The right one depends on your version, your mods and how much you care about a clean setup. Use this checklist to compare any launcher, including ours.\n\n## 1. A trustworthy download\n\nLook for an official site, a public release page and a published checksum. Be careful with launchers shared through video descriptions or reupload sites. Our own [safety guide](/blog/is-fireclient-safe/) shows how to verify an installer.\n\n## 2. Real account handling\n\nA launcher should let you sign in with your own Microsoft account for online play, and should be clear about what it stores. Avoid anything that asks you to paste access tokens.\n\n## 3. Mod and version management\n\nCheck whether it supports the loader you use (Fabric, Forge and others), whether it can browse Modrinth, and whether it keeps separate profiles so one broken mod does not ruin everything.\n\n## 4. Memory and performance controls\n\nYou should be able to set the memory budget without editing command lines. See the [RAM guide](/blog/minecraft-ram-allocation-guide/) for sensible numbers.\n\n## 5. Worlds, resource packs and backups\n\nA good launcher shows your worlds and helps you keep them safe when you update or uninstall.\n\n## 6. Honest limits\n\nRead what the project says it cannot do yet. Marketing that promises everything is a warning sign.\n\n## Where FireClient fits\n\nFireClient is a free launcher for Minecraft Java Edition on Windows 10 and 11, with a Fabric in-game client for 1.21.1. It has a draggable HUD with 11 elements, 3 accent themes, a Modrinth mod manager, a worlds library, a memory setting, local skins and Paper server hosting.\n\nIt is also early access. The installer is unsigned, the in-game mod covers Minecraft 1.21.1 on Fabric only, and the crosshair editor and cosmetics are planned but not built. The full version is planned for November 2026 with no exact date yet. If that suits you, the [download page](/download/) has the installer, or read the [early access details](/early-access/) first."
+      "body": "There is no single best Minecraft launcher for everyone. The right one depends on your version, your mods and how much you care about a clean setup. Use this checklist to compare any launcher, including ours.\n\n## 1. A trustworthy download\n\nLook for an official site, a public release page and a published checksum. Be careful with launchers shared through video descriptions or reupload sites. Our own [safety guide](/blog/is-fireclient-safe/) shows how to verify an installer.\n\n## 2. Real account handling\n\nA launcher should let you sign in with your own Microsoft account for online play, and should be clear about what it stores. Avoid anything that asks you to paste access tokens.\n\n## 3. Mod and version management\n\nCheck whether it supports the loader you use (Fabric, Forge and others), whether it can browse Modrinth, and whether it keeps separate profiles so one broken mod does not ruin everything.\n\n## 4. Memory and performance controls\n\nYou should be able to set the memory budget without editing command lines. See the [RAM guide](/blog/minecraft-ram-allocation-guide/) for sensible numbers.\n\n## 5. Worlds, resource packs and backups\n\nA good launcher shows your worlds and helps you keep them safe when you update or uninstall.\n\n## 6. Honest limits\n\nRead what the project says it cannot do yet. Marketing that promises everything is a warning sign.\n\n## Where FireClient fits\n\nFireClient is a free launcher for Minecraft Java Edition on Windows 10 and 11, with a Fabric in-game client for 1.21.1. It has a draggable HUD with 11 elements, 3 accent themes, a Modrinth mod manager, a worlds library, a memory setting, local skins and Paper server hosting.\n\nIt is also early access. The installer is unsigned, the in-game mod covers Minecraft 1.21.1 on Fabric only, and the crosshair editor and cosmetics are planned but not built. The full version is planned for November 2026 with no exact date yet. If that suits you, the [download page](/download/) has the installer, or read the [early access details](/early-access/) first.\n\nComparing with a specific client? Read [FireClient vs Lunar Client](/blog/fireclient-vs-lunar-client/)."
     },
     {
       "author": "FirePDX",

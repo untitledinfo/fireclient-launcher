@@ -168,3 +168,28 @@ test("indexnow workflow: waits for the live deploy, uses no secrets, runs the ha
   const w = rd(".github/workflows/indexnow.yml");
   assert.doesNotMatch(w, /secrets\./); assert.match(w, /cmp -s/); assert.match(w, /tools\/indexnow\.mjs/);
 });
+
+function imgSize(buf) { // JPEG SOF parser, WebP VP8/VP8L/VP8X reader
+  if (buf[0] === 0xff && buf[1] === 0xd8) { let i = 2; while (i < buf.length) { if (buf[i] !== 0xff) { i++; continue; } const m = buf[i + 1]; if (m >= 0xc0 && m <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(m)) return [buf.readUInt16BE(i + 7), buf.readUInt16BE(i + 5)]; i += 2 + buf.readUInt16BE(i + 2); } }
+  if (buf.toString("ascii", 0, 4) === "RIFF") { const t = buf.toString("ascii", 12, 16); if (t === "VP8X") return [1 + buf.readUIntLE(24, 3), 1 + buf.readUIntLE(27, 3)]; if (t === "VP8 ") return [buf.readUInt16LE(26) & 0x3fff, buf.readUInt16LE(28) & 0x3fff]; if (t === "VP8L") { const b = buf.readUInt32LE(21); return [(b & 0x3fff) + 1, ((b >> 14) & 0x3fff) + 1]; } }
+  return null;
+}
+test("every local screenshot image exists and its declared width/height matches the real file", () => {
+  const bad = [];
+  for (const u of locs) { let p = u.replace("https://www.fireclient.net/", ""); if (!p || p.endsWith("/")) p += "index.html";
+    for (const m of rd(p).matchAll(/<img\b[^>]*\bsrc="\/?(assets\/[a-z0-9-]+-960\.jpg)"[^>]*>/g)) {
+      const w = +(/\bwidth="(\d+)"/.exec(m[0]) || [])[1], h = +(/\bheight="(\d+)"/.exec(m[0]) || [])[1], f = m[1];
+      if (!existsSync(new URL(f, root))) { bad.push(`${p}: missing ${f}`); continue; }
+      const s = imgSize(readFileSync(fileURLToPath(new URL(f, root)))); if (!s || s[0] !== w || s[1] !== h) bad.push(`${p}: ${f} declared ${w}x${h}, real ${s}`); } }
+  assert.deepEqual([...new Set(bad)], []);
+});
+test("screenshots page: 14 images, each with .jpg, -960.jpg and -960.webp on disk; in sitemap; linked from footer and home", () => {
+  const h = rd("screenshots/index.html"), names = [...h.matchAll(/href="\/assets\/([a-z-]+)\.jpg"/g)].map(m => m[1]);
+  assert.equal(names.length, 14);
+  for (const n of names) for (const s of [`${n}.jpg`, `${n}-960.jpg`, `${n}-960.webp`]) assert.ok(existsSync(new URL("assets/" + s, root)), s);
+  assert.ok(sm.includes("<loc>https://www.fireclient.net/screenshots/</loc>")); assert.match(rd("index.html"), /href="\/screenshots\/"/); assert.match(rd("blog/index.html"), /<a href="\/screenshots\/">Screenshots<\/a>/);
+  assert.doesNotMatch(h, /Activate Windows/);
+});
+test("no article describes the removed HUD screen (four tabs, Edit HUD Positions)", () => {
+  for (const p of posts) assert.doesNotMatch(p.body || "", /Edit HUD Positions|HUD, Features, Theme/);
+});

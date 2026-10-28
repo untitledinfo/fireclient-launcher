@@ -303,7 +303,7 @@
         <figure class="hero-shot" aria-label="FireClient main menu in Minecraft">
           <div class="window">
             <div class="window-bar"><img src="assets/icon.png" alt="" width="14" height="14"><span>FireClient 1.21.1</span><i></i><i></i><i></i></div>
-            <picture><source srcset="assets/ingame-menu-960.webp" type="image/webp"><img src="assets/ingame-menu-960.jpg" alt="The FireClient main menu in Minecraft 1.21.1 with a red ember sky, the FireClient logo and a FireClient Menu button" width="960" height="564" fetchpriority="high"></picture>
+            <picture><source srcset="assets/ingame-menu-960.webp" type="image/webp"><img src="assets/ingame-menu-960.jpg" alt="The FireClient main menu in Minecraft 1.21.1 with a red ember sky, the FireClient logo and a FireClient Menu button" width="960" height="565" fetchpriority="high"></picture>
           </div>
         </figure>
       </div>
@@ -328,14 +328,16 @@
       <div class="wrap">
         <header class="section-head">
           <h2 id="ingame-title">The client, as you see it in game.</h2>
-          <p class="lede">Open the FireClient menu with <kbd>Right Shift</kbd> in any 1.21.1 Fabric world. Pick a view to look closer.</p>
+          <p class="lede">Open the FireClient menu with <kbd>Right Shift</kbd> in any 1.21.1 Fabric world. Pick a view to look closer, or <a href="/screenshots/">see every screenshot</a>.</p>
         </header>
 
         <div class="viewer" id="viewer">
           <div class="viewer-tabs" role="tablist" aria-label="FireClient views">
             <button role="tab" id="tab-menu" aria-controls="panel-menu" aria-selected="true" type="button">Main menu</button>
-            <button role="tab" id="tab-hud" aria-controls="panel-hud" aria-selected="false" tabindex="-1" type="button">HUD settings</button>
+            <button role="tab" id="tab-hud" aria-controls="panel-hud" aria-selected="false" tabindex="-1" type="button">FireClient menu</button>
+            <button role="tab" id="tab-play" aria-controls="panel-play" aria-selected="false" tabindex="-1" type="button">HUD in game</button>
             <button role="tab" id="tab-launcher" aria-controls="panel-launcher" aria-selected="false" tabindex="-1" type="button">Launcher</button>
+            <button role="tab" id="tab-mods" aria-controls="panel-mods" aria-selected="false" tabindex="-1" type="button">Mod manager</button>
           </div>
 
           <div class="viewer-body">
@@ -343,35 +345,49 @@
               <div class="window">
                 <div class="window-bar"><img src="assets/icon.png" alt="" width="14" height="14"><span id="viewer-title">FireClient 1.21.1</span><i></i><i></i><i></i></div>
                 <div class="stage-images">
-                  <button class="shot is-active" type="button" data-full="assets/ingame-menu.jpg" data-title="FireClient 1.21.1" data-caption="FireClient main menu" aria-label="Enlarge the main menu screenshot">
-                    <img src="assets/ingame-menu-960.jpg" alt="FireClient main menu in Minecraft 1.21.1" width="960" height="564" loading="lazy">
+                  <button class="shot is-active" type="button" data-full="assets/ingame-menu.jpg" data-title="FireClient 1.21.1" data-caption="FireClient main menu" aria-label="Enlarge: FireClient main menu">
+                    <img src="assets/ingame-menu-960.jpg" alt="The FireClient title screen in Minecraft 1.21.1 with a red ember sky, the signed-in profile in the corner, a FireClient Menu button, a news card and a bottom row of buttons" width="960" height="565" loading="lazy">
                   </button>
-                  <button class="shot" type="button" data-full="assets/ingame-hud.jpg" data-title="FireClient 1.21.1 — Singleplayer" data-caption="HUD settings screen" aria-label="Enlarge the HUD settings screenshot">
-                    <img src="assets/ingame-hud-960.jpg" alt="FireClient HUD settings with toggles for watermark, FPS, coordinates, ping, direction, memory, clock, keystrokes, armor, effects and CPS" width="960" height="564" loading="lazy">
+                  <button class="shot" type="button" data-full="assets/ingame-hud.jpg" data-title="FireClient 1.21.1 — In-game menu" data-caption="In-game FireClient menu" aria-label="Enlarge: In-game FireClient menu">
+                    <img src="assets/ingame-hud-960.jpg" alt="The in-game FireClient menu with Mods, Settings, Keybinds and Mod List tabs, filter buttons, profiles named Default, PvP, Builder and Performance, and a card with an Enabled switch for each module" width="960" height="564" loading="lazy">
                   </button>
-                  <button class="shot" type="button" data-full="assets/launcher-home.jpg" data-title="FireClient Launcher" data-caption="FireClient launcher, Home page" aria-label="Enlarge the launcher home screenshot">
-                    <img src="assets/launcher-home-960.jpg" alt="FireClient launcher home page with a Launch button, account and version details, a sidebar for versions, mods, worlds, servers and settings, and a Discord panel with member counts" width="960" height="576" loading="lazy">
+                  <button class="shot" type="button" data-full="assets/ingame-gameplay.jpg" data-title="FireClient 1.21.1 — Singleplayer" data-caption="HUD elements in a singleplayer world" aria-label="Enlarge: HUD elements in a singleplayer world">
+                    <img src="assets/ingame-gameplay-960.jpg" alt="A Minecraft 1.21.1 singleplayer world with FireClient HUD elements on screen, including coordinates, ping, facing direction, memory, clock, armor, CPS, hearts and WASD keystrokes" width="960" height="564" loading="lazy">
+                  </button>
+                  <button class="shot" type="button" data-full="assets/launcher-home.jpg" data-title="FireClient Launcher" data-caption="FireClient launcher, Home page" aria-label="Enlarge: FireClient launcher, Home page">
+                    <img src="assets/launcher-home-960.jpg" alt="The FireClient launcher home page with a Launch button, account and version details, a news feed and a sidebar for versions, mods, worlds, servers, accounts and settings" width="960" height="464" loading="lazy">
+                  </button>
+                  <button class="shot" type="button" data-full="assets/launcher-mods.jpg" data-title="FireClient Launcher — Mods" data-caption="FireClient launcher, Mods page" aria-label="Enlarge: FireClient launcher, Mods page">
+                    <img src="assets/launcher-mods-960.jpg" alt="The FireClient launcher Mods page listing top Modrinth mods with install buttons, filters, and curated packs for performance, visuals, utility and PvP" width="960" height="464" loading="lazy">
                   </button>
                 </div>
               </div>
             </div>
 
             <div class="viewer-notes">
-              <div role="tabpanel" id="panel-menu" aria-labelledby="tab-menu">
+                            <div role="tabpanel" id="panel-menu" aria-labelledby="tab-menu">
                 <h3>FireClient menu on the title screen</h3>
-                <p>A dark red title screen with an ember sky, your profile in the corner and a <b>FireClient Menu</b> button that opens the client settings.</p>
+                <p>A red ember title screen with your signed-in profile in the corner, a <b>FireClient Menu</b> button, a news card and a bottom row of buttons including Menu, Mods, Discord and Quit.</p>
               </div>
               <div role="tabpanel" id="panel-hud" aria-labelledby="tab-hud" hidden>
-                <h3>HUD settings</h3>
-                <p>Four tabs: HUD, Features, Theme and About. Switch each HUD element on or off, then use <b>Edit HUD Positions</b> to drag them where you want.</p>
+                <h3>The in-game FireClient menu</h3>
+                <p>Tabs for <b>Mods</b>, <b>Settings</b>, <b>Keybinds</b> and <b>Mod List</b>. Filter modules by All, New, HUD, PvP, Visual, Move or Perf, switch each one on or off, keep profiles such as Default, PvP, Builder and Performance, and use <b>Edit HUD Layout</b> to move elements.</p>
+              </div>
+              <div role="tabpanel" id="panel-play" aria-labelledby="tab-play" hidden>
+                <h3>HUD in a world</h3>
+                <p>HUD elements on screen in a singleplayer world: coordinates, ping, facing direction, memory use, clock, armor, CPS, hearts, speed, biome, a session timer, TPS and WASD keystrokes.</p>
               </div>
               <div role="tabpanel" id="panel-launcher" aria-labelledby="tab-launcher" hidden>
                 <h3>Launcher home</h3>
-                <p>Pick your account, version and memory, then press <b>Launch</b>. The sidebar gives you Versions, Mods, Modrinth, Worlds, Host Server, Servers, Screenshots, Console and Performance.</p>
+                <p>A <b>Launch</b> button, your account and version, quick buttons and a news feed. The sidebar groups Play, Content (Mods, Modrinth, Library, Resource Packs, Shaders), World (Worlds, Host Server, Servers, Screenshots), You (Accounts, Skins) and System.</p>
+              </div>
+              <div role="tabpanel" id="panel-mods" aria-labelledby="tab-mods" hidden>
+                <h3>Mod manager</h3>
+                <p>Browse top Modrinth mods and install them without leaving the launcher. The page also lists curated packs such as Performance, Visuals, Utility and PvP, and your mod folders.</p>
               </div>
 
-              <h4>HUD elements</h4>
-              <ul class="hud-list" aria-label="HUD elements">
+              <h4>Examples of HUD elements</h4>
+              <ul class="hud-list" aria-label="Examples of HUD elements">
                 <li>Watermark</li><li>FPS</li><li>Coordinates</li><li>Ping</li><li>Direction</li><li>Memory</li><li>Clock</li><li>Keystrokes</li><li>Armor</li><li>Effects</li><li>CPS</li>
               </ul>
             </div>
@@ -540,15 +556,15 @@
         <header class="section-head"><h2 id="latest-title">Latest from FireClient.</h2><p class="lede">Guides, release news and tips for the launcher and the in-game client.</p></header>
         <div class="pgrid">
           <a class="pcard" href="/blog/fireclient-vs-lunar-client/" data-q="fireclient vs lunar client: which minecraft launcher fits you? a sourced, no-hype comparison of fireclient and lunar client, including when lunar client is the better choice. comparison launcher lunar-client windows" data-tags="comparison,launcher,lunar-client,windows">
-      <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="575" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="464" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-27">October 27, 2026</time><span>2 min read</span></span>
       <h3 class="pcard-title">FireClient vs Lunar Client: which Minecraft launcher fits you?</h3><span class="pcard-ex">A sourced, no-hype comparison of FireClient and Lunar Client, including when Lunar Client is the better choice.</span></span></a>
           <a class="pcard" href="/news/fireclient-1-1-device-scaling-crash-fix-update/" data-q="fireclient 1.1: device scaling, pro crash reporter and license page adaptive screen scaling from compact laptops to 4k monitors, a built-in pro crash reporter with 1-click auto-fix, potato pc booster, and a published license and safety facts page. update release crash-fix performance windows" data-tags="update,release,crash-fix,performance,windows">
-      <picture><source srcset="/assets/launcher-home-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" width="960" height="576" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="/assets/launcher-home-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" width="960" height="464" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>News</b><time datetime="2026-10-20">October 20, 2026</time><span>2 min read</span></span>
       <h3 class="pcard-title">FireClient 1.1: Device Scaling, Pro Crash Reporter and License Page</h3><span class="pcard-ex">Adaptive screen scaling from compact laptops to 4K monitors, a built-in Pro Crash Reporter with 1-click auto-fix, Potato PC booster, and a published license and safety facts page.</span></span></a>
           <a class="pcard" href="/blog/switch-or-downgrade-minecraft-versions-safely/" data-q="how to switch or downgrade minecraft versions safely use separate profiles, back up first and avoid the one mistake that can ruin a world when going back to an older version. versions worlds guide" data-tags="versions,worlds,guide">
-      <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="575" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="464" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-19">October 19, 2026</time><span>1 min read</span></span>
       <h3 class="pcard-title">How to switch or downgrade Minecraft versions safely</h3><span class="pcard-ex">Use separate profiles, back up first and avoid the one mistake that can ruin a world when going back to an older version.</span></span></a>
         </div>

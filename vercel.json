@@ -2,6 +2,28 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "fireclient.net"
+        }
+      ],
+      "destination": "https://www.fireclient.net/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*/index.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "fireclient.net"
+        }
+      ],
+      "destination": "https://www.fireclient.net/:path*/",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         {
@@ -77,7 +99,7 @@
       ]
     },
     {
-      "source": "/(style\\.css|blog\\.css|script\\.js|features\\.js|blog\\.js|tools\\.js|release-core\\.js|release-panel\\.js|hash-core\\.js|lang\\.js|ea\\.js|latest\\.js|share\\.js|changelog\\.js|consent\\.js|os-check\\.js)",
+      "source": "/(style\\.css|blog\\.css|script\\.js|features\\.js|blog\\.js|tools\\.js|accent\\.js|release-core\\.js|release-panel\\.js|hash-core\\.js|lang\\.js|ea\\.js|latest\\.js|share\\.js|changelog\\.js|consent\\.js|os-check\\.js)",
       "headers": [
         {
           "key": "Cache-Control",

@@ -193,3 +193,56 @@ test("screenshots page: 14 images, each with .jpg, -960.jpg and -960.webp on dis
 test("no article describes the removed HUD screen (four tabs, Edit HUD Positions)", () => {
   for (const p of posts) assert.doesNotMatch(p.body || "", /Edit HUD Positions|HUD, Features, Theme/);
 });
+
+// Minimal simulation of Vercel's redirect matching (host condition + :path* patterns), first match wins.
+function followRedirects(startUrl) {
+  const v = JSON.parse(rd("vercel.json")); let u = new URL(startUrl); const chain = [u.href];
+  for (let i = 0; i < 6; i++) {
+    let hit = null;
+    for (const r of v.redirects || []) {
+      if ((r.has || []).some(h => h.type === "host" && h.value !== u.hostname)) continue;
+      const re = new RegExp("^" + r.source.replace(/:path\*/g, "(.*)").replace(/\(\.\*\)\/\(\.\*\)/g, "(.*)") + "$"); const m = re.exec(u.pathname);
+      if (m) { hit = r.destination.replace(/:path\*/g, m[1] ?? "").replace(/\$1/g, m[1] ?? "").replace(/\/\/+$/, "/"); break; }
+    }
+    if (!hit) break; u = new URL(hit, u); chain.push(u.href);
+  }
+  return chain;
+}
+test("index.html aliases reach the canonical URL in ONE permanent redirect (apex and www)", () => {
+  const want = { "https://fireclient.net/index.html": "https://www.fireclient.net/", "https://www.fireclient.net/index.html": "https://www.fireclient.net/",
+    "https://fireclient.net/download/index.html": "https://www.fireclient.net/download/", "https://www.fireclient.net/download/index.html": "https://www.fireclient.net/download/",
+    "https://fireclient.net/": "https://www.fireclient.net/", "https://fireclient.net/blog/x/": "https://www.fireclient.net/blog/x/" };
+  for (const [from, to] of Object.entries(want)) { const c = followRedirects(from); assert.equal(c.at(-1), to, `${from} -> ${c.join(" -> ")}`); assert.equal(c.length, 2, `${from} must take exactly one hop: ${c.join(" -> ")}`); }
+  assert.deepEqual(followRedirects("https://www.fireclient.net/download/"), ["https://www.fireclient.net/download/"], "canonical URLs are not redirected");
+  for (const r of JSON.parse(rd("vercel.json")).redirects.filter(r => /index\.html/.test(r.source))) assert.equal(r.permanent, true);
+});
+test("no internal link or canonical points at an index.html URL", () => {
+  for (const u of locs) { let p = u.replace("https://www.fireclient.net/", ""); if (!p || p.endsWith("/")) p += "index.html"; const h = rd(p); assert.doesNotMatch(h, /href="[^"]*\/index\.html"/, p); assert.doesNotMatch(h, /<link rel="canonical" href="[^"]*index\.html"/, p); }
+  assert.doesNotMatch(sm, /index\.html/);
+});
+test("signing.js: never shows a claim it cannot back with a thumbprint, never says 'verified'", () => {
+  const S = require("../signing.js"), T = "A".repeat(40);
+  assert.equal(S.describe(null).status, "unsigned"); assert.equal(S.describe({ status: "self-signed" }).status, "unsigned");
+  assert.equal(S.describe({ status: "trusted", thumbprint: "xyz" }).status, "unsigned");
+  const s = S.describe({ status: "self-signed", subject: "CN=FireClient<script>", thumbprint: T.toLowerCase() });
+  assert.equal(s.status, "self-signed"); assert.match(s.text, /not trust self-signed/); assert.match(s.text, new RegExp(T)); assert.doesNotMatch(s.text, /<|verified/i);
+  assert.match(S.describe({ status: "trusted", subject: "FireClient", thumbprint: T }).text, /^Signed by FireClient/);
+  assert.equal(JSON.parse(rd("content/signing.json")).status, "unsigned", "ship as unsigned until a real signed build exists");
+});
+test("the removed warning paragraph is gone from the home download card; a factual signature row replaces it", () => {
+  const h = rd("index.html"); assert.doesNotMatch(h, /Unsigned beta\.<\/strong> Windows may show a security prompt/); assert.match(h, /data-signing/);
+});
+test("themes: every accent defines the same variables and keeps WCAG AA contrast for button text and accent text", async () => {
+  const vm = await import("node:vm"), ctx = { window: {}, localStorage: { getItem: () => "lime" }, document: { documentElement: { style: { setProperty() {} } } } };
+  vm.runInNewContext(rd("accent.js"), ctx); const A = ctx.window.FCAccents;
+  const lum = h => { const f = c => c <= .03928 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4, [r, g, b] = [1, 3, 5].map(i => f(parseInt(h.slice(i, i + 2), 16) / 255)); return .2126 * r + .7152 * g + .0722 * b; };
+  const cr = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + .05) / (y + .05); };
+  const keys = Object.keys(A.ember).sort(); assert.deepEqual(Object.keys(A).sort(), ["ember", "lime", "ocean"]);
+  for (const [name, t] of Object.entries(A)) {
+    assert.deepEqual(Object.keys(t).sort(), keys, `${name} must define the same variables`);
+    assert.ok(cr(t["--on-btn"], t["--btn-2"]) >= 4.5, `${name}: button text contrast ${cr(t["--on-btn"], t["--btn-2"]).toFixed(2)}`);
+    assert.ok(cr(t["--ember"], "#140f13") >= 4.5, `${name}: accent text on panels`); assert.ok(cr(t["--red-hot"], "#09070a") >= 4.5, `${name}: accent on page background`);
+  }
+  const css = rd("style.css") + rd("blog.css"); assert.doesNotMatch(css.replace(/:root\s*\{[^}]*\}/, ""), /#b82431|#e0313f|rgba\(\s*224,\s*49,\s*63/i, "no hard-coded red outside :root (it would ignore the theme)");
+  assert.match(rd("index.html"), /src="\/accent\.js"/);
+});

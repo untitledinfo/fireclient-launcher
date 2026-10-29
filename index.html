@@ -16,6 +16,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09070a">
+  <script src="/accent.js"></script>
   <title>FireClient — Free Minecraft Launcher &amp; 1.21.1 Fabric Client</title>
   <meta name="description" content="Free Minecraft Java launcher for Windows with a Fabric 1.21.1 client: draggable HUD, FPS, CPS, keystrokes, Modrinth mods. Early access now.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -236,6 +237,54 @@
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "Join the FireClient Discord at discord.gg/r23YNWWfrx. Please do not post access tokens, account files or unredacted logs in public."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How does FireClient compare with Lunar Client?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It depends on your setup. Lunar Client supports Windows, macOS and Linux. FireClient is Windows-only for now, and its in-game client targets Minecraft 1.21.1 on Fabric with a built-in Modrinth mod manager. Read the sourced comparison: FireClient vs Lunar Client."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I install Fabric mods from Modrinth with FireClient?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. The launcher has a Modrinth browser, and a Library page for the mods you have installed with an on/off switch for each. See how to install Fabric mods from Modrinth on Minecraft 1.21.1."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does FireClient work on Mac or Linux?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not yet. FireClient is for Windows 10 and 11 (64-bit) for now. macOS and Linux builds are not available."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is it FireClient or Fire Client?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The name is FireClient, written as one word, and people also search for it as Fire Client. It is not the same as the unrelated FireClient SMP mod on Modrinth or other Minecraft clients with similar names. This site, fireclient.net, is the official home of the FireClient launcher. Read what the FireClient mod is."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where can I download FireClient?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Use the FireClient download page on this site, or the official GitHub releases page. The installer is for Windows 10 and 11, and the page shows the current version, file size and SHA-256 when GitHub publishes one."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Will FireClient boost my FPS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We have not published benchmarks, so we make no speed claims. The launcher lets you set memory and has a Performance page that lists optimization mods such as Entity Culling and FerriteCore with an on/off switch. For settings that usually help, see how to boost FPS in Minecraft 1.21.1 on Fabric."
      }
     }
    ]
@@ -490,7 +539,7 @@
             <p class="note report-row"><a id="dl-report" href="https://github.com/untitledinfo/verifed-fireclient/releases" hidden rel="nofollow noopener" target="_blank">Open this release's verification report</a></p>
             <p class="pc-check" data-pc hidden></p>
             <p class="note">Direct download: <a id="dl-direct" href="https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe" rel="nofollow noopener">FireClient-Setup.exe</a> from GitHub Releases.</p>
-            <p class="callout" role="note"><strong>Unsigned beta.</strong> Windows may show a security prompt. Only install from this site or the official GitHub repository. If a SHA-256 is shown above, compare it with your downloaded file first.</p>
+            <p class="sig-row" data-signing><span class="sig-k">Code signature</span> <span class="sig-v">Not signed yet. Windows SmartScreen may show a warning.</span> <a href="/blog/is-fireclient-safe/#check-the-installer-signature">How to check</a></p>
           </div>
 
           <div class="panel dl-side">
@@ -555,6 +604,10 @@
       <div class="wrap">
         <header class="section-head"><h2 id="latest-title">Latest from FireClient.</h2><p class="lede">Guides, release news and tips for the launcher and the in-game client.</p></header>
         <div class="pgrid">
+          <a class="pcard" href="/blog/fireclient-mod-fabric-1-21-1/" data-q="fireclient mod for minecraft 1.21.1 (fabric): what it is and how to get it the fireclient mod is the in-game fabric client behind the menu and hud. here is what it is, how to get it, and how it differs from the fireclient smp mod. fireclient-mod fabric 1.21.1 modrinth hud" data-tags="fireclient-mod,fabric,1.21.1,modrinth,hud">
+      <picture><source srcset="/assets/ingame-hud-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/ingame-hud-960.jpg" alt="" width="960" height="564" loading="lazy" decoding="async"></picture>
+      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-29">October 29, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">FireClient mod for Minecraft 1.21.1 (Fabric): what it is and how to get it</h3><span class="pcard-ex">The FireClient mod is the in-game Fabric client behind the menu and HUD. Here is what it is, how to get it, and how it differs from the FireClient SMP mod.</span></span></a>
           <a class="pcard" href="/blog/fireclient-vs-lunar-client/" data-q="fireclient vs lunar client: which minecraft launcher fits you? a sourced, no-hype comparison of fireclient and lunar client, including when lunar client is the better choice. comparison launcher lunar-client windows" data-tags="comparison,launcher,lunar-client,windows">
       <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="464" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-27">October 27, 2026</time><span>2 min read</span></span>
@@ -563,10 +616,6 @@
       <picture><source srcset="/assets/launcher-home-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-home-960.jpg" alt="" width="960" height="464" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>News</b><time datetime="2026-10-20">October 20, 2026</time><span>2 min read</span></span>
       <h3 class="pcard-title">FireClient 1.1: Device Scaling, Pro Crash Reporter and License Page</h3><span class="pcard-ex">Adaptive screen scaling from compact laptops to 4K monitors, a built-in Pro Crash Reporter with 1-click auto-fix, Potato PC booster, and a published license and safety facts page.</span></span></a>
-          <a class="pcard" href="/blog/switch-or-downgrade-minecraft-versions-safely/" data-q="how to switch or downgrade minecraft versions safely use separate profiles, back up first and avoid the one mistake that can ruin a world when going back to an older version. versions worlds guide" data-tags="versions,worlds,guide">
-      <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="464" loading="lazy" decoding="async"></picture>
-      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-19">October 19, 2026</time><span>1 min read</span></span>
-      <h3 class="pcard-title">How to switch or downgrade Minecraft versions safely</h3><span class="pcard-ex">Use separate profiles, back up first and avoid the one mistake that can ruin a world when going back to an older version.</span></span></a>
         </div>
         <p class="more"><a class="btn btn-ghost btn-sm" href="/blog/">All blog posts</a><a class="btn btn-ghost btn-sm" href="/news/">All news</a></p>
         <p class="note">New here? Start with the <a href="/blog/install-fireclient-windows/">install guide</a>, the <a href="/blog/fireclient-hud-setup-guide/">HUD setup guide</a> and the <a href="/news/fireclient-1-0-beta-available/">FireClient 1.0 release notes</a>, or <a href="/guides/">browse every guide by topic</a>.</p>
@@ -647,6 +696,30 @@
             <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a9" id="faq-b9">Where do I get help or report a bug?<span class="faq-ico" aria-hidden="true"></span></button></h3>
             <div class="faq-a" id="faq-a9" role="region" aria-labelledby="faq-b9"><div><p>Join the FireClient Discord at <a href="https://discord.gg/r23YNWWfrx" target="_blank" rel="noopener noreferrer">discord.gg/r23YNWWfrx</a>. Please do not post access tokens, account files or unredacted logs in public.</p></div></div>
           </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a10" id="faq-b10">How does FireClient compare with Lunar Client?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a10" role="region" aria-labelledby="faq-b10"><div><p>It depends on your setup. Lunar Client supports Windows, macOS and Linux. FireClient is Windows-only for now, and its in-game client targets Minecraft 1.21.1 on Fabric with a built-in Modrinth mod manager. Read the sourced comparison: <a href="/blog/fireclient-vs-lunar-client/">FireClient vs Lunar Client</a>.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a11" id="faq-b11">Can I install Fabric mods from Modrinth with FireClient?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a11" role="region" aria-labelledby="faq-b11"><div><p>Yes. The launcher has a Modrinth browser, and a Library page for the mods you have installed with an on/off switch for each. See <a href="/blog/install-fabric-mods-modrinth-minecraft-1-21-1/">how to install Fabric mods from Modrinth on Minecraft 1.21.1</a>.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a12" id="faq-b12">Does FireClient work on Mac or Linux?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a12" role="region" aria-labelledby="faq-b12"><div><p>Not yet. FireClient is for Windows 10 and 11 (64-bit) for now. macOS and Linux builds are not available.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a13" id="faq-b13">Is it FireClient or Fire Client?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a13" role="region" aria-labelledby="faq-b13"><div><p>The name is FireClient, written as one word, and people also search for it as Fire Client. It is not the same as the unrelated FireClient SMP mod on Modrinth or other Minecraft clients with similar names. This site, fireclient.net, is the official home of the FireClient launcher. Read <a href="/blog/fireclient-mod-fabric-1-21-1/">what the FireClient mod is</a>.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a14" id="faq-b14">Where can I download FireClient?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a14" role="region" aria-labelledby="faq-b14"><div><p>Use the <a href="/download/">FireClient download page</a> on this site, or the official GitHub releases page. The installer is for Windows 10 and 11, and the page shows the current version, file size and SHA-256 when GitHub publishes one.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a15" id="faq-b15">Will FireClient boost my FPS?<span class="faq-ico" aria-hidden="true"></span></button></h3>
+            <div class="faq-a" id="faq-a15" role="region" aria-labelledby="faq-b15"><div><p>We have not published benchmarks, so we make no speed claims. The launcher lets you set memory and has a Performance page that lists optimization mods such as Entity Culling and FerriteCore with an on/off switch. For settings that usually help, see <a href="/blog/boost-fps-minecraft-1-21-1-fabric/">how to boost FPS in Minecraft 1.21.1 on Fabric</a>.</p></div></div>
+          </div>
         </div>
       </div>
     </section>
@@ -680,6 +753,7 @@
 
   <script src="changelog.js" defer></script>
   <script src="release-core.js" defer></script>
+  <script src="signing.js" defer></script>
   <script src="script.js" defer></script>
   <script src="ea.js" defer></script>
   <script src="lang.js" defer></script>

@@ -16,6 +16,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09070a">
+  <script src="/accent.js"></script>
   <meta name="color-scheme" content="dark">
   <title>FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric</title>
   <meta name="description" content="Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, enable modules, drag elements into place and save profiles.">
@@ -23,8 +24,8 @@
   <meta name="author" content="FirePDX">
   <link rel="canonical" href="https://www.fireclient.net/blog/fireclient-hud-setup-guide/">
   <meta property="og:type" content="article"><meta property="og:url" content="https://www.fireclient.net/blog/fireclient-hud-setup-guide/"><meta property="og:site_name" content="FireClient"><meta property="og:locale" content="en_US">
-  <meta property="og:title" content="FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric"><meta property="og:description" content="Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, enable modules, drag elements into place and save profiles."><meta property="og:image" content="https://www.fireclient.net/assets/ingame-hud.jpg">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric"><meta name="twitter:description" content="Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, enable modules, drag elements into place and save profiles."><meta name="twitter:image" content="https://www.fireclient.net/assets/ingame-hud.jpg"><meta property="article:published_time" content="2026-10-12"><meta property="article:modified_time" content="2026-10-27"><meta property="article:author" content="FirePDX"><meta property="article:tag" content="hud"><meta property="article:tag" content="guide"><meta property="article:tag" content="fabric">
+  <meta property="og:title" content="FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric"><meta property="og:description" content="Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, enable modules, drag elements into place and save profiles."><meta property="og:image" content="https://www.fireclient.net/assets/ingame-hud.jpg"><meta property="og:image:alt" content="FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric"><meta name="twitter:description" content="Set up the FireClient HUD in Minecraft 1.21.1 Fabric: open the menu with Right Shift, enable modules, drag elements into place and save profiles."><meta name="twitter:image" content="https://www.fireclient.net/assets/ingame-hud.jpg"><meta name="twitter:image:alt" content="FireClient HUD Setup Guide for Minecraft 1.21.1 Fabric"><meta property="article:published_time" content="2026-10-12"><meta property="article:modified_time" content="2026-10-27"><meta property="article:author" content="FirePDX"><meta property="article:tag" content="hud"><meta property="article:tag" content="guide"><meta property="article:tag" content="fabric">
   <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png"><link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="alternate" type="application/rss+xml" title="FireClient blog and news" href="/feed.xml">
@@ -91,6 +92,10 @@
       </div>
       <aside class="panel cta"><div><h2>Try FireClient.</h2><p>A free Minecraft Java launcher and Fabric client for Windows. Needs your own Minecraft Java Edition account to play online.</p></div><a class="btn btn-primary btn-lg" href="/#download">Download FireClient</a></aside>
       <section class="related" aria-labelledby="rel-t"><h2 id="rel-t">Keep reading</h2><div class="pgrid">
+      <a class="pcard" href="/blog/fireclient-mod-fabric-1-21-1/" data-q="fireclient mod for minecraft 1.21.1 (fabric): what it is and how to get it the fireclient mod is the in-game fabric client behind the menu and hud. here is what it is, how to get it, and how it differs from the fireclient smp mod. fireclient-mod fabric 1.21.1 modrinth hud" data-tags="fireclient-mod,fabric,1.21.1,modrinth,hud">
+      <picture><source srcset="/assets/ingame-hud-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/ingame-hud-960.jpg" alt="" width="960" height="564" loading="lazy" decoding="async"></picture>
+      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-29">October 29, 2026</time><span>1 min read</span></span>
+      <h3 class="pcard-title">FireClient mod for Minecraft 1.21.1 (Fabric): what it is and how to get it</h3><span class="pcard-ex">The FireClient mod is the in-game Fabric client behind the menu and HUD. Here is what it is, how to get it, and how it differs from the FireClient SMP mod.</span></span></a>
       <a class="pcard" href="/blog/fabric-vs-forge-vs-neoforge-vs-quilt/" data-q="fabric vs forge vs neoforge vs quilt: which mod loader for 1.21.1? what each minecraft mod loader is for, how they differ, and a simple way to choose for 1.21.1. fabric forge comparison guide" data-tags="fabric,forge,comparison,guide">
       <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="464" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-19">October 19, 2026</time><span>2 min read</span></span>
@@ -99,10 +104,6 @@
       <picture><source srcset="/assets/launcher-mods-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/launcher-mods-960.jpg" alt="" width="960" height="464" loading="lazy" decoding="async"></picture>
       <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-17">October 17, 2026</time><span>2 min read</span></span>
       <h3 class="pcard-title">How to fix Minecraft crashing on launch (Fabric 1.21.1)</h3><span class="pcard-ex">A step-by-step checklist for Minecraft 1.21.1 crashes on Fabric, from Java version to reading the crash report.</span></span></a>
-      <a class="pcard" href="/blog/boost-fps-minecraft-1-21-1-fabric/" data-q="how to boost fps in minecraft 1.21.1 on fabric settings, memory and performance mods that raise fps in minecraft 1.21.1, plus how to measure the change with the fireclient hud. performance fps fabric guide" data-tags="performance,fps,fabric,guide">
-      <picture><source srcset="/assets/ingame-hud-960.webp" type="image/webp"><img class="pcard-cover" src="/assets/ingame-hud-960.jpg" alt="" width="960" height="564" loading="lazy" decoding="async"></picture>
-      <span class="pcard-body"><span class="pmeta"><b>Blog</b><time datetime="2026-10-16">October 16, 2026</time><span>2 min read</span></span>
-      <h3 class="pcard-title">How to boost FPS in Minecraft 1.21.1 on Fabric</h3><span class="pcard-ex">Settings, memory and performance mods that raise FPS in Minecraft 1.21.1, plus how to measure the change with the FireClient HUD.</span></span></a>
       </div></section>
     </article>
   </main>

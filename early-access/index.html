@@ -16,6 +16,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09070a">
+  <script src="/accent.js"></script>
   <meta name="color-scheme" content="dark">
   <title>FireClient Early Access and November 2026 Full Version</title>
   <meta name="description" content="FireClient early access is live for Windows. See what works today, known issues and the plan for the full version, planned for November 2026.">
@@ -23,8 +24,8 @@
   <meta name="author" content="FirePDX">
   <link rel="canonical" href="https://www.fireclient.net/early-access/">
   <meta property="og:type" content="website"><meta property="og:url" content="https://www.fireclient.net/early-access/"><meta property="og:site_name" content="FireClient"><meta property="og:locale" content="en_US">
-  <meta property="og:title" content="FireClient Early Access and November 2026 Full Version"><meta property="og:description" content="FireClient early access is live for Windows. See what works today, known issues and the plan for the full version, planned for November 2026."><meta property="og:image" content="https://www.fireclient.net/assets/og-image.png">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FireClient Early Access and November 2026 Full Version"><meta name="twitter:description" content="FireClient early access is live for Windows. See what works today, known issues and the plan for the full version, planned for November 2026."><meta name="twitter:image" content="https://www.fireclient.net/assets/og-image.png">
+  <meta property="og:title" content="FireClient Early Access and November 2026 Full Version"><meta property="og:description" content="FireClient early access is live for Windows. See what works today, known issues and the plan for the full version, planned for November 2026."><meta property="og:image" content="https://www.fireclient.net/assets/og-image.png"><meta property="og:image:alt" content="FireClient Early Access and November 2026 Full Version"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FireClient Early Access and November 2026 Full Version"><meta name="twitter:description" content="FireClient early access is live for Windows. See what works today, known issues and the plan for the full version, planned for November 2026."><meta name="twitter:image" content="https://www.fireclient.net/assets/og-image.png"><meta name="twitter:image:alt" content="FireClient Early Access and November 2026 Full Version">
   <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png"><link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="alternate" type="application/rss+xml" title="FireClient blog and news" href="/feed.xml">
@@ -63,7 +64,7 @@
       <header class="section-head"><h2 id="eadl-title">Download early access.</h2><p class="lede">Free Windows installer. You need your own Minecraft Java Edition account to play online.</p></header>
       <div class="panel dl-main">
         <div class="dl-actions"><a class="btn btn-primary btn-lg" id="ea-dl-button" href="https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe" download rel="nofollow noopener" data-ea-download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg><span>Download early access for Windows</span></a><a class="btn btn-ghost btn-lg" href="https://github.com/untitledinfo/verifed-fireclient/releases" target="_blank" rel="noopener noreferrer">All releases</a></div>
-        <p class="callout" role="note"><strong>Unsigned early access build.</strong> Windows SmartScreen may warn about it. Only install from this site or the official GitHub releases page, and compare the SHA-256 below when one is shown.</p>
+        <p class="sig-row" data-signing><span class="sig-k">Code signature</span> <span class="sig-v">Not signed yet. Windows SmartScreen may show a warning.</span> <a href="/blog/is-fireclient-safe/#check-the-installer-signature">How to check</a></p>
         <p class="thanks" id="ea-thanks" hidden><b>Thanks for downloading FireClient.</b> Run the installer, then join the Discord if you need help.</p>
         <dl class="dl-facts" id="ea-facts">
           <div><dt>Version</dt><dd data-rel="version">Checking…</dd></div>
@@ -80,7 +81,7 @@
         <p class="note">Direct download: <a id="ea-direct" href="https://github.com/untitledinfo/verifed-fireclient/releases/latest/download/FireClient-Setup.exe" rel="nofollow noopener">FireClient-Setup.exe</a> from GitHub Releases. Windows 10 or 11, 64-bit.</p>
       </div>
     </div></section>
-    <script src="/release-core.js" defer></script><script src="/release-panel.js" defer></script>
+    <script src="/release-core.js" defer></script><script src="/signing.js" defer></script><script src="/release-panel.js" defer></script>
     <section class="section" id="roadmap" aria-labelledby="roadmap-title">
       <div class="wrap">
         <header class="section-head">

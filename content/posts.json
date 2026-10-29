@@ -4,6 +4,28 @@
       "author": "FirePDX",
       "updated": "",
       "status": "published",
+      "date": "2026-10-29",
+      "id": "6f1c2a10-0032-4a00-9000-000000000032",
+      "type": "blog",
+      "slug": "fireclient-mod-fabric-1-21-1",
+      "title": "FireClient mod for Minecraft 1.21.1 (Fabric): what it is and how to get it",
+      "metaTitle": "FireClient Mod for Minecraft 1.21.1 Fabric: What It Is",
+      "metaDescription": "What the FireClient mod is, how the launcher sets it up for Minecraft 1.21.1 on Fabric, and how it differs from the FireClient SMP mod on Modrinth.",
+      "excerpt": "The FireClient mod is the in-game Fabric client behind the menu and HUD. Here is what it is, how to get it, and how it differs from the FireClient SMP mod.",
+      "tags": [
+        "fireclient-mod",
+        "fabric",
+        "1.21.1",
+        "modrinth",
+        "hud"
+      ],
+      "cover": "/assets/ingame-hud.jpg",
+      "body": "If you searched for the \"FireClient mod\", you may mean one of two different projects. This page explains the FireClient mod from fireclient.net, and points you to the other one.\n\n## What the FireClient mod is\n\nFireClient has two parts: a Windows launcher and an in-game client that runs as a Fabric mod for Minecraft Java Edition 1.21.1. The mod adds the FireClient menu, the HUD and its modules. It appears in the launcher's Library page next to your other mods, with an on/off switch.\n\n![The in-game FireClient menu, part of the FireClient mod for Minecraft 1.21.1 on Fabric, with Mods, Settings, Keybinds and Mod List tabs](/assets/ingame-hud-960.jpg)\n\n## How to get it\n\n1. Download the launcher from the [FireClient download page](/download/) and compare the SHA-256 when one is shown.\n2. Sign in with Microsoft, or use an offline profile.\n3. Choose **Fabric 1.21.1** and press Play.\n4. In a world, press **Right Shift** to open the FireClient menu.\n\nThe [install guide](/blog/install-fireclient-windows/) has the full steps with screenshots.\n\n## What it adds\n\n- A menu with Mods, Settings, Keybinds and Mod List tabs, and filters such as HUD, PvP, Visual, Move and Perf.\n- HUD elements you can switch on and drag into place. See the [HUD setup guide](/blog/fireclient-hud-setup-guide/).\n- Profiles, such as Default, PvP, Builder and Performance.\n\nSee more in the [screenshots](/screenshots/).\n\n## Looking for the other FireClient mod?\n\nA separate Fabric utility mod with a similar name is listed on [Modrinth](https://modrinth.com/mod/fireclient-smp). It is aimed at SMP servers, it is a different project, and it is not affiliated with this site. If that is the one you want, use its own page for downloads and supported versions.\n\n## Limits to know about\n\n- Windows 10 and 11 (64-bit) only for now.\n- The in-game mod is built for Minecraft 1.21.1 on Fabric. Other versions can be launched without it.\n- FireClient is in early access, and the installer is not code-signed yet. Read [Is FireClient safe?](/blog/is-fireclient-safe/) before you install."
+    },
+    {
+      "author": "FirePDX",
+      "updated": "",
+      "status": "published",
       "date": "2026-10-27",
       "id": "6f1c2a10-0031-4a00-9000-000000000031",
       "type": "blog",
@@ -435,7 +457,7 @@
     },
     {
       "author": "FirePDX",
-      "updated": "",
+      "updated": "2026-10-27",
       "status": "published",
       "date": "2026-10-16",
       "id": "6f1c2a10-0007-4a00-9000-000000000007",
@@ -451,7 +473,7 @@
         "guide"
       ],
       "cover": "/assets/launcher-home.jpg",
-      "body": "People search \"is FireClient safe\" for a good reason: any Minecraft client installer deserves a second look before you run it. This page tells you exactly where the official download lives, what is unusual about the current build, and how to check your file yourself. It is not a guarantee, and you should make the call with the facts.\n\n## Official sources only\n\nDownload FireClient from [fireclient.net](/download/) or from the official [GitHub Releases page](https://github.com/untitledinfo/verifed-fireclient/releases). If a file comes from a video description, a random mirror or a Discord direct message, do not run it. Links on this site point to the GitHub release file.\n\n## Why Windows may show a warning\n\nThe current early access installer is unsigned. We do not have a paid code-signing certificate yet, so Windows SmartScreen can show a prompt for an app it does not recognise. That prompt is expected for a new unsigned installer. It does not prove the file is safe, and it does not prove it is unsafe. It means Windows has no reputation data for it yet.\n\n## Check the SHA-256 yourself\n\nA hash is a fingerprint of a file. If your copy has the same SHA-256 as the one published on the [download page](/download/), the file was not changed on the way to you. In PowerShell:\n\n```\nGet-FileHash .\\FireClient-Setup.exe -Algorithm SHA256\n```\n\nCompare the result with the hash shown on the download page. If they differ, delete the file and download it again from an official source.\n\n## Good habits for any Minecraft client\n\n- Never paste your Microsoft or Minecraft access token, account files or unredacted logs into a public chat\n- Read what the app asks permission for, and read the [Terms and Privacy notice](/terms-and-privacy.html)\n- Keep a backup of worlds you care about before changing game files\n- Scan the file with Windows Security or your own antivirus if you want another opinion\n\n## What FireClient needs from you\n\nTo play online you need your own Minecraft Java Edition account. FireClient does not give you the game for free. See the [install guide](/blog/install-fireclient-windows/) for the full steps, and ask in the [Discord](https://discord.gg/r23YNWWfrx) if something looks wrong."
+      "body": "People search \"is FireClient safe\" for a good reason: any Minecraft client installer deserves a second look before you run it. This page tells you exactly where the official download lives, what is unusual about the current build, and how to check your file yourself. It is not a guarantee, and you should make the call with the facts.\n\n## Official sources only\n\nDownload FireClient from [fireclient.net](/download/) or from the official [GitHub Releases page](https://github.com/untitledinfo/verifed-fireclient/releases). If a file comes from a video description, a random mirror or a Discord direct message, do not run it. Links on this site point to the GitHub release file.\n\n## Why Windows may show a warning\n\nThe current early access installer is unsigned. We do not have a paid code-signing certificate yet, so Windows SmartScreen can show a prompt for an app it does not recognise. That prompt is expected for a new unsigned installer. It does not prove the file is safe, and it does not prove it is unsafe. It means Windows has no reputation data for it yet.\n\n## Check the SHA-256 yourself\n\nA hash is a fingerprint of a file. If your copy has the same SHA-256 as the one published on the [download page](/download/), the file was not changed on the way to you. In PowerShell:\n\n```\nGet-FileHash .\\FireClient-Setup.exe -Algorithm SHA256\n```\n\nCompare the result with the hash shown on the download page. If they differ, delete the file and download it again from an official source.\n\n## Check the installer signature\n\nA code signature shows who signed a file and that it was not changed after signing. It does not show that the software is safe. The download panel shows the current status, and you can check it yourself. In PowerShell:\n\n```\nGet-AuthenticodeSignature .\\FireClient-Setup.exe | Format-List Status, StatusMessage, SignerCertificate\n```\n\n- **NotSigned**: there is no signature. This is the case for the current early access build.\n- **Valid**: signed with a certificate Windows trusts.\n- **UnknownError** with a message about a root certificate that is not trusted: typical for a self-signed certificate. Windows does not trust those by default, so SmartScreen can still warn. If we publish a thumbprint, it should match the one in the file's Properties, Digital Signatures tab.\n- **HashMismatch**: the file changed after it was signed. Do not run it.\n\nYou can also right-click the file, choose Properties and open the Digital Signatures tab.\n\n## Good habits for any Minecraft client\n\n- Never paste your Microsoft or Minecraft access token, account files or unredacted logs into a public chat\n- Read what the app asks permission for, and read the [Terms and Privacy notice](/terms-and-privacy.html)\n- Keep a backup of worlds you care about before changing game files\n- Scan the file with Windows Security or your own antivirus if you want another opinion\n\n## What FireClient needs from you\n\nTo play online you need your own Minecraft Java Edition account. FireClient does not give you the game for free. See the [install guide](/blog/install-fireclient-windows/) for the full steps, and ask in the [Discord](https://discord.gg/r23YNWWfrx) if something looks wrong."
     },
     {
       "author": "FirePDX",

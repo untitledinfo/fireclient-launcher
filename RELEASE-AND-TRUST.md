@@ -29,5 +29,8 @@ It lists the assets, which one the site would use, whether size and digest exist
 - Search Console / Bing verification proves site ownership only. It is not a publisher or safety badge.
 - Update `lm()`/`CHANGED` in `lib/render.mjs` when a page's content really changes, so sitemap `lastmod` stays true.
 
+## Code signing
+The site shows the installer's signature status from `content/signing.json` (default: not signed). See `SIGNING.md` for how to sign and when to update the file. The site never says "verified".
+
 ## Tests
     node tools/build.mjs && node tools/seo-audit.mjs && node tools/i18n-check.mjs && node --test tools/test.mjs

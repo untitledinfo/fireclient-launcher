@@ -593,6 +593,29 @@
       ],
       "cover": "/assets/ingame-hud.jpg",
       "body": "Your HUD layout takes a few minutes to set up, so it is worth backing up. FireClient keeps it in one small file.\n\n## Where the layout is stored\n\nPositions, visibility and the sprint toggle are saved to `config/fireclient/client.json`. The path is relative to your Minecraft game folder, so look for a `config` folder inside it, then `fireclient`.\n\n## Back it up\n\n1. Close Minecraft so the file is not being written.\n2. Copy `client.json` to a safe place, such as a cloud folder or a USB drive.\n3. Put a date in the copy's name, for example `client-2026-10-13.json`, so you can keep a few versions.\n\n## Reuse it on another PC\n\nInstall FireClient on the other PC and run Minecraft 1.21.1 on Fabric once, so the `config/fireclient` folder exists. Close the game, then put your copy in that folder as `client.json`. The layout should load the next time you start the game. Keep a copy of the original first in case you want to go back.\n\n## When something looks wrong\n\nIf elements end up off screen after a resolution change, open the menu with **Right Shift** and use **Edit HUD Layout** to drag them back. The [HUD setup guide](/blog/fireclient-hud-setup-guide/) has the full walkthrough.\n\n## Before you share the file\n\nThe file holds layout settings, but open it in a text editor and check it before you post it anywhere. Never post logs or account files publicly. If you are unsure, ask in the [FireClient Discord](https://discord.gg/r23YNWWfrx)."
+    },
+    {
+      "id": "47e2488c-fae3-4409-900a-80b1ba6e9dac",
+      "type": "news",
+      "title": "Next FireClient Release Arrives October 30",
+      "slug": "fireclient-release-october-30-2026",
+      "excerpt": "The next FireClient release is scheduled for October 30, 2026, at 8:00 AM Pacific Time. Check the official download page for release details.",
+      "body": "# Next FireClient Release Arrives October 30\n\n🔥 **The next FireClient release is scheduled for Friday, October 30, 2026, at 8:00 AM Pacific Time.**\n\nWe're preparing the next release of FireClient, bringing another update to our Minecraft launcher and in-game client. Check back on release day for the available build and its published release notes.\n\n## What Is FireClient?\n\nFireClient combines a Minecraft Java Edition launcher with an in-game Fabric client for Minecraft 1.21.1. Current features include a draggable HUD with 11 elements, three accent themes, a built-in Modrinth mod manager, a worlds library, memory controls and local skins.\n\nThe exact changes included in this release will be listed in the release notes once they are available. Watch this page for updates rather than relying on unconfirmed feature announcements.\n\n## Where to Get FireClient!\n\n![FireClient](/assets/blog/mvtf652z-screenshot-2026-10-29-152634.webp)\n\nWhen the release is available, visit the official [FireClient download page](https://www.fireclient.net/download/) to find the installer and available release information. You can also check the [official GitHub Releases page](https://github.com/untitledinfo/verifed-fireclient/releases/).\n\nInstalling FireClient for the first time? Follow our [step-by-step Windows installation guide](https://www.fireclient.net/blog/install-fireclient-windows/).\n\n**A quick security note:** The current early-access installer is unsigned, so Windows may display a security warning. Download only from official FireClient sources, and compare the SHA-256 checksum when one is provided.\n\n## Join the FireClient Community\n\nThank you to everyone testing FireClient, reporting issues and sharing feedback. Follow our [Discord community](https://discord.gg/r23YNWWfrx) for announcements, support and further release updates.\n\n**Release date:** Friday, October 30, 2026  \n**Release time:** 8:00 AM Pacific Time (PDT)  \n**Official website:** [fireclient.net](https://www.fireclient.net/)\n\nSee you in game. 🔥",
+      "cover": "/assets/blog/mvtehs63-screenshot-2026-10-29-152634.webp",
+      "tags": [
+        "fireclient",
+        "minecraft",
+        "minecraft java",
+        "release",
+        "gaming",
+        "windows launcher"
+      ],
+      "date": "2026-10-29",
+      "updated": "",
+      "status": "published",
+      "metaTitle": "FireClient Release: October 30, 2026 | FireClient",
+      "metaDescription": "The next FireClient release is scheduled for October 30, 2026, at 8:00 AM Pacific Time. Get the build and release notes from the official download page.",
+      "author": "FirePDX"
     }
   ]
 }

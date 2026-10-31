@@ -411,3 +411,20 @@ kbd { font-size: .8em; padding: 1px 7px; background: var(--panel-2); border: 1px
 .hash code { display: block; min-height: 2.9em; flex: 1; }
 @media (max-width: 720px) { .hash code { min-height: 5.8em; } }
 .hero-meta [data-bind="size"] { display: inline-block; min-width: 13ch; }   /* same width in every state (Checking / 10.0 MB / Not available) so the chip row never re-wraps */
+
+/* ---- Premium polish: typography, depth and motion (all theme-aware, motion respects reduced-motion) ---- */
+h1, h2, h3, .lede { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+html { scrollbar-color: var(--red-deep) var(--bg); scrollbar-width: thin; }
+.panel, .pcard, .shot-card { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 1px 0 rgba(0, 0, 0, .35); }
+@media (prefers-reduced-motion: no-preference) {
+  .pcard, .shot-card, .guide-cluster, .btn { transition: transform .22s cubic-bezier(.2, .7, .2, 1), box-shadow .22s, border-color .22s, background .22s; }
+  .pcard:hover, .shot-card:hover { transform: translateY(-4px); border-color: rgb(var(--red-rgb) / .55); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 22px 44px -22px rgb(var(--red-rgb) / .65); }
+  .guide-cluster:hover { border-color: rgb(var(--red-rgb) / .4); }
+  .btn:active { transform: translateY(0) scale(.985); }
+}
+.section-head h2 { letter-spacing: -.012em; }
+.btn-primary { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), 0 10px 28px -12px rgb(var(--red-rgb) / .85); }
+/* Skip layout/paint of sections far below the fold until they approach the viewport (big win on this long page). "auto" remembers the real height after first render. */
+.section { content-visibility: auto; contain-intrinsic-size: auto 760px; }
+html.cv-off .section { content-visibility: visible; }

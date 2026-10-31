@@ -246,3 +246,44 @@ test("themes: every accent defines the same variables and keeps WCAG AA contrast
   const css = rd("style.css") + rd("blog.css"); assert.doesNotMatch(css.replace(/:root\s*\{[^}]*\}/, ""), /#b82431|#e0313f|rgba\(\s*224,\s*49,\s*63/i, "no hard-coded red outside :root (it would ignore the theme)");
   assert.match(rd("index.html"), /src="\/accent\.js"/);
 });
+
+test("versions page: honest statuses (4 tested, mod only on Fabric 1.21.1), FAQ matches structured data, in sitemap, linked", () => {
+  const h = rd("versions/index.html"), body = h.replace(/<script[\s\S]*?<\/script>/g, "");
+  assert.equal((body.match(/class="vs vs-ok"/g) || []).length, 4, "only versions the maintainer actually launched may say tested");
+  assert.equal((body.match(/vs-mod">Included/g) || []).length, 1, "the FireClient mod is built for Fabric 1.21.1 only");
+  for (const v of ["1.21.4", "1.21.1", "1.20.4", "1.20.1"]) assert.ok(body.includes(`<th scope="row">${v}</th>`), v);
+  assert.doesNotMatch(body, /supports all|every version|works on all/i);
+  const ld = JSON.parse(h.match(/application\/ld\+json">([\s\S]*?)<\/script>/)[1]); const faq = (ld["@graph"] || [ld]).find(n => n["@type"] === "FAQPage");
+  assert.equal(faq.mainEntity.length, 3);
+  assert.ok(sm.includes("<loc>https://www.fireclient.net/versions/</loc>")); assert.match(rd("download/index.html"), /href="\/versions\/"/); assert.match(rd("blog/index.html"), /<a href="\/versions\/">Versions<\/a>/);
+});
+test("English page titles fit in a search result (60-62 characters) and are unique", () => {
+  const seen = new Map();
+  for (const u of locs) { if (/^https:\/\/www\.fireclient\.net\/[a-z]{2}(-[a-z]+)?\/$/.test(u)) continue; let p = u.replace("https://www.fireclient.net/", ""); if (!p || p.endsWith("/")) p += "index.html";
+    const t = (rd(p).match(/<title>([\s\S]*?)<\/title>/) || [])[1].trim().replace(/&amp;/g, "&"); assert.ok(t.length <= 62, `${u}: ${t.length} chars: ${t}`); assert.ok(!seen.has(t), `duplicate title ${t}`); seen.set(t, u); }
+});
+
+test("about page defines the entity; home footer links to the hub pages; no company or audit claims", () => {
+  const h = rd("about/index.html"), text = h.replace(/<script[\s\S]*?<\/script>/g, "");
+  assert.match(text, /FirePDX and Sajjad Ahmed/); assert.match(text, /fireclient\.net is the launcher|This site, fireclient\.net/); assert.match(text, /not affiliated with Mojang/i);
+  assert.doesNotMatch(text, /LLC|Inc\.|GmbH|audited|certified/i);
+  const ld = JSON.parse(h.match(/application\/ld\+json">([\s\S]*?)<\/script>/)[1]); const about = (ld["@graph"] || [ld]).find(n => n["@type"] === "AboutPage");
+  assert.equal(about.mainEntity["@type"], "Organization"); assert.ok(about.mainEntity.sameAs.length >= 3);
+  assert.ok(sm.includes("<loc>https://www.fireclient.net/about/</loc>"));
+  const home = rd("index.html"); for (const l of ["/about/", "/guides/", "/versions/", "/screenshots/"]) assert.ok(home.includes(`href="${l}"`), `home links ${l}`);
+});
+
+test("performance: logo is small, images use one format via <picture>, analytics waits for idle, below-fold rendering is skipped safely", () => {
+  assert.ok(readFileSync(fileURLToPath(new URL("assets/logo.svg", root))).length < 6000, "logo.svg must stay small (it was 18.7 KB, a PNG inside an SVG)");
+  for (const n of ["ingame-menu", "ingame-hud", "ingame-gameplay", "launcher-home", "launcher-mods", "launcher-versions", "launcher-modrinth", "launcher-library", "launcher-resource-packs", "launcher-shaders", "launcher-worlds", "launcher-accounts", "launcher-skins", "launcher-usage"])
+    assert.ok(readFileSync(fileURLToPath(new URL(`assets/${n}-960.webp`, root))).length < 75000, `${n}-960.webp too heavy`);
+  const bad = [];
+  for (const u of locs) { let p = u.replace("https://www.fireclient.net/", ""); if (!p || p.endsWith("/")) p += "index.html"; const h = rd(p);
+    if (/<script async src="https:\/\/www\.googletagmanager\.com/.test(h)) bad.push(`${p}: analytics loads at page start`);
+    if (!/requestIdleCallback/.test(h)) bad.push(`${p}: analytics loader missing`);
+    for (const m of h.matchAll(/<img\b[^>]*\bsrc="\/?assets\/[a-z-]+-960\.jpg"/g)) { const before = h.slice(0, m.index); if (before.lastIndexOf("<picture>") < before.lastIndexOf("</picture>") || before.lastIndexOf("<picture>") < 0) bad.push(`${p}: ${m[0].slice(0, 70)} is a bare JPG (would download twice or skip WebP)`); } }
+  assert.deepEqual([...new Set(bad)], []);
+  const css = rd("style.css"); assert.match(css, /\.section\s*\{[^}]*content-visibility:\s*auto/); assert.match(css, /html\.cv-off \.section\s*\{[^}]*content-visibility:\s*visible/);
+  assert.match(rd("accent.js"), /location\.hash[\s\S]*cv-off/, "a #hash link must render all sections before the first scroll");
+  assert.match(rd("script.js"), /cv-off/);
+});

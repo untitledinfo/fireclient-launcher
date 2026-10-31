@@ -83,3 +83,32 @@ FAQ "Where can I download FireClient?"; FAQ "Will FireClient boost my FPS?" (no 
 2. Earn real references that say "FireClient" next to "Minecraft launcher": your GitHub README and repo description, Discord server description, YouTube channel and video descriptions, a Modrinth/CurseForge profile, AlternativeTo.
 3. Be consistent: always the same name, the same one-line description, and the same link `https://www.fireclient.net/`.
 4. Branded searches grow only with real users. Watch Search Console > Performance for the queries `fireclient`, `fire client`, `fireclient download`, `fireclient mod`.
+
+## Why Bing ranks you first but Google does not (and what is realistic)
+- **Competition and trust.** Bing leans more on exact-match names and on-page text, so a clear site with the word "FireClient" can win quickly.
+  Google leans heavily on authority: how many independent sites link to you and how long they have. The Modrinth mod page, a GitHub repository and
+  `fireclient.gg` are all older and have far more inbound links than a new site. The "250,000+" figure is likely that mod's download count.
+- **Your own phone is personalised.** The Modrinth result carried a **"You visit often"** label. Google ranks sites you use often higher *for you*.
+  To see what a stranger sees, search in a private window while signed out, or ask a friend. Search Console > Performance shows your real
+  average position for `fireclient` across everyone.
+- **The word `fireclient` alone is not winnable by code.** It is shared by several projects. What works: win the more specific searches
+  (`fireclient download`, `fireclient launcher`, `fireclient.net`, `fireclient minecraft launcher`) and earn real links. You already rank #1 for `fireclient.net`.
+- **Do these, in order:** (1) Search Console: verify the Domain property, submit `sitemap.xml`, request indexing for `/`, `/download/`, `/versions/`,
+  `/guides/`, `/faq/`; (2) get links from places that are genuinely yours (GitHub repo About field + README, Discord, YouTube, Modrinth/CurseForge profile),
+  always with the same description and `https://www.fireclient.net/`; (3) publish tested guides and screenshots regularly; (4) check Performance weekly.
+  Expect weeks to months, not days.
+
+## Versions page (`/versions/`)
+`VERSIONS` in `lib/render.mjs` lists Fabric 1.21.4 to 1.20.1 and Forge 1.20.4 to 1.20.1. Only versions the maintainer actually launched say "Launches (tested)"
+(Fabric 1.21.4, 1.21.1, 1.20.1; Forge 1.20.1). The FireClient mod is marked "Included" only for Fabric 1.21.1. Change a row from `"untested"` to `"tested"`
+**only after you launch that version**, then set `updated`. Never mark a version tested that you have not run: it is the page's whole value.
+
+## "Full real language change system"
+What exists is deliberately safe: 18 translated home pages with `hreflang`, a picker, and a dismissible suggestion based on the browser language (no forced redirects).
+Machine-translating all 29 articles into 18 languages would create ~500 thin, unreviewed pages. Google treats that as low-quality auto-translated content and it can
+lower the whole site. A better path: have a person translate only the 5 pages that drive downloads (Download, Install guide, Safety, FAQ, Versions) into your 2 or 3
+most important languages, and add them to `lib/locales.mjs` with `hreflang`.
+
+## Next.js
+Not needed and it would not improve Google rankings. The site is static HTML: fast, crawlable without JavaScript, no server to break. A framework would add
+complexity and risk. Keep the current setup unless you need accounts or a database.

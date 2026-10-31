@@ -67,6 +67,21 @@ const weakDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurren
                    (navigator.deviceMemory && navigator.deviceMemory <= 4);
 
 document.documentElement.classList.add("js");
+// content-visibility (see style.css) skips far-below-the-fold sections, so their heights are only estimates until rendered.
+// While the visitor jumps to an anchor, render everything once so the scroll target is exact; afterwards the browser remembers the real heights.
+(() => {
+  const root = document.documentElement; let t = 0;
+  const off = () => { root.classList.add("cv-off"); clearTimeout(t); t = setTimeout(() => root.classList.remove("cv-off"), 2500); };
+  document.addEventListener("click", e => { const a = e.target.closest && e.target.closest('a[href*="#"]'); if (a) off(); }, true);
+  addEventListener("hashchange", off); if (location.hash) off();
+  // Late layout changes above the target (images, release data, changelog) can leave a direct link like /#why misaligned. Re-align once after load, unless the visitor already scrolled.
+  let moved = false; ["wheel", "touchstart", "keydown", "mousedown"].forEach(ev => addEventListener(ev, () => { moved = true; }, { passive: true, once: true }));
+  addEventListener("load", () => setTimeout(() => {
+    if (moved || location.hash.length < 2) return;
+    let el = null; try { el = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (e) { /* bad hash */ }
+    if (el) el.scrollIntoView({ block: "start", behavior: "instant" });
+  }, 300));
+})();
 
 function formatBytes(n) {
   if (!n || n < 0) return "";
@@ -186,7 +201,9 @@ function initEmbers() {
   window.addEventListener("resize", resize);
 
   let last = performance.now();
+  let raf = 0;
   const frame = now => {
+    raf = 0; if (!running) return;                       // off-screen: stop the loop completely
     const dt = Math.min((now - last) / 1000, .05); last = now;
     if (running) {
       ctx.clearRect(0, 0, w, h);
@@ -197,11 +214,11 @@ function initEmbers() {
         ctx.fillRect(Math.round(p.x), Math.round(p.y), p.s, p.s);
       });
     }
-    requestAnimationFrame(frame);
+    raf = requestAnimationFrame(frame);
   };
-  requestAnimationFrame(frame);
+  raf = requestAnimationFrame(frame);
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(([en]) => { running = en.isIntersecting; }).observe(canvas);
+    new IntersectionObserver(([en]) => { running = en.isIntersecting; if (running && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }).observe(canvas);
   }
 }
 

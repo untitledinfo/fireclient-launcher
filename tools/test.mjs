@@ -9,6 +9,8 @@ import { fileURLToPath } from "node:url";
 import { buildSite } from "../lib/render.mjs";
 import { findClaims } from "./claims.mjs";
 const require = createRequire(import.meta.url), core = require("../release-core.js"), H = require("../hash-core.js"), api = require("../api/latest.js");
+require("../tools.js");
+const browserTools = globalThis.FCTools;
 const root = new URL("../", import.meta.url), rd = p => readFileSync(fileURLToPath(new URL(p, root)), "utf8");
 const A = h => "a".repeat(64), B = "b".repeat(64);
 const asset = (name, extra = {}) => ({ name, size: 1000, browser_download_url: `https://github.com/o/r/releases/download/v1/${name}`, state: "uploaded", ...extra });
@@ -47,6 +49,11 @@ test("release-core: summarize skips drafts, honours the prerelease flag, formats
   const rels = [{ tag_name: "v3", draft: true, assets: [] }, { tag_name: "v2", prerelease: true, assets: [] }, { tag_name: "v1", assets: [] }];
   assert.equal(core.summarize(rels, { includePrereleases: true }).tag, "v2"); assert.equal(core.summarize(rels, { includePrereleases: false }).tag, "v1"); assert.equal(core.summarize([]), null);
   assert.equal(core.formatBytes(0), ""); assert.equal(core.formatBytes(1536), "1.5 KB"); assert.equal(core.formatBytes(5 * 1048576), "5.0 MB");
+});
+test("compatibility checker only accepts the supported in-game target", () => {
+  assert.equal(browserTools.compatCheck("1.21.1", "fabric", "21").supported, true);
+  for (const combo of [["1.21.4", "fabric", "21"], ["1.21.1", "forge", "21"], ["1.21.1", "fabric", "17"]])
+    assert.equal(browserTools.compatCheck(...combo).supported, false);
 });
 
 test("hash-core: matches node:crypto at every padding boundary", () => {
@@ -90,6 +97,14 @@ test("build: generation is deterministic and the committed output is current", (
   const stale = Object.entries(built).filter(([p, c]) => existsSync(new URL(p, root)) && rd(p) !== c).map(([p]) => p);
   assert.deepEqual(stale, [], "run node tools/build.mjs; stale generated files: " + stale.join(", "));
 });
+test("compatibility checker is crawlable and linked from the tools hub", () => {
+  const page = built["tools/minecraft-compatibility-checker/index.html"];
+  assert.ok(page, "compatibility checker page is generated");
+  assert.match(page, /<link rel="canonical" href="https:\/\/www\.fireclient\.net\/tools\/minecraft-compatibility-checker\/">/);
+  assert.match(page, /data-tool="compat"/);
+  assert.match(built["tools/index.html"], /\/tools\/minecraft-compatibility-checker\//);
+  assert.match(built["sitemap.xml"], /<loc>https:\/\/www\.fireclient\.net\/tools\/minecraft-compatibility-checker\/</);
+});
 const sm = rd("sitemap.xml"), locs = [...sm.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 test("sitemap: well formed, unique, canonical host, files exist, lastmod valid and not in the future", () => {
   assert.equal(new Set(locs).size, locs.length);
@@ -118,6 +133,7 @@ test("vercel.json and robots.txt: canonical host redirect, no asset blocking, si
   const v = JSON.parse(rd("vercel.json")); assert.equal(v.trailingSlash, true);
   assert.ok((v.redirects || []).some(r => JSON.stringify(r).includes("fireclient.net") && JSON.stringify(r).includes("www.fireclient.net")), "apex to www redirect");
   assert.ok((v.redirects || []).some(r => /index\.html/.test(r.source)), "/index.html redirect");
+  assert.ok((v.redirects || []).some(r => r.source === "/license/" && r.destination === "/license.html" && r.permanent), "license alias redirects to its canonical page");
   const rb = rd("robots.txt"); assert.match(rb, /Sitemap:\s*https:\/\/www\.fireclient\.net\/sitemap\.xml/); assert.doesNotMatch(rb, /Disallow:\s*\/(css|js|assets)?\s*$/m);
 });
 test("seo-audit passes with no errors", () => { const r = spawnSync(process.execPath, [fileURLToPath(new URL("seo-audit.mjs", import.meta.url))], { encoding: "utf8" }); assert.equal(r.status, 0, r.stdout); });

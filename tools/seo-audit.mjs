@@ -1,6 +1,7 @@
 // Offline SEO audit of every page in sitemap.xml (reads the built files, needs no network).
 // Run after building:  node tools/build.mjs && node tools/seo-audit.mjs
 import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { findClaims } from "./claims.mjs";
 const root = new URL("../", import.meta.url), file = p => fileURLToPath(new URL(p, root));
@@ -50,7 +51,11 @@ for (const [u, h] of Object.entries(pages)) { const a = alt(h); if (!a.length) c
 { const sm = readFileSync(file("sitemap.xml"), "utf8"), today = new Date().toISOString().slice(0, 10);
   if (new Set(urls).size !== urls.length) errors.push("sitemap has duplicate <loc> entries");
   for (const m of sm.matchAll(/<loc>(.*?)<\/loc>\s*<lastmod>(.*?)<\/lastmod>/g)) { if (!/^\d{4}-\d{2}-\d{2}$/.test(m[2])) errors.push(`${m[1]}: lastmod "${m[2]}" is not YYYY-MM-DD`); else if (m[2] > today) errors.push(`${m[1]}: lastmod ${m[2]} is in the future`); }
-  const walk = (d) => readdirSync(d, { withFileTypes: true }).flatMap(x => x.isDirectory() ? (["node_modules", ".git", "admin", "api", "assets", "lib", "tools", "content", ".well-known"].includes(x.name) ? [] : walk(d + x.name + "/").map(y => y)) : [d + x.name]);
+  const skipDirs = new Set(["node_modules", ".git", "admin", "api", "assets", "lib", "tools", "content", ".well-known"]);
+  const walk = d => readdirSync(d, { withFileTypes: true }).flatMap(x => {
+    const path = join(d, x.name);
+    return x.isDirectory() ? (skipDirs.has(x.name) ? [] : walk(path)) : [path];
+  });
   const listed = new Set(urls.map(toFile));
   for (const f of walk(file("./"))) { if (!f.endsWith(".html")) continue; const rel = f.slice(file("./").length); if (/^(google|404|BingSite)/i.test(rel.split("/").pop())) continue; const h = readFileSync(f, "utf8"); if (/name="robots" content="[^"]*noindex/i.test(h)) continue; if (!listed.has(f)) warns.push(`indexable page not in sitemap: ${rel}`); } }
 console.log(`${urls.length} pages audited`);

@@ -414,10 +414,10 @@ async function fetchGithubReleases(force) {
   return releases;
 }
 
-// Fetches the normalised summary from /api/latest (GitHub data, cross-checked against the release's verification report).
+// Fetches the normalised summary from /api/latest/ (GitHub data, cross-checked against the release's verification report).
 async function fetchLatestSummary() {
   try {
-    const res = await fetch("/api/latest", { headers: { Accept: "application/json" } });
+    const res = await fetch("/api/latest/", { headers: { Accept: "application/json" } });
     if (!res.ok) return null;
     const j = await res.json();
     return j && j.ok ? j : null;

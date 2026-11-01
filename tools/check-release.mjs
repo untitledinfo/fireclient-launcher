@@ -39,7 +39,7 @@ if (s.report) {
 const d = await fetch(SITE_LINK, { method: "HEAD", redirect: "manual", headers: { "User-Agent": "fireclient-check" } }).catch(e => ({ status: e.message }));
 d.status >= 300 && d.status < 400 ? ok(`default download link works (${d.status} redirect to the asset)`) : bad(`default download link ${SITE_LINK} returned ${d.status}`);
 
-for (const p of ["/api/latest"]) {
+for (const p of ["/api/latest/"]) {
   const x = await fetch("https://www.fireclient.net" + p, { headers: { Accept: "application/json" } }).catch(e => ({ status: e.message }));
   if (x.ok) { const j = await x.json(); j.ok && j.version === s.version ? ok(`${p} on the live site agrees (v${j.version})`) : bad(`${p} on the live site returned ${JSON.stringify(j).slice(0, 120)}`); }
   else console.log(`  note ${p} returned ${x.status}. If the function is not deployed yet, the page falls back to GitHub directly.`);

@@ -25,6 +25,9 @@
     const vendor = (/Temurin/i.test(text) && "Eclipse Temurin") || (/Microsoft/i.test(text) && "Microsoft Build of OpenJDK") || (/Corretto/i.test(text) && "Amazon Corretto") || (/Zulu/i.test(text) && "Azul Zulu") || (/GraalVM/i.test(text) && "GraalVM") || (/Java\(TM\)/i.test(text) && "Oracle Java") || (/OpenJDK/i.test(text) && "OpenJDK") || null;
     return { status: major === 21 ? "ok" : major > 21 ? "newer" : "old", major, bit, vendor };
   }
+  function compatCheck(version, loader, java) {
+    return { supported: String(version) === "1.21.1" && String(loader).toLowerCase() === "fabric" && String(java) === "21" };
+  }
   // ---- Crash report ----
   function crashAnalyze(text) {
     const t = String(text || ""), f = [], info = [];
@@ -58,7 +61,7 @@
     if (!f.length) f.push({ title: "No clear cause found", detail: "Nothing in this text matched a common problem. Try the full crash report from the crash-reports folder, work through the checklist, or ask in the Discord and share only the relevant lines.", links: [[G.crash, "Crash checklist"]] });
     return { info, findings: f };
   }
-  const api = { ramRec, settingsFor, javaCheck, crashAnalyze };
+  const api = { ramRec, settingsFor, javaCheck, crashAnalyze, compatCheck };
   if (typeof globalThis !== "undefined") globalThis.FCTools = api;
   if (typeof document === "undefined") return;
 
@@ -93,6 +96,18 @@
     else if (r.bit === 64) out.append(el("p", "", "It is a 64-bit Java, which is what you want."));
     if (r.status !== "ok") out.append(links([[G.java, "How to install Java 21"]]));
   });
+  const compat = $('[data-tool="compat"]');
+  if (compat) {
+    const out = $("#compat-out"), run = () => {
+      const supported = compatCheck($("#compat-mc").value, $("#compat-loader").value, $("#compat-java").value).supported;
+      out.replaceChildren(
+        el("p", supported ? "big" : "warn", supported ? "This profile matches the FireClient in-game client target." : "This profile does not match the FireClient in-game client target."),
+        el("p", "", supported ? "FireClient's HUD and in-game menu are built for Minecraft Java 1.21.1 on Fabric with Java 21." : "Use Minecraft 1.21.1, Fabric and Java 21 for the FireClient HUD and in-game menu. The launcher can support other profiles; see the versions page."),
+        links([["/versions/", "Supported versions and loaders"], [G.java, "Check Java 21"]])
+      );
+    };
+    compat.addEventListener("input", run); compat.addEventListener("change", run); run();
+  }
   const cr = $('[data-tool="crash"]');
   if (cr) {
     const out = $("#crash-out");
@@ -143,7 +158,7 @@
       note.textContent = "Looking up the latest release…";
       try {
         let s = null;
-        try { const r = await fetch("/api/latest", { headers: { Accept: "application/json" } }); if (r.ok) { const j = await r.json(); if (j && j.ok) s = j; } } catch (e) { /* fall back */ }
+        try { const r = await fetch("/api/latest/", { headers: { Accept: "application/json" } }); if (r.ok) { const j = await r.json(); if (j && j.ok) s = j; } } catch (e) { /* fall back */ }
         if (!s) { const r = await fetch("https://api.github.com/repos/untitledinfo/verifed-fireclient/releases?per_page=10", { headers: { Accept: "application/vnd.github+json" } }); if (!r.ok) throw new Error("lookup"); s = R().summarize(await r.json(), { includePrereleases: true }); }
         if (!s || !s.installer) { note.textContent = "The latest release has no single, clearly identified installer, so no hash was filled in. Paste the hash from the release page instead."; return; }
         if (s.hashConflict) { note.textContent = "Two sources listed for this release disagree about the checksum, so none was filled in. Do not rely on a checksum for this release until that is resolved."; return; }

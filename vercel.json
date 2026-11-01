@@ -24,6 +24,22 @@
       "permanent": true
     },
     {
+      "source": "/news/fireclient-release-october-30-2026/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.fireclient.net"
+        }
+      ],
+      "destination": "/news/",
+      "permanent": true
+    },
+    {
+      "source": "/license/",
+      "destination": "/license.html",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         {

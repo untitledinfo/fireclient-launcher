@@ -1,4 +1,4 @@
-// Vercel serverless function: /api/latest
+// Vercel serverless function: /api/latest/
 // Returns one small, normalised summary of the newest FireClient release: version, date, the installer's
 // real name/size/download URL and its SHA-256, plus the verification-report link when the release has one.
 // Everything comes from GitHub's own release data. Nothing is guessed: if GitHub did not publish a value,

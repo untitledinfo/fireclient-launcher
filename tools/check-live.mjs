@@ -14,7 +14,7 @@ for (const s of ["http://fireclient.net/", "https://fireclient.net/", "http://ww
 }
 const robots = await get(`${base}/robots.txt`).then(r => r.text()).catch(() => ""); console.log(/Sitemap:\s*https:\/\/www\.fireclient\.net\/sitemap\.xml/i.test(robots) ? "\nrobots.txt lists the sitemap" : (fail("robots.txt does not list the canonical sitemap"), ""));
 if (/^\s*Disallow:\s*\/(css|js|assets)?\s*$/im.test(robots)) fail("robots.txt blocks site-wide or asset paths");
-const api = await get(`${base}/api/latest`).catch(e => ({ status: e.message })); console.log(`/api/latest -> ${api.status}${api.status === 200 ? "" : " (deploy api/latest.js; the page falls back to GitHub meanwhile)"}`);
+const api = await get(`${base}/api/latest/`).catch(e => ({ status: e.message })); console.log(`/api/latest/ -> ${api.status}${api.status === 200 ? "" : " (deploy api/latest.js; the page falls back to GitHub meanwhile)"}`);
 if (api.status === 200) { const j = await api.json(); console.log(`  version ${j.version}, installer ${j.installer?.name}, size ${j.installer?.size}, sha256 ${j.installer?.sha256 ? "present" : "missing"}`); }
 
 const urls = [...readFileSync(new URL("../sitemap.xml", import.meta.url), "utf8").matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);

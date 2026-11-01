@@ -4,8 +4,8 @@ How the website decides what to show about the installer, and how to keep it hon
 
 ## Where the numbers come from
 - **Version, date, size, SHA-256** come from the GitHub release `untitledinfo/verifed-fireclient` (GitHub's `digest` field for the asset).
-  `/api/latest` (api/latest.js) reads it and, if the release has a `verification-report.json`, cross-checks it.
-  If the browser cannot reach `/api/latest` it asks GitHub directly. Shared logic: `release-core.js`.
+  `/api/latest/` (api/latest.js) reads it and, if the release has a `verification-report.json`, cross-checks it.
+  If the browser cannot reach `/api/latest/` it asks GitHub directly. Shared logic: `release-core.js`.
 - Nothing is typed in by hand. `CONFIG.windows.sizeBytes`/`sha256` in `script.js` stay empty on purpose.
 - If GitHub published no digest: the page says "Not published for this release yet."
 - If the report and GitHub disagree: no hash is shown and the page says the sources disagree.

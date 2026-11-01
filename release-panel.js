@@ -11,7 +11,7 @@
 
   async function load() {
     try {
-      const r = await fetch("/api/latest", { headers: { Accept: "application/json" } });
+      const r = await fetch("/api/latest/", { headers: { Accept: "application/json" } });
       if (r.ok) { const j = await r.json(); if (j && j.ok) return j; }
     } catch { /* fall through to GitHub */ }
     const r = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=10`, { headers: { Accept: "application/vnd.github+json" } });

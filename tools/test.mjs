@@ -132,6 +132,7 @@ test("download pages: real release panel and scripts are present", () => {
 test("vercel.json and robots.txt: canonical host redirect, no asset blocking, sitemap listed", () => {
   const v = JSON.parse(rd("vercel.json")); assert.equal(v.trailingSlash, true);
   assert.ok((v.redirects || []).some(r => JSON.stringify(r).includes("fireclient.net") && JSON.stringify(r).includes("www.fireclient.net")), "apex to www redirect");
+  assert.ok((v.redirects || []).some(r => JSON.stringify(r).includes("play.fireclient.net") && JSON.stringify(r).includes("www.fireclient.net") && r.permanent), "legacy play subdomain redirects to canonical www host");
   assert.ok((v.redirects || []).some(r => /index\.html/.test(r.source)), "/index.html redirect");
   assert.ok((v.redirects || []).some(r => r.source === "/license/" && r.destination === "/license.html" && r.permanent), "license alias redirects to its canonical page");
   const rb = rd("robots.txt"); assert.match(rb, /Sitemap:\s*https:\/\/www\.fireclient\.net\/sitemap\.xml/); assert.doesNotMatch(rb, /Disallow:\s*\/(css|js|assets)?\s*$/m);
@@ -277,6 +278,18 @@ test("English page titles fit in a search result (60-62 characters) and are uniq
   const seen = new Map();
   for (const u of locs) { if (/^https:\/\/www\.fireclient\.net\/[a-z]{2}(-[a-z]+)?\/$/.test(u)) continue; let p = u.replace("https://www.fireclient.net/", ""); if (!p || p.endsWith("/")) p += "index.html";
     const t = (rd(p).match(/<title>([\s\S]*?)<\/title>/) || [])[1].trim().replace(/&amp;/g, "&"); assert.ok(t.length <= 62, `${u}: ${t.length} chars: ${t}`); assert.ok(!seen.has(t), `duplicate title ${t}`); seen.set(t, u); }
+});
+
+test("homepage targets both FireClient spellings naturally in title, description and visible copy", () => {
+  const h = rd("index.html");
+  const title = (h.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || "";
+  const desc = (h.match(/<meta name="description" content="([^"]*)"/) || [])[1] || "";
+  assert.equal(title, "FireClient (Fire Client) – Free Minecraft Launcher for Windows");
+  assert.ok(title.length >= 60 && title.length <= 62, `homepage title length ${title.length}`);
+  assert.match(desc, /FireClient.*Fire Client.*Minecraft Java launcher for Windows/i);
+  assert.match(h, /Searching for <strong>“Fire Client”<\/strong>/);
+  assert.match(h, /href="\/about\/">Learn about the FireClient project<\/a>/);
+  assert.match(h, /rel="canonical" href="https:\/\/www\.fireclient\.net\/"/);
 });
 
 test("about page defines the entity; home footer links to the hub pages; no company or audit claims", () => {

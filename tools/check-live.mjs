@@ -9,7 +9,7 @@ async function hops(start) { const out = []; let url = start; for (let i = 0; i 
 let bad = 0; const fail = m => { bad++; console.log("PROBLEM " + m); };
 
 console.log("Redirect chains (want one permanent redirect at most, then 200):");
-for (const s of ["http://fireclient.net/", "https://fireclient.net/", "http://www.fireclient.net/", `${base}/`, `${base}/index.html`, `${base}/download/index.html`, `${base}/download`, `${base}/license`]) {
+for (const s of ["http://fireclient.net/", "https://fireclient.net/", "http://www.fireclient.net/", "https://play.fireclient.net/", "https://play.fireclient.net/download/", `${base}/`, `${base}/index.html`, `${base}/download/index.html`, `${base}/download`, `${base}/license`]) {
   try { const h = await hops(s); console.log(`- ${s}\n    ${h.join("\n    ")}`); const redirects = h.filter(x => /^30[1278]/.test(x)); if (h.includes("LOOP")) fail(`${s} loops`); else if (redirects.length > 2) fail(`${s}: ${redirects.length} redirects`); else if (!h.at(-1).startsWith("200")) fail(`${s} does not end in 200`); else if (redirects.some(x => x.startsWith("302"))) console.log("    note: a 302 is temporary; use 301/308 for permanent canonical redirects"); } catch (e) { fail(`${s}: ${e.message}`); }
 }
 const robots = await get(`${base}/robots.txt`).then(r => r.text()).catch(() => ""); console.log(/Sitemap:\s*https:\/\/www\.fireclient\.net\/sitemap\.xml/i.test(robots) ? "\nrobots.txt lists the sitemap" : (fail("robots.txt does not list the canonical sitemap"), ""));

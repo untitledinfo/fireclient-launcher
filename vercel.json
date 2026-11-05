@@ -2,14 +2,14 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
           "value": "play.fireclient.net"
         }
       ],
-      "destination": "https://www.fireclient.net/$1",
+      "destination": "https://www.fireclient.net/:path*",
       "permanent": true
     },
     {

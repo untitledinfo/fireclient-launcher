@@ -46,7 +46,9 @@ Rule: a new article must target a query no page above owns. Do not publish near-
 Earned links only: README and profile links, creator coverage, helpful answers in communities where you disclose you are the author, directory listings that are real (AlternativeTo, Modrinth profile). No paid links, bot traffic, link farms or fake reviews: these get sites penalised.
 
 ## Domains, subdomains and `index.html` (what "allow everything" should mean)
-- **One canonical host: `https://www.fireclient.net/`.** The legacy duplicate `play.fireclient.net` host is also permanently redirected to this canonical host by `vercel.json`. The apex `fireclient.net`, `http://`, `/index.html` and `/x/index.html` all
+- **Legacy host fix:** `play.fireclient.net/*` must permanently redirect to the matching `https://www.fireclient.net/*` URL. Deploy this redirect on the project that actually serves the `play` hostname; if `play` is attached to a different Vercel project or DNS target, apply the same redirect there. Do not serve a duplicate copy of the site on `play`.
+
+- **One canonical host: `https://www.fireclient.net/`.** The apex `fireclient.net`, `http://`, `/index.html` and `/x/index.html` all
   301-redirect to the canonical URL in **one hop** (tested in `tools/test.mjs`). Letting several hostnames serve the same page
   splits ranking signals; redirects let them all work for visitors while search engines consolidate on one URL.
 - **Indexing is fully allowed**: `robots.txt` blocks only `/admin/`; every page has `index, follow, max-image-preview:large`.
@@ -112,11 +114,3 @@ most important languages, and add them to `lib/locales.mjs` with `hreflang`.
 ## Next.js
 Not needed and it would not improve Google rankings. The site is static HTML: fast, crawlable without JavaScript, no server to break. A framework would add
 complexity and risk. Keep the current setup unless you need accounts or a database.
-
-
-## Homepage targeting update (4 November 2026)
-- Homepage title: `FireClient (Fire Client) – Free Minecraft Launcher for Windows` (62 characters).
-- Homepage description identifies both spellings once and explains the actual product: a free Minecraft Java launcher for Windows with a Fabric client, Modrinth mod manager and customizable HUD.
-- Visible homepage copy clarifies that searches for “Fire Client” refer to this FireClient project and links to the About page for entity details.
-- Keep the primary phrase natural: **FireClient Minecraft launcher**. Use **Fire Client** as a spelling variant, not as a repeated keyword.
-- Do not add a `meta keywords` tag, create thin spelling-variant doorway pages, or repeat the phrase unnaturally. Google does not use `meta keywords` for ranking.

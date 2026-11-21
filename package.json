@@ -9,7 +9,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "prebuild": "node scripts/indexnow.mjs --keyfile || true",
-    "seo:indexnow": "node scripts/indexnow.mjs --submit"
+    "seo:indexnow": "node scripts/indexnow.mjs --submit",
+    "deploy:check": "node scripts/check-deploy.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -29,5 +30,8 @@
     "postcss": "^8.5.33",
     "tailwindcss": "^4.3.5",
     "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

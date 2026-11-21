@@ -346,6 +346,76 @@ curl -s https://fireclient.net/manifest.webmanifest
 curl -s https://fireclient.net/features | grep -o '<link rel="canonical"[^>]*>'
 ```
 
+## Deploying to Vercel (and fixing a 404)
+
+The build produces 25 static pages plus 4 API routes. If a deployment succeeds
+but the URL returns a 404, the request is almost certainly not reaching the app.
+
+### Which 404 are you seeing?
+
+| What you see | Meaning |
+| --- | --- |
+| **"Lost in the overworld." / Error 404** with the FireClient header and footer | Our app answered. That route genuinely does not exist. |
+| Plain **"This page doesn't exist / 404: NOT_FOUND"** with an ID like `bom1::wtn4v-…` | Vercel's platform 404. The app was never invoked. |
+
+The second case is a project/domain configuration problem, not a code problem.
+Run the diagnostic first:
+
+```bash
+npm run deploy:check -- https://fireclient-launcher.vercel.app
+```
+
+It prints the status of `/`, `/download`, `/features`, `/api/health` and
+`/sitemap.xml` with the `x-vercel-id`, and tells you which of the cases below
+you are in.
+
+### Fix, in order of likelihood
+
+1. **Production branch mismatch.** Project → *Settings → Git → Production
+   Branch* must be `main`. If it is set to `master` (or anything else), every
+   `main` deploy becomes a *Preview*, and the production domain has nothing to
+   serve → platform 404 on `/`.
+   Fix: set it to `main`, then *Deployments → … → Promote to Production* on the
+   latest build.
+
+2. **Domain attached to another project.** Project → *Settings → Domains*.
+   `fireclient.net` (and `www`) must be listed on **this** project — not on the
+   old launcher project. Remove it from the other project first, then add it
+   here and re-point DNS if prompted.
+
+3. **Root Directory.** Project → *Settings → General → Root Directory*. It must
+   be the folder containing this `package.json` (`next.config.ts`, `app/`). If
+   the site lives in a subfolder of `fireclient-launcher`, set the Root
+   Directory to that subfolder; leaving it blank while the repo root has no
+   Next app produces an empty deployment.
+
+4. **Framework preset / output directory.** *Settings → Build & Development
+   Settings*: Framework Preset = **Next.js**, Build Command = `npm run build`,
+   Output Directory = **empty (default)**, Install Command = `npm ci`.
+   A leftover `out` or `public` in *Output Directory* makes Vercel serve a
+   directory that does not contain the app → 404 on every route.
+   `vercel.json` in this repo pins the framework and the commands, but the
+   dashboard value wins if it is set.
+
+5. **Deployment Protection.** *Settings → Deployment Protection* → Vercel
+   Authentication must be **off** for the production domain, otherwise you get
+   a login wall or a 404 for anonymous requests.
+
+6. **Wrong URL.** Preview deployments use a different hostname
+   (`project-git-branch-team.vercel.app`). Confirm with `vercel inspect` or the
+   deployment page; a mistyped hash hostname returns the platform 404.
+
+### Verify the fix
+
+```bash
+curl -sI https://fireclient.net/            # expect 200, content-type text/html
+curl -s  https://fireclient.net/api/health  # {"status":"ok", ...}
+curl -s  https://fireclient.net/robots.txt  # crawler groups + sitemap
+```
+
+If `/api/health` returns 200 the app is live and any remaining 404 is a route
+path, not a deployment problem.
+
 ## Deployment
 
 Any Node host or serverless platform works:

@@ -1,7 +1,0 @@
-# FireClient (https://www.fireclient.net)
-# One rule set for every crawler (Google, Bing, DuckDuckGo, Yandex, AI crawlers and others).
-User-agent: *
-Allow: /
-Disallow: /admin/
-
-Sitemap: https://www.fireclient.net/sitemap.xml

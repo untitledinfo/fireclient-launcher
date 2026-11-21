@@ -1,0 +1,529 @@
+@import "tailwindcss";
+
+@custom-variant light (&:where(.light, .light *));
+
+/* ------------------------------------------------------------------
+   Design tokens
+   ------------------------------------------------------------------ */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #08090d;
+  --bg-2: #0d0f14;
+  --surface: #151821;
+  --surface-2: #1b1f2a;
+  --surface-3: #232734;
+  --line: rgba(231, 234, 240, 0.09);
+  --line-strong: rgba(231, 234, 240, 0.16);
+  --ink: #e7eaf0;
+  --ink-soft: #c3c8d2;
+  --muted: #9298a5;
+  --faint: #6b7280;
+
+  /* One accent: FireClient red. */
+  --fire: #ff2d2d;
+  --ember: #ff5c47;
+  --gold: #ff8a6b;
+
+  --fire-soft: rgba(255, 45, 45, 0.12);
+  --fire-line: rgba(255, 45, 45, 0.34);
+
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 24px 60px -32px rgba(0, 0, 0, 0.9);
+  --shadow-lift: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 40px 80px -40px rgba(0, 0, 0, 0.95);
+  --glow: 0 0 0 1px rgba(255, 106, 0, 0.28), 0 18px 60px -18px rgba(255, 106, 0, 0.45);
+
+  --grid-line: rgba(231, 234, 240, 0.045);
+  --img-veil: rgba(8, 9, 13, 0.55);
+}
+
+.light {
+  color-scheme: light;
+
+  --bg: #f4f5f8;
+  --bg-2: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f4f7;
+  --surface-3: #e8ebf0;
+  --line: rgba(8, 9, 13, 0.09);
+  --line-strong: rgba(8, 9, 13, 0.16);
+  --ink: #0b0d12;
+  --ink-soft: #262b36;
+  --muted: #565d6b;
+  --faint: #767d8b;
+
+  --fire: #d11f1f;
+  --ember: #e0402c;
+  --gold: #b8452c;
+
+  --fire-soft: rgba(209, 31, 31, 0.09);
+  --fire-line: rgba(209, 31, 31, 0.3);
+
+  --shadow-card: 0 1px 2px rgba(11, 13, 18, 0.05), 0 12px 32px -20px rgba(11, 13, 18, 0.25);
+  --shadow-lift: 0 2px 4px rgba(11, 13, 18, 0.06), 0 30px 60px -34px rgba(11, 13, 18, 0.35);
+  --glow: 0 0 0 1px rgba(232, 93, 0, 0.25), 0 16px 40px -20px rgba(232, 93, 0, 0.35);
+
+  --grid-line: rgba(11, 13, 18, 0.05);
+  --img-veil: rgba(244, 245, 248, 0.35);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface-2);
+  --color-surface3: var(--surface-3);
+  --color-line: var(--line);
+  --color-lineStrong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-inkSoft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-fire: var(--fire);
+  --color-ember: var(--ember);
+  --color-gold: var(--gold);
+  --color-fireSoft: var(--fire-soft);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-font), "Arial Narrow", ui-sans-serif, sans-serif;
+  --font-mono: var(--font-mono-font), ui-monospace, monospace;
+
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--fire-line);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--fire);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--surface-3);
+    border-radius: 999px;
+    border: 2px solid var(--bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a4150;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilities
+   ------------------------------------------------------------------ */
+
+@utility container-x {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 0.88;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--line-strong) 18%,
+    var(--line-strong) 82%,
+    transparent
+  );
+}
+
+@utility text-gradient-fire {
+  background: linear-gradient(96deg, #fff1e2 0%, var(--gold) 38%, var(--fire) 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Silver plate needs a defined edge to read on pale surfaces. */
+.light .fc-plate-path {
+  stroke: rgba(10, 11, 15, 0.34);
+  stroke-width: 1.5;
+}
+
+/* The dark-mode fire gradient is far too pale on light surfaces. */
+.light .text-gradient-fire,
+.light .display .text-gradient-fire {
+  background: linear-gradient(96deg, var(--gold) 0%, var(--ember) 45%, var(--fire) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* --- HUD / gaming surface language ------------------------------- */
+
+/* L-shaped corner brackets, drawn with pseudo elements. */
+@utility hud-corners {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--fire);
+    opacity: 0.55;
+    transition: opacity 200ms ease, width 200ms ease, height 200ms ease;
+    pointer-events: none;
+  }
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: 1.5px solid;
+    border-left: 1.5px solid;
+  }
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 1.5px solid;
+    border-right: 1.5px solid;
+  }
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@utility hud-corners-static {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: var(--fire);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+}
+
+/* CRT-ish scanlines. Keep the alpha very low. */
+@utility scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.028) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+/* Diagonal hazard stripes, animated. */
+@utility stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 45, 45, 0.14) 0 10px,
+    transparent 10px 22px
+  );
+}
+
+/* Cut corner — used on badges and small chips. */
+@utility notch {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+}
+
+@utility card-surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+}
+
+/* Faint blueprint grid used behind sections */
+@utility grid-bg {
+  background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 78%);
+}
+
+@utility noise {
+  position: relative;
+}
+@utility noise-layer {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------------------
+   Keyframes
+   ------------------------------------------------------------------ */
+
+@keyframes sweep {
+  0% {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes stripe-slide {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 64px 0;
+  }
+}
+
+@keyframes ticker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-sweep {
+  animation: sweep 9s linear infinite;
+}
+.animate-breathe {
+  animation: breathe 5s ease-in-out infinite;
+}
+.animate-stripes {
+  animation: stripe-slide 6s linear infinite;
+}
+.animate-ticker {
+  animation: ticker 1.8s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ember {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(var(--drift, 20px), -220px, 0) scale(0.4);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 106, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 106, 0, 0);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+.animate-ember {
+  animation: ember var(--dur, 9s) linear infinite;
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.6s ease-out infinite;
+}
+
+/* Reduced motion: hide purely decorative particle layers */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-ember,
+  .animate-sweep,
+  .animate-breathe,
+  .animate-stripes,
+  .animate-ticker {
+    animation: none;
+  }
+  .animate-sweep {
+    opacity: 0;
+  }
+}
+
+/* Prose for article pages */
+.prose-fc {
+  color: var(--ink-soft);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose-fc p {
+  margin-block: 1.15rem;
+}
+.prose-fc h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.85rem;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 2.75rem;
+  margin-bottom: 0.85rem;
+}
+.prose-fc ul {
+  margin-block: 1.15rem;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.prose-fc li {
+  position: relative;
+  padding-left: 1rem;
+}
+.prose-fc li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  background: var(--fire);
+  transform: rotate(45deg);
+}
+.prose-fc blockquote {
+  margin-block: 2rem;
+  padding: 0.35rem 0 0.35rem 1.35rem;
+  border-left: 2px solid var(--fire);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.15;
+  text-transform: none;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+}
+.prose-fc strong {
+  color: var(--ink);
+  font-weight: 600;
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="38 21 53 73" width="512" height="512" role="img" aria-label="FireClient mark">
+  <defs>
+    <linearGradient id="red" x1="46" y1="26" x2="86" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF6456"/><stop offset=".45" stop-color="#F03A3A"/><stop offset="1" stop-color="#C41C20"/>
+    </linearGradient>
+  </defs>
+  <path d="M91 21 78 32 38 33 38 94 53 94 55 76 78 74 81 53 72 60 59 60 54 58 54 52 57 48 88 48Z" fill="url(#red)"/>
+</svg>

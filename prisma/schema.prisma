@@ -1,0 +1,79 @@
+// ---------------------------------------------------------------------------
+// Reference schema for the optional database-backed content layer.
+//
+// The site ships with a typed file-based content layer (lib/content.ts) so it
+// builds and deploys with zero infrastructure. When editorial content moves to
+// PostgreSQL, this schema is the intended shape: swap the imports in
+// lib/content.ts for Prisma queries and the pages do not change.
+//
+//   npx prisma migrate dev --name init
+//
+// ---------------------------------------------------------------------------
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Release {
+  id         String        @id @default(cuid())
+  version    String        @unique
+  channel    Channel       @default(STABLE)
+  status     ReleaseStatus @default(UNRELEASED)
+  releasedAt DateTime?
+  statusNote String?
+  highlights String[]
+  files      ReleaseFile[]
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+}
+
+model ReleaseFile {
+  id        String  @id @default(cuid())
+  releaseId String
+  release   Release @relation(fields: [releaseId], references: [id], onDelete: Cascade)
+  os        String
+  name      String
+  sizeBytes Int
+  sha256    String
+  url       String
+
+  @@unique([releaseId, os, name])
+}
+
+model Post {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  excerpt        String
+  category       String
+  body           Json
+  readingMinutes Int      @default(3)
+  author         String   @default("FireClient Team")
+  publishedAt    DateTime
+  draft          Boolean  @default(true)
+}
+
+model SupportRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  topic     String
+  message   String
+  status    String   @default("open")
+  createdAt DateTime @default(now())
+}
+
+enum Channel {
+  STABLE
+  BETA
+}
+
+enum ReleaseStatus {
+  AVAILABLE
+  UNRELEASED
+}
